@@ -19,7 +19,10 @@ import React from 'react'
 import classNames from 'classnames'
 // react plugin used to create charts
 import { Line } from 'react-chartjs-2'
-import { useAuth } from 'contexts/authContext'
+// database interaction
+import { db } from 'firebaseApp'
+import { collection, getDocs } from 'firebase/firestore'
+
 
 // reactstrap components
 import {
@@ -40,13 +43,41 @@ import { chartExample1 } from 'variables/charts.js'
 const { REACT_APP_TITLE } = process.env
 
 const Dashboard = () => {
-  const { getUserData } = useAuth()
   document.title = `${REACT_APP_TITLE}`
+
   const [bigChartData, setbigChartData] = React.useState('data1')
+  const [nIntegrantes, setIntegrantesN] = React.useState({})
+  const [loading, setLoading] = React.useState(true)
+
   const setBgChartData = (name) => {
     setbigChartData(name)
   }
-  console.log(getUserData())
+
+  // Contar integrantes de todas las unidades
+  const countIntegrantes = async () => {
+    setLoading(true)
+    const unidades = ['familia', 'manada', 'tropa', 'sociedad', 'clan', 'jefatura', 'consejo']
+
+    unidades.forEach(async (unidad) => {
+      const querySnapshot = await getDocs(collection(db, `unidades/${unidad}/integrantes`))
+      setIntegrantesN((prevState) => ({
+        ...prevState,
+        [unidad]: querySnapshot.size,
+      }))
+    })
+
+    // REVISAR: <bug> que hace que el loading no se cargue
+    // debido a esto, se hace un setTimeout para que se cargue.
+    // extraño, pero funciona
+    setTimeout(() => {
+      setLoading(false)
+    }, 100)
+  }
+
+  React.useEffect(() => {
+    countIntegrantes()
+  }, [])
+
   return (
     <>
       <div className='content'>
@@ -56,15 +87,21 @@ const Dashboard = () => {
             <Card className='card-stats'>
               <CardBody>
                 <Row>
-                  <Col xs='5'>
+                  <Col xs='4'>
                     <div className='info-icon text-center icon-primary'>
                       <i className='fas fa-person-hiking' />
                     </div>
                   </Col>
-                  <Col xs='7'>
+                  <Col xs='8'>
                     <div className='numbers'>
                       <p className='card-category'>FAMILIA</p>
-                      <CardTitle tag='h3'>24</CardTitle>
+                      <CardTitle tag='h3'>
+                        {loading ? (
+                          <i className='fas fa-circle-notch fa-spin' />
+                        ) : (
+                          nIntegrantes.familia
+                        )}
+                      </CardTitle>
                     </div>
                   </Col>
                 </Row>
@@ -91,7 +128,12 @@ const Dashboard = () => {
                   <Col xs='8'>
                     <div className='numbers'>
                       <p className='card-category'>MANADA</p>
-                      <CardTitle tag='h3'>30</CardTitle>
+                      <CardTitle tag='h3'>
+                        {loading ? (
+                          <i className='fas fa-circle-notch fa-spin' />
+                        ) : (
+                          nIntegrantes.manada
+                        )}</CardTitle>
                     </div>
                   </Col>
                 </Row>
@@ -110,15 +152,20 @@ const Dashboard = () => {
             <Card className='card-stats'>
               <CardBody>
                 <Row>
-                  <Col xs='5'>
+                  <Col xs='4'>
                     <div className='info-icon text-center icon-success'>
                       <i className='fas fa-person-hiking' />
                     </div>
                   </Col>
-                  <Col xs='7'>
+                  <Col xs='8'>
                     <div className='numbers'>
                       <p className='card-category'>TROPA</p>
-                      <CardTitle tag='h3'>25</CardTitle>
+                      <CardTitle tag='h3'>
+                        {loading ? (
+                          <i className='fas fa-circle-notch fa-spin' />
+                        ) : (
+                          nIntegrantes.tropa
+                        )}</CardTitle>
                     </div>
                   </Col>
                 </Row>
@@ -145,7 +192,13 @@ const Dashboard = () => {
                   <Col xs='8'>
                     <div className='numbers'>
                       <p className='card-category'>SOCIEDAD</p>
-                      <CardTitle tag='h3'>28</CardTitle>
+                      <CardTitle tag='h3'>
+                        {loading ? (
+                          <i className='fas fa-circle-notch fa-spin' />
+                        ) : (
+                          nIntegrantes.sociedad
+                        )}
+                      </CardTitle>
                     </div>
                   </Col>
                 </Row>
@@ -164,15 +217,21 @@ const Dashboard = () => {
             <Card className='card-stats'>
               <CardBody>
                 <Row>
-                  <Col xs='5'>
+                  <Col xs='4'>
                     <div className='info-icon text-center icon-danger'>
                       <i className='fas fa-person-hiking' />
                     </div>
                   </Col>
-                  <Col xs='7'>
+                  <Col xs='8'>
                     <div className='numbers'>
                       <p className='card-category'>CLAN</p>
-                      <CardTitle tag='h3'>22</CardTitle>
+                      <CardTitle tag='h3'>
+                        {loading ? (
+                          <i className='fas fa-circle-notch fa-spin' />
+                        ) : (
+                          nIntegrantes.clan
+                        )}
+                      </CardTitle>
                     </div>
                   </Col>
                 </Row>
@@ -199,7 +258,14 @@ const Dashboard = () => {
                   <Col xs='8'>
                     <div className='numbers'>
                       <small className='card-category'>JEFES/CONS</small>
-                      <CardTitle tag='h3'>32</CardTitle>
+                      <CardTitle tag='h3'>
+                        {loading ? (
+                          <i className='fas fa-circle-notch fa-spin' />
+                        ) : (
+                          nIntegrantes.jefatura + nIntegrantes.consejo
+                        ) || 0
+                        }
+                      </CardTitle>
                     </div>
                   </Col>
                 </Row>
