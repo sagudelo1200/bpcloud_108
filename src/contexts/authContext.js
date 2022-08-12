@@ -25,6 +25,7 @@ const AuthContext = createContext({
   resetPassword: null,
   isAuthenticated: null,
   getUserData: null,
+  userData: null,
 })
 
 export const useAuth = () => useContext(AuthContext)
@@ -166,6 +167,7 @@ export default function AuthContextProvider({ children }) {
     resetPassword,
     isAuthenticated,
     getUserData,
+    userData
   }
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
