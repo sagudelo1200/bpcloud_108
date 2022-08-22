@@ -250,14 +250,9 @@ const Dashboard = () => {
             <Card className='card-stats'>
               <CardBody>
                 <Row>
-                  <Col xs='4'>
-                    <div className='info-icon text-center bg-dark icon-light'>
-                      <i className='fas fa-person-hiking' />
-                    </div>
-                  </Col>
-                  <Col xs='8'>
+                  <Col>
                     <div className='numbers'>
-                      <small className='card-category'>JEFES/CONS</small>
+                      <small className='card-category'>ADULTO VOLUNTARIO</small>
                       <CardTitle tag='h3'>
                         {loading ? (
                           <i className='fas fa-circle-notch fa-spin' />
@@ -308,40 +303,6 @@ const Dashboard = () => {
                         </span>
                         <span className='d-block d-sm-none'>
                           <i className='tim-icons icon-single-02' />
-                        </span>
-                      </Button>
-                      <Button
-                        color='info'
-                        id='1'
-                        size='sm'
-                        tag='label'
-                        className={classNames('btn-simple', {
-                          active: bigChartData === 'data2',
-                        })}
-                        onClick={() => setBgChartData('data2')}
-                      >
-                        <span className='d-none d-sm-block d-md-block d-lg-block d-xl-block'>
-                          Ingresos
-                        </span>
-                        <span className='d-block d-sm-none'>
-                          <i className='tim-icons icon-gift-2' />
-                        </span>
-                      </Button>
-                      <Button
-                        color='info'
-                        id='2'
-                        size='sm'
-                        tag='label'
-                        className={classNames('btn-simple', {
-                          active: bigChartData === 'data3',
-                        })}
-                        onClick={() => setBgChartData('data3')}
-                      >
-                        <span className='d-none d-sm-block d-md-block d-lg-block d-xl-block'>
-                          Interacciones web
-                        </span>
-                        <span className='d-block d-sm-none'>
-                          <i className='tim-icons icon-tap-02' />
                         </span>
                       </Button>
                     </ButtonGroup>
