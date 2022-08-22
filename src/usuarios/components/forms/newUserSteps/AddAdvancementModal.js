@@ -163,7 +163,7 @@ const AddAdvancementModal = ({ isOpen, toggle, addAdvancementToList, addItem, un
       onClosed={() => setForm(defaultForm)}
     >
       <ModalHeader tag='h4' toggle={toggle}>
-        Registro de ascensos
+        Avances en su formación Scout
       </ModalHeader>
       <ModalBody>
         <Form>
@@ -244,7 +244,7 @@ const AddAdvancementModal = ({ isOpen, toggle, addAdvancementToList, addItem, un
       </ModalBody>
       <ModalFooter>
         <Button color='primary' onClick={handleSubmit} disabled={isSubmitting}>
-          Crear actividad
+          Otorgar ascenso
         </Button>
         <Button color='secondary' onClick={toggle}>
           Cancelar

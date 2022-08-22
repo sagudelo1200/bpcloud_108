@@ -12,7 +12,7 @@ import {
   Col,
 } from 'reactstrap'
 
-import StickyBox from 'react-sticky-box'
+import { useAuth } from 'contexts/authContext'
 import { useParams, Redirect } from 'react-router-dom'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from 'firebaseApp'
@@ -26,6 +26,7 @@ const User = () => {
   const [user, setUser] = useState({})
   const [loading, setLoading] = useState(true)
   const [redirect, setRedirect] = useState(false)
+  const { userData } = useAuth()
   const docRef = doc(db, `unidades/${unidad}/integrantes/${id}`)
   document.title = `${user.nombre || ''} ${user.apellidos || ''} | ${REACT_APP_TITLE}`
 
@@ -78,6 +79,7 @@ const User = () => {
   useEffect(() => {
     /* getUser in a clean function */
     getUser()
+    console.log('userData', userData)
     function clean() {
       setUser({})
       setLoading(false)
@@ -94,10 +96,8 @@ const User = () => {
         {loading ? <DefaultLoading /> : (
           <Row className='justify-content-center'>
             <Col sm='8' md='7'>
-              <StickyBox offsetTop={20} offsetBottom={20}>
-                {/* USER */}
-                <Col md='9' className='mx-auto'>
-
+              {/* USER */}
+              <Col md='9' className='mx-auto'>
                 <Card className='card-user'>
                   <CardBody>
                     <div className='author'>
@@ -105,7 +105,7 @@ const User = () => {
                       <div className='block block-two' />
                       <div className='block block-three' />
                       <div className='block block-four' />
-                      <a href='#03Quimbayas' onClick={(e) => e.preventDefault()}>
+                      <a href='#03Quimbayas' onClick={() => alert(JSON.stringify(user))}>
                         <img
                           alt='...'
                           className='avatar'
@@ -167,11 +167,12 @@ const User = () => {
                   </div> */}
                   </CardFooter>
                 </Card>
-                </Col>
+              </Col>
 
-                {/* FAMILIARES */}
-                {user.madre || user.padre ? (
-                  <Row className='align-items-center'>
+              {/* FAMILIARES */}
+              <Row className='align-items-center'>
+                {user.madre?.nombre || user.padre?.nombre ? (
+                  <>
                     <Col md='4'>
                       <Card
                       >
@@ -280,104 +281,137 @@ const User = () => {
                         </CardBody>
                       </Card>
                     </Col>
-                    <Col md='4'>
-                      <Card
-                      >
-                        <CardBody>
-                          <CardTitle tag='h4'>
-                            {user.acudiente?.nombre}
-                          </CardTitle>
-                          <CardSubtitle
-                            className='mb-2 text-muted'
-                            tag='h5'
-                          >
-                            Acudiente
-                          </CardSubtitle>
-                          <CardText>
-                            {user.acudiente?.documento}
-                            {user.acudiente?.celular && (
-                              <a
-                                href={`https://api.whatsapp.com/send?phone=57${user.acudiente.celular}`}
-                                rel='noreferrer'
-                                target='_blank'
-                                className='mr-1'
-                              >
-                                <Button className='btn-icon btn-round' color='success' type='button'>
-                                  <i className='fab fa-whatsapp' />
-                                </Button>
-                              </a>
-                            )}
-                            {user.acudiente?.email && (
-                              <a
-                                href={`mailto:${user.acudiente.email}`}
-                                rel='noreferrer'
-                                target='_blank'
-                                className='mr-1'
-                              >
-                                <Button className='btn-icon btn-round' type='button'>
-                                  <i className='fas fa-envelope' />
-                                </Button>
-                              </a>
-                            )}
-                            {user.acudiente?.telefono && (
-                              <a
-                                href={`tel:+57604${user.acudiente.telefono}`}
-                                rel='noreferrer'
-                                target='_blank'
-                              >
-                                <Button className='btn-icon btn-round' color='primary' type='button'>
-                                  <i className='fas fa-phone-alt' />
-                                </Button>
-                              </a>
-                            )}
-                          </CardText>
-                        </CardBody>
-                      </Card>
-                    </Col>
-                  </Row>
+                  </>
                 ) : null}
-              </StickyBox>
+                {user.acudiente?.nombre ? (
+                  <Col md='4'>
+                    <Card
+                    >
+                      <CardBody>
+                        <CardTitle tag='h4'>
+                          {user.acudiente?.nombre}
+                        </CardTitle>
+                        <CardSubtitle
+                          className='mb-2 text-muted'
+                          tag='h5'
+                        >
+                          Acudiente
+                        </CardSubtitle>
+                        <CardText>
+                          {user.acudiente?.documento}
+                          {user.acudiente?.celular && (
+                            <a
+                              href={`https://api.whatsapp.com/send?phone=57${user.acudiente.celular}`}
+                              rel='noreferrer'
+                              target='_blank'
+                              className='mr-1'
+                            >
+                              <Button className='btn-icon btn-round' color='success' type='button'>
+                                <i className='fab fa-whatsapp' />
+                              </Button>
+                            </a>
+                          )}
+                          {user.acudiente?.email && (
+                            <a
+                              href={`mailto:${user.acudiente.email}`}
+                              rel='noreferrer'
+                              target='_blank'
+                              className='mr-1'
+                            >
+                              <Button className='btn-icon btn-round' type='button'>
+                                <i className='fas fa-envelope' />
+                              </Button>
+                            </a>
+                          )}
+                          {user.acudiente?.telefono && (
+                            <a
+                              href={`tel:+57604${user.acudiente.telefono}`}
+                              rel='noreferrer'
+                              target='_blank'
+                            >
+                              <Button className='btn-icon btn-round' color='primary' type='button'>
+                                <i className='fas fa-phone-alt' />
+                              </Button>
+                            </a>
+                          )}
+                        </CardText>
+                      </CardBody>
+                    </Card>
+                  </Col>
+                ) : null}
+              </Row>
             </Col>
             <Col md='5'>
-              {/* ASCENSOS */}
-              <Card className='text-center'>
+              {/* INFORMACIÓN MÉDICA */}
+              <Card className='card-stats'>
                 <CardBody>
-                  <div className='author'>
-                    <div className='block block-one'>
-                      <h4>ASCENSOS</h4>
-
-                    </div>
+                  <Row>
+                    <Col xs='2'>
+                      <div className='info-icon text-center icon-danger'>
+                        <i className='fas fa-hand-holding-medical' />
+                      </div>
+                    </Col>
+                    <Col xs='10'>
+                      <div className='numbers'>
+                        <CardTitle tag='h3' className='mb-0'>INFORMACIÓN MÉDICA</CardTitle>
+                        <Button
+                          className='btn-link p-0'
+                          color='primary'
+                          onClick={() => alert('Proximamente...')}
+                        >
+                          Ver <i className='fas fa-square-arrow-up-right' />
+                        </Button>
+                      </div>
+                    </Col>
+                  </Row>
+                </CardBody>
+                <CardFooter className='d-none'>
+                  <hr />
+                  <div className='stats'>
+                    <i className='tim-icons icon-refresh-01' /> Recalcular
                   </div>
-                  <div className='row'>
-                    {user.ascensos && user.ascensos.map((ascenso) => (
-                      <div className='col-4 my-3' key={ascenso.nombre}>
-                        <img
-                          alt={ascenso.nombre}
-                          className='img-raised rounded img-fluid'
-                          src={ascenso.img || 'https://via.placeholder.com/100'}
-                          title={ascenso.nombre}
+                </CardFooter>
+              </Card>
+              {/* ASCENSOS */}
+              {unidad !== 'jefatura' && unidad !== 'consejo' && (
+                <Card className='text-center'>
+                  <CardBody>
+                    <div className='author'>
+                      <div className='block block-one'>
+                        <h4>ASCENSOS</h4>
+
+                      </div>
+                    </div>
+                    <div className='row'>
+                      {user.ascensos && user.ascensos.map((ascenso) => (
+                        <div className='col-4 my-3' key={ascenso.nombre}>
+                          <img
+                            alt={ascenso.nombre}
+                            className='img-raised rounded img-fluid'
+                            src={ascenso.img || 'https://via.placeholder.com/100'}
+                            title={ascenso.nombre}
+                          />
+                        </div>
+                      ))}
+                      <div className='col-4 my-3 d-flex align-items-center justify-content-center'>
+                        <button
+                          onClick={createAscenso}
+                        >
+                          <i className='fas fa-plus fa-2x' />
+                        </button>
+                        <AddAdvancementModal
+                          isOpen={isOpenAscenso}
+                          toggle={toggleNewAscensoModal}
+                          createAscenso={createAscenso}
+                          unidad={unidad}
+                          user={user}
+                          addAdvancementToList={addAdvancementToList}
                         />
                       </div>
-                    ))}
-                    <div className='col-4 my-3 d-flex align-items-center justify-content-center'>
-                      <button
-                        onClick={createAscenso}
-                      >
-                        <i className='fas fa-plus fa-2x' />
-                      </button>
-                      <AddAdvancementModal
-                        isOpen={isOpenAscenso}
-                        toggle={toggleNewAscensoModal}
-                        createAscenso={createAscenso}
-                        unidad={unidad}
-                        user={user}
-                        addAdvancementToList={addAdvancementToList}
-                      />
                     </div>
-                  </div>
-                </CardBody>
-                <CardFooter>
-                  {/* <div className='button-container'>
+                  </CardBody>
+                  <CardFooter>
+                    {/* <div className='button-container'>
                     <Button className='btn-icon btn-round' color='facebook'>
                       <i className='fab fa-facebook' />
                     </Button>
@@ -388,8 +422,9 @@ const User = () => {
                       <i className='fab fa-google-plus' />
                     </Button>
                   </div> */}
-                </CardFooter>
-              </Card>
+                  </CardFooter>
+                </Card>
+              )}
             </Col>
           </Row>
         )}

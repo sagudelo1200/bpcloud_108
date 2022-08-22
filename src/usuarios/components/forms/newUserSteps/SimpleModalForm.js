@@ -66,7 +66,7 @@ const SimpleModalForm = ({ isOpen, toggle, createUser, unidad }) => {
                   type='text'
                   name='nombres'
                   id='nombres'
-                  placeholder='Nombre Completo'
+                  placeholder='Nombres'
                   value={form.nombres}
                   onChange={(e) => setForm({ ...form, nombres: e.target.value })}
                 />
@@ -81,7 +81,7 @@ const SimpleModalForm = ({ isOpen, toggle, createUser, unidad }) => {
                   type='text'
                   name='nombres'
                   id='nombres'
-                  placeholder='Nombre Completo'
+                  placeholder='Apellidos'
                   value={form.apellidos}
                   onChange={(e) => setForm({ ...form, apellidos: e.target.value })}
                 />

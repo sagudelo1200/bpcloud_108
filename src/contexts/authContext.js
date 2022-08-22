@@ -33,6 +33,7 @@ export const useAuth = () => useContext(AuthContext)
 export default function AuthContextProvider({ children }) {
   const [currentUser, setCurrentUser] = useState({})
   const [userData, setUserData] = useState({})
+  const [currentUserData, setCurrentUserData] = useState({})
 
   // Valida si el usuario autenticado tiene permisos para acceder a la aplicación
   const checkRole = async (user) => {
@@ -54,11 +55,12 @@ export default function AuthContextProvider({ children }) {
         autoClose: 4420,
       })
       setCurrentUser(user)
-      setUserData(data)
+      setCurrentUserData(data)
       console.log('ADMINISTRADOR')
     } else if (data.role === 'admin') {
       console.log(`User ${user.uid} is admin`)
       setCurrentUser(user)
+      setCurrentUserData(data)
       try {
         if (!data.ref) {
           console.log('User is not registered')

@@ -41,7 +41,7 @@ import { useAuth } from 'contexts/authContext';
 import { Link } from 'react-router-dom';
 
 const AdminNavbar = (props) => {
-  const { logoutAndRememberUser, logout, currentUser } = useAuth();
+  const { logoutAndRememberUser, logout, currentUser, userData } = useAuth();
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [modalSearch, setModalSearch] = React.useState(false);
   const [color, setColor] = React.useState('navbar-transparent');
@@ -159,8 +159,8 @@ const AdminNavbar = (props) => {
                 </DropdownToggle>
                 <DropdownMenu className='dropdown-navbar' right tag='ul'>
                   <NavLink tag='li'>
-                    <DropdownItem className='nav-item'>
-                      Has leído todo <span role='img'>😅</span>
+                    <DropdownItem className='nav-item text-center'>
+                      <span role='img'> 👻 👻 👻 </span>
                     </DropdownItem>
                   </NavLink>
                 </DropdownMenu>
@@ -182,7 +182,7 @@ const AdminNavbar = (props) => {
                 <DropdownMenu className='dropdown-navbar' right tag='ul'>
                   <NavLink tag='li'>
                     <DropdownItem className='nav-item'>
-                      <Link to='/admin/perfil' className='nav-link text-dark'>
+                      <Link to={`/admin/${userData.unidad}/${userData.documento}`} className='nav-link text-dark'>
                         Perfil
                       </Link>
                     </DropdownItem>
