@@ -378,7 +378,7 @@ const User = () => {
                   <CardBody>
                     <div className='author'>
                       <div className='block block-one'>
-                        <h4>ASCENSOS</h4>
+                        <h4>FORMACIÓN SCOUT</h4>
 
                       </div>
                     </div>

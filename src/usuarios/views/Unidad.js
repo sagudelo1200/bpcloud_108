@@ -267,10 +267,6 @@ const Unidad = () => {
                       accessor: 'email',
                     },
                     {
-                      Header: 'Estado',
-                      accessor: 'estado',
-                    },
-                    {
                       Header: 'Acciones',
                       accessor: 'acciones',
                     },
