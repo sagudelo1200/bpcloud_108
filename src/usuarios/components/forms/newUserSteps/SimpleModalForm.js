@@ -79,8 +79,8 @@ const SimpleModalForm = ({ isOpen, toggle, createUser, unidad }) => {
                 <Input
                   className='text-dark'
                   type='text'
-                  name='nombres'
-                  id='nombres'
+                  name='apellidos'
+                  id='apellidos'
                   placeholder='Apellidos'
                   value={form.apellidos}
                   onChange={(e) => setForm({ ...form, apellidos: e.target.value })}

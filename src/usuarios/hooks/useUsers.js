@@ -17,7 +17,7 @@ export const useUsers = (unidad) => {
       querySnapshot.forEach((doc) => {
         const x = doc.data()
         x.id = doc.id
-        x.nombreCompleto = `${x.nombre || ''} ${x.apellidos || ''}`.trim()
+        x.nombreCompleto = `${x.nombres || ''} ${x.apellidos || ''}`.trim()
         data.push(x)
       })
       setUsuarios(data)

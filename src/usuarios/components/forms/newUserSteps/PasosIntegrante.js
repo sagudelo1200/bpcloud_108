@@ -16,7 +16,7 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
   const [form, setForm] = React.useState({
     estado: 'activo',
     documento: '',
-    nombre: '',
+    nombres: '',
     apellidos: '',
     fechaNacimiento: '',
     ciudadNacimiento: '',
@@ -112,7 +112,7 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
     setEstadodocumento: setEstadoDocumento,
     setdocumento: (documento) => { setForm(prev => ({ ...prev, documento })) },
     setEstadonombre: setEstadoNombre,
-    setnombre: (nombre) => { setForm(prev => ({ ...prev, nombre })) },
+    setnombre: (nombres) => { setForm(prev => ({ ...prev, nombres })) },
     setEstadoapellidos: setEstadoApellidos,
     setapellidos: (apellidos) => { setForm(prev => ({ ...prev, apellidos })) },
     setEstadoemail: setEstadoEmail,
@@ -408,12 +408,12 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
             <Input
               required
               type='text'
-              name='nombre'
+              name='nombres'
               placeholder='Nombres...'
               onChange={(e) => { handleChange(e, 'required') }}
               onFocus={() => setFocoNombre(true)}
               onBlur={() => setFocoNombre(false)}
-              value={form.nombre}
+              value={form.nombres}
             />
             {estadoNombre === 'has-danger' && (
               <label className='error'>
