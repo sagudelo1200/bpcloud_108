@@ -16,11 +16,12 @@ import {
 
 
 const SimpleModalForm = ({ isOpen, toggle, createUser, unidad }) => {
-  const defaultFormState = {
+  let defaultFormState = {
     nombres: '',
     apellidos: '',
     documento: '',
     email: '',
+    unidad
   }
 
   unidad === 'jefatura' && (defaultFormState.jefeDe = '')
@@ -29,7 +30,7 @@ const SimpleModalForm = ({ isOpen, toggle, createUser, unidad }) => {
 
   const verifyEmail = (email) => {
     // eslint-disable-next-line
-    const email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    const email_regex = /^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     return email_regex.test(email)
   }
 
@@ -40,7 +41,7 @@ const SimpleModalForm = ({ isOpen, toggle, createUser, unidad }) => {
     if (!verifyEmail(form.email)) errors.email = 'El email no es válido'
     if (!form.email) errors.email = 'El email es requerido'
     if (form.documento.length < 6) errors.documento = 'Mínimo 6 caracteres'
-    if (unidad === 'jefatura' && !form.jefeDe) errors.jefeDe = 'La unidad es requerida'
+    if (unidad === 'jefatura' && !form.jefeDe) errors.jefeDe = 'Revise este campo'
     return errors
   }
 
@@ -58,7 +59,7 @@ const SimpleModalForm = ({ isOpen, toggle, createUser, unidad }) => {
       <ModalBody>
         <Form>
           <Row className='d-flex justify-content-center'>
-          <Col sm='12'>
+            <Col sm='12'>
               <FormGroup>
                 <label>Nombres</label>
                 <Input
@@ -93,10 +94,12 @@ const SimpleModalForm = ({ isOpen, toggle, createUser, unidad }) => {
                 <label>Documento</label>
                 <Input
                   className='text-dark'
-                  type='text'
+                  type='number'
                   name='documento'
                   id='documento'
-                  placeholder='Documento'
+                  placeholder='Documento de identidad'
+                  min={0}
+                  step={1}
                   value={form.documento}
                   onChange={(e) => setForm({ ...form, documento: e.target.value })}
                 />
@@ -142,7 +145,7 @@ const SimpleModalForm = ({ isOpen, toggle, createUser, unidad }) => {
             )}
             <Col sm='12' className='d-flex justify-content-end'>
               <Link to='/admin/nuevo-integrante'>
-                Ir al formulario avanzado <i class="fa-solid fa-up-right-from-square"></i>
+                Ir al formulario avanzado <i className='fa-solid fa-up-right-from-square'></i>
               </Link>
             </Col>
           </Row>

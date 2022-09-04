@@ -408,7 +408,7 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
             <Input
               required
               type='text'
-              name='nombres'
+              name='nombre'
               placeholder='Nombres...'
               onChange={(e) => { handleChange(e, 'required') }}
               onFocus={() => setFocoNombre(true)}
@@ -565,7 +565,7 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               name='direccion'
               placeholder='Direccion...'
               onChange={(e) => { handleChange(e) }}
-              value={form.direccion?.direccion}
+              value={form.direccion?.direccion || ''}
               onFocus={() => setFocoDireccion(true)}
               onBlur={() => setFocoDireccion(false)}
             />

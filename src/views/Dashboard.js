@@ -71,7 +71,7 @@ const Dashboard = () => {
     // extraño, pero funciona
     setTimeout(() => {
       setLoading(false)
-    }, 100)
+    }, 1000)
   }
 
   React.useEffect(() => {

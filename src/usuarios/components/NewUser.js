@@ -23,13 +23,13 @@ const { REACT_APP_TITLE } = process.env
 
 function NewUser() {
   document.title = `Nuevo integrante | ${REACT_APP_TITLE}`
-  const { register } = useAuth()
+  const { register, logout } = useAuth()
 
   const createUser = async (userData) => {
     // Acción para ocultar el alert de inicio de sesión cuando se registra un usuario
     localStorage.setItem('registering', true)
 
-    const { email, documento, nombre, apellidos, foto, unidad } = userData
+    const { email, documento, nombres, foto, unidad, jefeDe } = userData
     let id
     const unidades = ['familia', 'manada', 'tropa', 'sociedad', 'clan', 'jefatura', 'consejo']
 
@@ -56,7 +56,7 @@ function NewUser() {
     try {
       const res = await register(email, documento)
       await updateProfile(res.user, {
-        displayName: nombre,
+        displayName: nombres,
         photoURL: foto,
       })
       id = res.user.uid
@@ -72,24 +72,36 @@ function NewUser() {
       throw error
     }
 
-    // crea el documento de usuario de la app en la base de datos
-    const docRef = doc(db, `unidades/${unidad}/integrantes/${documento}`)
-    const userRef = doc(db, `users/${id}`)
-    await setDoc(userRef, {
-      name: `${nombre} ${apellidos}`,
-      ref: docRef,
-      unidad,
-      role: unidad === 'jefatura' || unidad === 'consejo' ? 'admin' : 'user',
-    })
+    try {
+      // crea el documento de usuario de la app en la base de datos
+      const docRef = doc(db, `unidades/${unidad}/integrantes/${documento}`)
+      const userRef = doc(db, `users/${id}`)
+      let userAppData = {
+        nombres: `${nombres}`,
+        ref: docRef,
+        unidad,
+        role: unidad === 'jefatura' || unidad === 'consejo' ? 'admin' : 'user',
+        roles: [unidad === 'jefatura' || unidad === 'consejo' ? 'admin' : 'user']
+      }
+      if (unidad === 'jefatura') {
+        userAppData['jefeDe'] = jefeDe
+      }
 
-    // Guardar los datos del integrante en la base de datos
-    await setDoc(docRef, {
-      ...userData,
-      userID: id,
-    })
+      await setDoc(userRef, userAppData)
 
-    localStorage.removeItem('registering')
-    return true
+      // Guardar los datos del integrante en la base de datos
+      await setDoc(docRef, {
+        ...userData,
+        userID: id,
+      })
+
+      localStorage.removeItem('registering')
+      logout()
+      return true
+    } catch (error) {
+      console.error(error)
+      throw error
+    }
   }
 
   const finishButtonClick = async (data) => {

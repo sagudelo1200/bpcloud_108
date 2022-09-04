@@ -29,7 +29,7 @@ import User from './User'
 const { REACT_APP_TITLE } = process.env
 
 const Unidad = () => {
-  const { register } = useAuth()
+  const { register, logout } = useAuth()
   const [data, setData] = React.useState([])
   const { path } = useRouteMatch()
 
@@ -40,8 +40,8 @@ const Unidad = () => {
     toggleNewUserModal()
     // Acción para ocultar el alert de inicio de sesión
     localStorage.setItem('registering', true)
-    
-    const { email, documento, nombre } = userData
+
+    const { email, documento, nombres, jefeDe } = userData
     let id
     const unidades = ['familia', 'manada', 'tropa', 'sociedad', 'clan', 'jefatura', 'consejo']
 
@@ -62,7 +62,7 @@ const Unidad = () => {
     // Validar que el email no exista en la base de datos y crear cuenta
     try {
       const res = await register(email, documento)
-      await updateProfile(res.user, { displayName: nombre })
+      await updateProfile(res.user, { displayName: nombres })
       id = res.user.uid
     } catch (error) {
       localStorage.removeItem('registering')
@@ -76,24 +76,40 @@ const Unidad = () => {
       throw error
     }
 
-    // crea el documento de usuario de la app en la base de datos
-    const docRef = doc(db, `unidades/${unidad}/integrantes/${documento}`)
-    const userRef = doc(db, `users/${id}`)
-    await setDoc(userRef, {
-      name: `${nombre}`,
-      ref: docRef,
-      unidad,
-      role: unidad === 'jefatura' || unidad === 'consejo' ? 'admin' : 'user',
-    })
 
-    // Guardar los datos del integrante en la base de datos
-    await setDoc(docRef, {
-      ...userData,
-      userID: id,
-    })
+    try {
+      // crea el documento de usuario de la app en la base de datos
+      const docRef = doc(db, `unidades/${unidad}/integrantes/${documento}`)
+      const userRef = doc(db, `users/${id}`)
+      let userAppData = {
+        estado: 'activo',
+        nombres: `${nombres}`,
+        ref: docRef,
+        unidad,
+        role: unidad === 'jefatura' || unidad === 'consejo' ? 'admin' : 'user',
+        roles: [unidad === 'jefatura' || unidad === 'consejo' ? 'admin' : 'user']
+      }
+      if (unidad === 'jefatura') {
+        userAppData['jefeDe'] = jefeDe
+      }
 
-    localStorage.removeItem('registering')
-    return true
+      await setDoc(userRef, userAppData)
+
+      // Guardar los datos del integrante en la base de datos
+      await setDoc(docRef, {
+        ...userData,
+        userID: id,
+        estado: 'activo'
+      })
+
+      localStorage.removeItem('registering')
+      logout()
+      return true
+    } catch (error) {
+      console.error(error)
+      throw error
+    }
+
   }
 
 
@@ -121,7 +137,6 @@ const Unidad = () => {
   const unidad = getActiveRoute(routes).toLowerCase()
   const [usuarios, loading] = useUsers(unidad)
   let datosUnidad = {}
-
 
   useEffect(() => {
     setData(
@@ -206,7 +221,7 @@ const Unidad = () => {
       return <Redirect to='/admin/dashboard' />
   }
 
-  document.title = `${datosUnidad.nombre} | ${ REACT_APP_TITLE }`
+  document.title = `${datosUnidad.nombre} | ${REACT_APP_TITLE}`
 
   const component = () => {
     return (
@@ -258,8 +273,8 @@ const Unidad = () => {
                       filterable: true,
                     },
                     {
-                      Header: 'Nombre',
-                      accessor: 'nombreCompleto',
+                      Header: 'Nombres',
+                      accessor: 'nombres',
                       filterable: true,
                     },
                     {

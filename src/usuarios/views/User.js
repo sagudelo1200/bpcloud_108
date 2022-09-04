@@ -28,7 +28,7 @@ const User = () => {
   const [redirect, setRedirect] = useState(false)
   const { userData } = useAuth()
   const docRef = doc(db, `unidades/${unidad}/integrantes/${id}`)
-  document.title = `${user.nombre || ''} ${user.apellidos || ''} | ${REACT_APP_TITLE}`
+  document.title = `${user.nombres || ''} ${user.apellidos || ''} | ${REACT_APP_TITLE}`
 
   const getUser = async () => {
     setLoading(true)
@@ -111,7 +111,7 @@ const User = () => {
                           className='avatar'
                           src={user.foto || 'https://picsum.photos/420'}
                         />
-                        <h4 className='title'>{`${user.nombre || ''} ${user.apellidos || ''}`}</h4>
+                        <h4 className='title'>{`${user.nombres || ''} ${user.apellidos || ''}`}</h4>
                       </a>
                       <small>{user.email}</small>
                       <p className='description'>{unidad}</p>
