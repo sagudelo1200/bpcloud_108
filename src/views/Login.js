@@ -57,7 +57,7 @@ const Login = () => {
     }
     stateFunctions['set' + name](value)
   }
-  
+
   const handleSignIn = async (e) => {
     e.preventDefault()
     if (!isValidated()) return false
@@ -71,10 +71,11 @@ const Login = () => {
       }
     } catch (error) {
       const { code } = error
-      if (code === 'auth/user-not-found') toast.error('Usuario no encontrado')
-      else if (code === 'auth/wrong-password') toast.error('Contraseña incorrecta')
-      else if (email.length === 0 || password.length === 0) toast.error('Todos los campos son obligatorios')
-      else toast.error('Error inesperado')
+      if (email.length === 0 || password.length === 0) toast.warning('Todos los campos son obligatorios')
+      else if (code === 'auth/user-not-found') toast.warning('Usuario no encontrado')
+      else if (code === 'auth/wrong-password') toast.warning('Contraseña incorrecta')
+      else if (code === 'auth/too-many-requests') toast.error('Demasiados intentos fallidos')
+      else toast.error(code)
     }
   }
 
@@ -83,7 +84,7 @@ const Login = () => {
       handleSignIn(e)
     }
   }
-  
+
   // Verifica si el valor ingresado es un email válido
   const verifyEmail = (value) => {
     var emailRex = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -101,10 +102,10 @@ const Login = () => {
     } else {
       setEmailState('has-danger')
     }
-    
+
     return false
   }
-  
+
   useEffect(() => {
     document.title = `Ingresar | ${REACT_APP_TITLE}`
     document.body.classList.toggle('login-page')
