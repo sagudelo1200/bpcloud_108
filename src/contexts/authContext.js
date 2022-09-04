@@ -57,9 +57,9 @@ export default function AuthContextProvider({ children }) {
       })
       setCurrentUser(user)
       setCurrentUserData(data)
-      console.log('ADMINISTRADOR')
+      setUserData({})
+      console.log('SUPER')
     } else if (data.role === 'admin') {
-      console.log(`User ${user.uid} is admin`)
       setCurrentUser(user)
       setCurrentUserData(data)
       try {
@@ -83,6 +83,8 @@ export default function AuthContextProvider({ children }) {
         throw new Error(error)
       }
     } else {
+      setCurrentUser({})
+      setCurrentUserData({})
       console.error(`User ${user.uid} is not admin`)
       logout()
       throw new Error('El acceso se encuentra restringido')
@@ -105,6 +107,7 @@ export default function AuthContextProvider({ children }) {
         loginToast(user)
       } else {
         setCurrentUser({})
+        setCurrentUserData({})
       }
     })
     return () => unsubscribe()
