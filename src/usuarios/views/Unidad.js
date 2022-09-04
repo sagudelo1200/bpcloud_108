@@ -274,7 +274,7 @@ const Unidad = () => {
                     },
                     {
                       Header: 'Nombres',
-                      accessor: 'nombres',
+                      accessor: 'nombreCompleto',
                       filterable: true,
                     },
                     {
