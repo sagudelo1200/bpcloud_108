@@ -12,6 +12,7 @@ import {
   ModalFooter,
   Col,
   Row,
+  UncontrolledTooltip,
 } from 'reactstrap'
 import { toast } from 'react-toastify'
 
@@ -23,16 +24,21 @@ import { db } from 'firebaseApp'
 const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
   const { successAlert } = useNotify()
   const defaultForm = {
-    estado: 'programado',
-    id: '',
-    nombre: '',
-    fecha: '',
-    descripcion: '',
-    imagen: '',
-    lugar: '',
-    hora: '',
-    precio: '',
     unidades: [],
+    fecha: '',
+    hora: '',
+    lugar: '',
+    nombre: '',
+    objetivo: '',
+    descripcion: '',
+    presupuesto: 0,
+    juegos: '',
+    cancion: '',
+    materiales: '',
+    responsable: '',
+    id: '',
+    imagen: '',
+    estado: 'programado',
   }
   const [form, setForm] = React.useState(defaultForm)
 
@@ -188,11 +194,11 @@ const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
       </ModalHeader>
       <ModalBody>
         <Form>
-          <Row className='d-flex justify-content-center'>
-            <Col xs='12'>
+          <Row className='d-flex justify-content-center align-items-center'>
+            <Col xs='12'> {/* UNIDADES */}
               <Row className='d-flex justify-content-center'>
                 <Col xs='12' className='col-form-label text-center pb-0'>
-                  <p>¿QUÉ UNIDADES PUEDEN PARTICIPAR?</p>
+                  <p><i className='fas fa-users-line' /> ¿QUÉ UNIDADES PUEDEN PARTICIPAR?</p>
                 </Col>
                 <Col xs='12' className='col-form-label text-center pt-0'>
                   <FormGroup check inline>
@@ -270,25 +276,9 @@ const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
                 </Col>
               </Row>
             </Col>
-            <Col sm='6' lg='4'>
+            <Col sm='6' lg='4'> {/* FECHA */}
               <FormGroup>
-                <Label for='nombre'>Nombre</Label>
-                <Input
-                  className='text-dark'
-                  type='text'
-                  name='nombre'
-                  id='nombre'
-                  placeholder='Nombre de la actividad'
-                  value={form.nombre}
-                  onChange={handleChange}
-                  invalid={errors.nombre ? true : false}
-                />
-                <FormFeedback>{errors.nombre}</FormFeedback>
-              </FormGroup>
-            </Col>
-            <Col sm='6' lg='4'>
-              <FormGroup>
-                <Label for='fecha'>Fecha</Label>
+                <Label for='fecha'><i className='fas fa-calendar-day' /> Fecha</Label>
                 <Input
                   className='text-dark'
                   type='date'
@@ -302,9 +292,9 @@ const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
                 <FormFeedback>{errors.fecha}</FormFeedback>
               </FormGroup>
             </Col>
-            <Col sm='6' lg='4'>
+            <Col sm='6' lg='4'> {/* HORA */}
               <FormGroup>
-                <Label for='hora'>Hora</Label>
+                <Label for='hora'><i className='far fa-clock' />  Hora</Label>
                 <Input
                   className='text-dark'
                   type='time'
@@ -318,15 +308,15 @@ const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
                 <FormFeedback>{errors.hora}</FormFeedback>
               </FormGroup>
             </Col>
-            <Col sm='6' lg='4'>
+            <Col sm='6' lg='4'> {/* LUGAR */}
               <FormGroup>
-                <Label for='lugar'>Lugar</Label>
+                <Label for='lugar'><i className='fas fa-location-dot' /> Lugar</Label>
                 <Input
                   className='text-dark'
                   type='text'
                   name='lugar'
                   id='lugar'
-                  placeholder='Lugar de la actividad'
+                  placeholder='¿Donde se va a desarrollar?'
                   value={form.lugar}
                   onChange={handleChange}
                   invalid={errors.lugar ? true : false}
@@ -334,25 +324,41 @@ const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
                 <FormFeedback>{errors.lugar}</FormFeedback>
               </FormGroup>
             </Col>
-            <Col sm='6' lg='4'>
+            <Col sm='6' lg='4'> {/* NOMBRE */}
               <FormGroup>
-                <Label for='precio'>Precio</Label>
+                <Label for='nombre'><i className='fas fa-text-width' /> Nombre</Label>
                 <Input
                   className='text-dark'
-                  type='number'
-                  name='precio'
-                  id='precio'
-                  placeholder='Precio de la actividad'
-                  value={form.precio}
+                  type='text'
+                  name='nombre'
+                  id='nombre'
+                  placeholder='Tema de la actividad'
+                  value={form.nombre}
                   onChange={handleChange}
-                  invalid={errors.precio ? true : false}
+                  invalid={errors.nombre ? true : false}
                 />
-                <FormFeedback>{errors.precio}</FormFeedback>
+                <FormFeedback>{errors.nombre}</FormFeedback>
               </FormGroup>
             </Col>
-            <Col xs='12' lg='4'>
+            <Col sm='6' lg='4'> {/* OBJETIVO */}
               <FormGroup>
-                <Label for='imagen'>Imagen</Label>
+                <Label for='objetivo'><i className='fas fa-star' /> Objetivo</Label>
+                <Input
+                  className='text-dark'
+                  type='text'
+                  name='objetivo'
+                  id='objetivo'
+                  placeholder='El fin al que desea llegar...'
+                  value={form.objetivo}
+                  onChange={handleChange}
+                  invalid={errors.objetivo ? true : false}
+                />
+                <FormFeedback>{errors.objetivo}</FormFeedback>
+              </FormGroup>
+            </Col>
+            <Col sm='6' lg='4'> {/* IMAGEN */}
+              <FormGroup>
+                <Label for='imagen'><i className='fas fa-image' /> Imagen</Label>
                 <Input
                   className='text-dark'
                   type='url'
@@ -366,20 +372,88 @@ const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
                 <FormFeedback>{errors.imagen}</FormFeedback>
               </FormGroup>
             </Col>
-            <Col xs='12' lg='8'>
+            <Col xs='12' lg='8'> {/* DESCRIPCION */}
               <FormGroup>
-                <Label for='descripcion'>Descripción</Label>
+                <Label for='descripcion'><i className='far fa-comments' /> Descripción</Label>
                 <Input
                   className='text-dark'
                   type='textarea'
                   name='descripcion'
                   id='descripcion'
-                  placeholder='Descripción de la actividad'
+                  placeholder='Indique el paso a paso de como se va a desarrollar'
                   value={form.descripcion}
                   onChange={handleChange}
                   invalid={errors.descripcion ? true : false}
                 />
                 <FormFeedback>{errors.descripcion}</FormFeedback>
+              </FormGroup>
+            </Col>
+            <Col sm='6' lg='4'> {/* CANCIÓN */}
+              <FormGroup>
+                <Label for='cancion'><i className='fas fa-guitar' /> Canción</Label>
+                <Input
+                  className='text-dark'
+                  type='text'
+                  name='cancion'
+                  id='cancion'
+                  placeholder=''
+                  value={form.cancion}
+                  onChange={handleChange}
+                  invalid={errors.cancion ? true : false}
+                />
+                <FormFeedback>{errors.cancion}</FormFeedback>
+              </FormGroup>
+            </Col>
+            <Col sm='6' lg='4'> {/* JUEGOS */}
+              <FormGroup>
+                <Label for='juegos'><i className='fas fa-ghost' /> Juegos</Label>
+                <Input
+                  className='text-dark'
+                  type='text'
+                  name='juegos'
+                  id='juegos'
+                  placeholder=''
+                  value={form.juegos}
+                  onChange={handleChange}
+                  invalid={errors.juegos ? true : false}
+                />
+                <FormFeedback>{errors.juegos}</FormFeedback>
+              </FormGroup>
+            </Col>
+            <Col sm='6' lg='4'> {/* MATERIALES */}
+              <FormGroup>
+                <Label id='mat' for='materiales'><i className='fas fa-dolly' /> Materiales <i className='far fa-circle-question text-danger' />
+                  <UncontrolledTooltip target='mat' placement='top'>
+                    Separados por coma  ( , )
+                  </UncontrolledTooltip>
+                </Label>
+                <Input
+                  className='text-dark'
+                  type='text'
+                  name='materiales'
+                  id='materiales'
+                  placeholder='Ej: 3 carpas, 20 palos, 2 lasos'
+                  value={form.materiales}
+                  onChange={handleChange}
+                  invalid={errors.materiales ? true : false}
+                />
+                <FormFeedback>{errors.materiales}</FormFeedback>
+              </FormGroup>
+            </Col>
+            <Col sm='6' lg='4'> {/* PRESUPUESTO */}
+              <FormGroup>
+                <Label for='presupuesto'><i className='fas fa-hand-holding-dollar' /> Presupuesto</Label>
+                <Input
+                  className='text-dark'
+                  type='number'
+                  name='presupuesto'
+                  id='presupuesto'
+                  placeholder='¿Cuanto va a costar?'
+                  value={form.presupuesto}
+                  onChange={handleChange}
+                  invalid={errors.presupuesto ? true : false}
+                />
+                <FormFeedback>{errors.presupuesto}</FormFeedback>
               </FormGroup>
             </Col>
           </Row>

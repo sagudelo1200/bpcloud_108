@@ -108,7 +108,7 @@ const ActivityCard = ({ activity, edit, publish, finish, remove }) => {
           <br />
           {activity.hora && <span><i className='fas fa-clock text-success ml-2 mr-1' /> {activity.hora}</span>}
           <br className='d-none d-sm-block' />
-          {activity.precio && <span><i className='fas fa-dollar-sign text-warning mx-2' /> {activity.precio}</span>}
+          {activity.presupuesto && <span><i className='fas fa-dollar-sign text-warning mx-2' /> {activity.presupuesto}</span>}
         </Col>
         <Col md={7} className='text-center mt-4 mt-md-0'>
           <p>{activity.descripcion}</p>
