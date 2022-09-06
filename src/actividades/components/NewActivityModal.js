@@ -94,13 +94,8 @@ const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
       newErrors.unidad = 'Seleccione al menos una unidad'
     }
 
-    if (
-      values.nombre === '' && values.fecha === '' &&
-      values.descripcion === '' && values.imagen === '' &&
-      values.lugar === '' && values.hora === '' &&
-      values.precio === ''
-    ) {
-      newErrors.empty = 'Todos los campos estan vacios'
+    if (!values.nombre) {
+      newErrors.nombre = 'Campo requerido'
     }
 
     if (values.imagen !== '' && !verifyUrl(values.imagen)) newErrors.imagen = 'Debe ser una URL válida'
@@ -145,7 +140,7 @@ const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
       } else if (errors.unidad) {
         toast.error(errors.unidad)
       } else {
-        toast.warning('Hay errores en el formulario')
+        toast.warning('Revise los campos resaltados')
       }
     }
     setIsSubmitting(false)
@@ -194,7 +189,7 @@ const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
       </ModalHeader>
       <ModalBody>
         <Form>
-          <Row className='d-flex justify-content-center align-items-center'>
+          <Row className='d-flex justify-content-center'>
             <Col xs='12'> {/* UNIDADES */}
               <Row className='d-flex justify-content-center'>
                 <Col xs='12' className='col-form-label text-center pb-0'>
@@ -275,6 +270,7 @@ const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
                   </FormGroup>
                 </Col>
               </Row>
+              <hr />
             </Col>
             <Col sm='6' lg='4'> {/* FECHA */}
               <FormGroup>
@@ -316,7 +312,7 @@ const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
                   type='text'
                   name='lugar'
                   id='lugar'
-                  placeholder='¿Donde se va a desarrollar?'
+                  placeholder='¿Donde se reunirán?'
                   value={form.lugar}
                   onChange={handleChange}
                   invalid={errors.lugar ? true : false}
@@ -326,8 +322,9 @@ const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
             </Col>
             <Col sm='6' lg='4'> {/* NOMBRE */}
               <FormGroup>
-                <Label for='nombre'><i className='fas fa-text-width' /> Nombre</Label>
+                <Label for='nombre'><i className='fas fa-text-width' /> Nombre<sup className='text-danger'>*</sup></Label>
                 <Input
+                  required
                   className='text-dark'
                   type='text'
                   name='nombre'
@@ -422,7 +419,7 @@ const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
             </Col>
             <Col sm='6' lg='4'> {/* MATERIALES */}
               <FormGroup>
-                <Label id='mat' for='materiales'><i className='fas fa-dolly' /> Materiales <i className='far fa-circle-question text-danger' />
+                <Label id='mat' for='materiales'><i className='fas fa-dolly' /> Materiales <sup className='far fa-circle-question text-danger' />
                   <UncontrolledTooltip target='mat' placement='top'>
                     Separados por coma  ( , )
                   </UncontrolledTooltip>
@@ -442,7 +439,10 @@ const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
             </Col>
             <Col sm='6' lg='4'> {/* PRESUPUESTO */}
               <FormGroup>
-                <Label for='presupuesto'><i className='fas fa-hand-holding-dollar' /> Presupuesto</Label>
+                <Label id='pres' for='presupuesto'><i className='fas fa-hand-holding-dollar' /> Presupuesto <sup className='far fa-circle-question text-danger' />
+                  <UncontrolledTooltip target='pres' placement='top'>
+                    Costo por cada 1 integrante
+                  </UncontrolledTooltip></Label>
                 <Input
                   className='text-dark'
                   type='number'
