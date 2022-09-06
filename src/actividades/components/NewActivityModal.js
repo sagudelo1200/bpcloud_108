@@ -31,7 +31,7 @@ const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
     nombre: '',
     objetivo: '',
     descripcion: '',
-    presupuesto: 0,
+    presupuesto: '',
     juegos: '',
     cancion: '',
     materiales: '',
