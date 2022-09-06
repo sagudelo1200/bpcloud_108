@@ -146,6 +146,11 @@ const AdminNavbar = (props) => {
                   <span className='d-lg-none d-md-block'>Buscar</span>
                 </Button>
               </InputGroup>
+              <Link className='text-light mt-2' to="/docs">
+                <small>
+                  Ir a la documentación
+                </small>
+              </Link>
               <UncontrolledDropdown nav>
                 <DropdownToggle
                   caret
@@ -160,7 +165,7 @@ const AdminNavbar = (props) => {
                 <DropdownMenu className='dropdown-navbar' right tag='ul'>
                   <NavLink tag='li'>
                     <DropdownItem className='nav-item text-center'>
-                      <span role='img'> 👻 👻 👻 </span>
+                      <span role='img'> No hay nada aquí 👻 </span>
                     </DropdownItem>
                   </NavLink>
                 </DropdownMenu>
