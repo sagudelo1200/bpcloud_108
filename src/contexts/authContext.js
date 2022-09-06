@@ -85,6 +85,7 @@ export default function AuthContextProvider({ children }) {
     } else {
       setCurrentUser({})
       setCurrentUserData({})
+      setUserData({})
       console.error(`User ${user.uid} is not admin`)
       logout()
       throw new Error('El acceso se encuentra restringido')
@@ -108,6 +109,7 @@ export default function AuthContextProvider({ children }) {
       } else {
         setCurrentUser({})
         setCurrentUserData({})
+        setUserData({})
       }
     })
     return () => unsubscribe()
