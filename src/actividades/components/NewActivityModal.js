@@ -91,7 +91,7 @@ const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
     const newErrors = {}
 
     if (formData.unidades.length === 0) {
-      newErrors.unidad = 'Seleccione al menos una unidad'
+      newErrors.unidad = 'Seleccione alguna unidad'
     }
 
     if (!values.nombre) {
@@ -135,10 +135,8 @@ const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
         toggle()
       }
     } else {
-      if (errors.empty) {
-        toast.error(errors.empty)
-      } else if (errors.unidad) {
-        toast.error(errors.unidad)
+      if (errors.unidad) {
+        toast.warning(errors.unidad)
       } else {
         toast.warning('Revise los campos resaltados')
       }
