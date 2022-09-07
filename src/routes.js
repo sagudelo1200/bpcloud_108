@@ -21,7 +21,7 @@ import IndexDocs from 'documentacion/views/Index'
 const routes = [
   {
     path: '',
-    name: 'Docs',
+    name: 'DOCUMENTACIÓN',
     icon: 'fas fa-file-code',
     component: IndexDocs,
     layout: '/docs',
