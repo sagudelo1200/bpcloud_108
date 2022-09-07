@@ -1,29 +1,13 @@
-/*!
-
-=========================================================
-* Black Dashboard PRO React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/black-dashboard-pro-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from 'react'
 import { Switch, Redirect, useLocation } from 'react-router-dom'
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from 'perfect-scrollbar'
 
 // core components
-import AdminNavbar from 'components/Navbars/AdminNavbar.js'
 import Footer from 'components/Footer/Footer.js'
 import Sidebar from 'components/Sidebar/Sidebar.js'
 import FixedPlugin from 'components/FixedPlugin/FixedPlugin.js'
+import AdminNavbar from 'components/Navbars/AdminNavbar'
 
 import { useAuth } from 'contexts/authContext'
 
@@ -34,7 +18,7 @@ import logo from 'assets/img/favicon.png'
 
 var ps
 
-const Admin = (props) => {
+const Docs = (props) => {
   const { currentUserData } = useAuth()
 
   const colors = {
@@ -113,7 +97,7 @@ const Admin = (props) => {
       if (prop.collapse) {
         return getRoutes(prop.views)
       }
-      if (prop.layout === '/admin') {
+      if (prop.layout === '/docs') {
         return (
           <PrivateRoute
             exact={prop.exact}
@@ -129,7 +113,7 @@ const Admin = (props) => {
     })
   }
   const getActiveRoute = (routes) => {
-    let activeRoute = 'Default Brand Text'
+    let activeRoute = '03Q'
     for (let i = 0; i < routes.length; i++) {
       if (routes[i].collapse) {
         let collapseActiveRoute = getActiveRoute(routes[i].views)
@@ -187,14 +171,14 @@ const Admin = (props) => {
           <i className='tim-icons icon-bullet-list-67 visible-on-sidebar-mini text-muted' />
         </button>
       </div>
-      <Sidebar
+      <Sidebar  
         {...props}
-        layout='/admin'
+        layout='/docs'
         routes={routes}
         activeColor={activeColor}
         logo={{
-          outterLink: '/',
-          text: 'QuimbayApp',
+          outterLink: '/docs',
+          text: 'DOCUMENTACIÓN',
           imgSrc: logo,
         }}
         closeSidebar={closeSidebar}
@@ -202,7 +186,7 @@ const Admin = (props) => {
       <div className='main-panel' ref={mainPanelRef} data={activeColor}>
         <AdminNavbar
           {...props}
-          layout='/admin'
+          layout='/docs'
           handleMiniClick={handleMiniClick}
           brandText={getActiveRoute(routes)}
           sidebarOpened={sidebarOpened}
@@ -210,7 +194,7 @@ const Admin = (props) => {
         />
         <Switch>
           {getRoutes(routes)}
-          <Redirect from='*' to='/admin/dashboard' />
+          <Redirect from='*' to='/docs' />
         </Switch>
         {
           // we don't want the Footer to be rendered on full screen maps page
@@ -229,4 +213,4 @@ const Admin = (props) => {
   )
 }
 
-export default Admin
+export default Docs

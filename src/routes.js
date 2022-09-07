@@ -14,8 +14,19 @@ import NewUser from 'usuarios/components/NewUser'
 import Actividades from 'actividades/views/Actividades'
 import Asistencia from 'actividades/views/Asistencia'
 
+// DOCS
+import IndexDocs from 'documentacion/views/Index'
+
 
 const routes = [
+  {
+    path: '',
+    name: 'Docs',
+    icon: 'fas fa-file-code',
+    component: IndexDocs,
+    layout: '/docs',
+    hideFromMenu: true
+  },
   {
     path: '/ingresar',
     name: 'Ingresar',
@@ -43,6 +54,7 @@ const routes = [
   {
     collapse: true,
     name: 'Unidades',
+    layout: '/admin',
     icon: 'fas fa-users',
     state: 'unidadesCollapse',
     views: [
@@ -106,6 +118,7 @@ const routes = [
   },
   {
     collapse: true,
+    layout: '/admin',
     name: 'Actividades',
     icon: 'fas fa-calendar-alt',
     state: 'actividadesCollapse',

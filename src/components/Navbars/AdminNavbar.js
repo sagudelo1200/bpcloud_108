@@ -14,9 +14,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from 'react';
+import React from 'react'
 // nodejs library that concatenates classes
-import classNames from 'classnames';
+import classNames from 'classnames'
 
 // reactstrap components
 import {
@@ -35,43 +35,43 @@ import {
   Container,
   Modal,
   UncontrolledTooltip,
-} from 'reactstrap';
+} from 'reactstrap'
 
-import { useAuth } from 'contexts/authContext';
-import { Link } from 'react-router-dom';
+import { useAuth } from 'contexts/authContext'
+import { Link } from 'react-router-dom'
 
 const AdminNavbar = (props) => {
-  const { logoutAndRememberUser, logout, currentUser, userData } = useAuth();
-  const [collapseOpen, setCollapseOpen] = React.useState(false);
-  const [modalSearch, setModalSearch] = React.useState(false);
-  const [color, setColor] = React.useState('navbar-transparent');
+  const { logoutAndRememberUser, logout, currentUser, userData } = useAuth()
+  const [collapseOpen, setCollapseOpen] = React.useState(false)
+  const [modalSearch, setModalSearch] = React.useState(false)
+  const [color, setColor] = React.useState('navbar-transparent')
   React.useEffect(() => {
-    window.addEventListener('resize', updateColor);
+    window.addEventListener('resize', updateColor)
     return function cleanup() {
-      window.removeEventListener('resize', updateColor);
-    };
-  });
+      window.removeEventListener('resize', updateColor)
+    }
+  })
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
   const updateColor = () => {
     if (window.innerWidth < 993 && collapseOpen) {
-      setColor('bg-white');
+      setColor('bg-white')
     } else {
-      setColor('navbar-transparent');
+      setColor('navbar-transparent')
     }
-  };
+  }
   // this function opens and closes the collapse on small devices
   const toggleCollapse = () => {
     if (collapseOpen) {
-      setColor('navbar-transparent');
+      setColor('navbar-transparent')
     } else {
-      setColor('bg-white');
+      setColor('bg-white')
     }
-    setCollapseOpen(!collapseOpen);
-  };
+    setCollapseOpen(!collapseOpen)
+  }
   // this function is to open the Search modal
   const toggleModalSearch = () => {
-    setModalSearch(!modalSearch);
-  };
+    setModalSearch(!modalSearch)
+  }
   return (
     <>
       <Navbar
@@ -146,9 +146,9 @@ const AdminNavbar = (props) => {
                   <span className='d-lg-none d-md-block'>Buscar</span>
                 </Button>
               </InputGroup>
-              <Link className='text-light mt-2' to="/docs">
+              <Link className='text-light mt-2' to={props.layout === '/admin' ? '/docs' : '/admin'}>
                 <small>
-                  Ir a la documentación
+                  {props.layout === '/admin' ? 'Ir a la documentación' : 'Ir a la aplicación'}
                 </small>
               </Link>
               <UncontrolledDropdown nav>
@@ -231,7 +231,7 @@ const AdminNavbar = (props) => {
         </div>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default AdminNavbar;
+export default AdminNavbar

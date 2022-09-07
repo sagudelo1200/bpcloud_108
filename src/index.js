@@ -11,6 +11,7 @@ import AuthContextProvider from 'contexts/authContext'
 import NotifyContextProvider from 'contexts/notifyContext'
 
 import AdminLayout from 'layouts/Admin'
+import DocsLayout from 'layouts/Docs'
 import AuthLayout from 'layouts/Auth'
 
 import 'assets/css/nucleo-icons.css'
@@ -26,6 +27,7 @@ ReactDOM.render(
       <Router>
         <Switch>
           <Route path='/admin' render={(props) => <AdminLayout {...props} />} />
+          <Route path='/docs' render={(props) => <DocsLayout {...props} />} />
           <Route path='/auth' render={(props) => <AuthLayout {...props} />} />
           {localStorage.getItem('user')
             ? <Redirect from='*' to='/auth/bloqueo' />
