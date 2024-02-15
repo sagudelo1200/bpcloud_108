@@ -2,7 +2,7 @@
   "name": "quimbayapp",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://app.scout03quimbayas.gq",
+  "homepage": "https://sagudelo1200.github.io/quimbayapp",
   "dependencies": {
     "bootstrap": "4.5.3",
     "chart.js": "2.9.4",
@@ -43,7 +43,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "echo app.scout03quimbayas.gq >> build/CNAME && gh-pages -d build",
+    "deploy": "echo sagudelo1200.github.io/quimbayapp >> build/CNAME && gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build && gulp licenses",
     "test": "react-scripts test",
