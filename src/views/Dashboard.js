@@ -23,7 +23,6 @@ import { Line } from 'react-chartjs-2'
 import { db } from 'firebaseApp'
 import { collection, getDocs } from 'firebase/firestore'
 
-
 // reactstrap components
 import {
   Button,
@@ -56,10 +55,20 @@ const Dashboard = () => {
   // Contar integrantes de todas las unidades
   const countIntegrantes = async () => {
     setLoading(true)
-    const unidades = ['familia', 'manada', 'tropa', 'sociedad', 'clan', 'jefatura', 'consejo']
+    const unidades = [
+      'familia',
+      'manada',
+      'tropa',
+      'sociedad',
+      'clan',
+      'jefatura',
+      'consejo',
+    ]
 
     unidades.forEach(async (unidad) => {
-      const querySnapshot = await getDocs(collection(db, `unidades/${unidad}/integrantes`))
+      const querySnapshot = await getDocs(
+        collection(db, `unidades/${unidad}/integrantes`)
+      )
       setIntegrantesN((prevState) => ({
         ...prevState,
         [unidad]: querySnapshot.size,
@@ -133,7 +142,8 @@ const Dashboard = () => {
                           <i className='fas fa-circle-notch fa-spin' />
                         ) : (
                           nIntegrantes.manada
-                        )}</CardTitle>
+                        )}
+                      </CardTitle>
                     </div>
                   </Col>
                 </Row>
@@ -165,7 +175,8 @@ const Dashboard = () => {
                           <i className='fas fa-circle-notch fa-spin' />
                         ) : (
                           nIntegrantes.tropa
-                        )}</CardTitle>
+                        )}
+                      </CardTitle>
                     </div>
                   </Col>
                 </Row>
@@ -257,9 +268,8 @@ const Dashboard = () => {
                         {loading ? (
                           <i className='fas fa-circle-notch fa-spin' />
                         ) : (
-                          nIntegrantes.jefatura + nIntegrantes.consejo
-                        ) || 0
-                        }
+                          nIntegrantes.jefatura + nIntegrantes.consejo || 0
+                        )}
                       </CardTitle>
                     </div>
                   </Col>
@@ -273,7 +283,6 @@ const Dashboard = () => {
               </CardFooter>
             </Card>
           </Col>
-
 
           <Col xs='12'>
             <Card className='card-chart'>
@@ -319,7 +328,6 @@ const Dashboard = () => {
               </CardBody>
             </Card>
           </Col>
-
         </Row>
       </div>
     </>

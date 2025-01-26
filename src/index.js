@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect
+  Redirect,
 } from 'react-router-dom'
 
 import AuthContextProvider from 'contexts/authContext'
@@ -29,10 +29,11 @@ ReactDOM.render(
           <Route path='/admin' render={(props) => <AdminLayout {...props} />} />
           <Route path='/docs' render={(props) => <DocsLayout {...props} />} />
           <Route path='/auth' render={(props) => <AuthLayout {...props} />} />
-          {localStorage.getItem('user')
-            ? <Redirect from='*' to='/auth/bloqueo' />
-            : <Redirect from='*' to='/auth/ingresar' />
-          }
+          {localStorage.getItem('user') ? (
+            <Redirect from='*' to='/auth/bloqueo' />
+          ) : (
+            <Redirect from='*' to='/auth/ingresar' />
+          )}
         </Switch>
       </Router>
     </AuthContextProvider>

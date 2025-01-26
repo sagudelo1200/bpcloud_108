@@ -11,10 +11,8 @@ import {
 import Select from 'react-select'
 import { DefaultLoading } from 'components/Animations/Loading'
 
-
 import { collection, query, where, getDocs } from 'firebase/firestore'
 import { db } from 'firebaseApp'
-
 
 const Asistencia = () => {
   document.title = 'Asistencia | Sattwa 108'
@@ -37,7 +35,10 @@ const Asistencia = () => {
 
   const getData = async () => {
     setLoading(true)
-    const q = query(collection(db, 'actividades'), where('estado', '==', 'publicado'))
+    const q = query(
+      collection(db, 'actividades'),
+      where('estado', '==', 'publicado')
+    )
     const qSnap = await getDocs(q)
 
     qSnap.forEach((doc) => {
@@ -49,11 +50,13 @@ const Asistencia = () => {
     const q2 = query(collection(db, 'users'), where('role', '!=', 'superadmin'))
     const qSnap2 = await getDocs(q2)
     qSnap2.forEach((doc) => {
-      setIntegrantes((prevState) => [...prevState, { ...doc.data(), id: doc.id }])
+      setIntegrantes((prevState) => [
+        ...prevState,
+        { ...doc.data(), id: doc.id },
+      ])
     })
     setLoading(false)
   }
-
 
   const handleMultipleSelectChange = (actividad, unidad, e) => {
     const dict = {
@@ -63,11 +66,9 @@ const Asistencia = () => {
     setMultipleSelect(dict)
   }
 
-
   React.useEffect(() => {
     getData()
   }, [])
-
 
   return (
     <>
@@ -83,9 +84,7 @@ const Asistencia = () => {
                 <DefaultLoading />
               ) : actividades.length === 0 ? (
                 <>
-                  <p className='text-center'>
-                    No hay resultados
-                  </p>
+                  <p className='text-center'>No hay resultados</p>
                 </>
               ) : (
                 <div
@@ -113,60 +112,82 @@ const Asistencia = () => {
                       </CardHeader>
                       <Collapse role='tabpanel' isOpen={collapse(item.id)}>
                         <CardBody>
-
-                          {item.unidades.filter((unidad) => unidad !== 'todos').map((unidad) => (
-                            <Card className='card-plain' key={item.id + unidad}>
-                              <CardHeader role='tab'>
-                                <a
-                                  aria-expanded={collapse(item.id + unidad)}
-                                  href='/'
-                                  data-parent='#accordion'
-                                  data-toggle='collapse'
-                                  onClick={(e) => {
-                                    e.preventDefault()
-                                    toggleOpenedCollapse(item.id + unidad)
-                                  }}
+                          {item.unidades
+                            .filter((unidad) => unidad !== 'todos')
+                            .map((unidad) => (
+                              <Card
+                                className='card-plain'
+                                key={item.id + unidad}
+                              >
+                                <CardHeader role='tab'>
+                                  <a
+                                    aria-expanded={collapse(item.id + unidad)}
+                                    href='/'
+                                    data-parent='#accordion'
+                                    data-toggle='collapse'
+                                    onClick={(e) => {
+                                      e.preventDefault()
+                                      toggleOpenedCollapse(item.id + unidad)
+                                    }}
+                                  >
+                                    {unidad}{' '}
+                                    <i className='tim-icons icon-minimal-down' />
+                                  </a>
+                                </CardHeader>
+                                <Collapse
+                                  role='tabpanel'
+                                  isOpen={collapse(item.id + unidad)}
                                 >
-                                  {unidad}{' '}
-                                  <i className='tim-icons icon-minimal-down' />
-                                </a>
-                              </CardHeader>
-                              <Collapse role='tabpanel' isOpen={collapse(item.id + unidad)}>
-                                <CardBody>
-                                  <Row className='d-flex justify-content-center'>
-                                    <Col sm='9'>
-                                      <Select
-                                        className='react-select success mt-1'
-                                        classNamePrefix='react-select'
-                                        placeholder='Integrantes'
-                                        name={`multipleSelect${item.id}${unidad}`}
-                                        closeMenuOnSelect={false}
-                                        isMulti
-                                        value={multipleSelect[`multipleSelect${item.id}${unidad}`]}
-                                        onChange={(e) => handleMultipleSelectChange(item, unidad, e)}
-                                        options={[
-                                          {
-                                            value: '',
-                                            label: 'Seleccione los asistentes',
-                                            isDisabled: true,
-                                          },
-                                          ...integrantes.filter((i) => i.unidad === unidad).map((integrante) => ({
-                                            value: integrante.id,
-                                            label: integrante.name,
-                                          })),
-                                        ]}
-                                      />
-                                    </Col>
-                                    <Col sm='2'>
-                                      <button className='btn btn-success'>
-                                        <i className='fa-solid fa-floppy-disk'></i>
-                                      </button>
-                                    </Col>
-                                  </Row>
-                                </CardBody>
-                              </Collapse>
-                            </Card>
-                          ))}
+                                  <CardBody>
+                                    <Row className='d-flex justify-content-center'>
+                                      <Col sm='9'>
+                                        <Select
+                                          className='react-select success mt-1'
+                                          classNamePrefix='react-select'
+                                          placeholder='Integrantes'
+                                          name={`multipleSelect${item.id}${unidad}`}
+                                          closeMenuOnSelect={false}
+                                          isMulti
+                                          value={
+                                            multipleSelect[
+                                              `multipleSelect${item.id}${unidad}`
+                                            ]
+                                          }
+                                          onChange={(e) =>
+                                            handleMultipleSelectChange(
+                                              item,
+                                              unidad,
+                                              e
+                                            )
+                                          }
+                                          options={[
+                                            {
+                                              value: '',
+                                              label:
+                                                'Seleccione los asistentes',
+                                              isDisabled: true,
+                                            },
+                                            ...integrantes
+                                              .filter(
+                                                (i) => i.unidad === unidad
+                                              )
+                                              .map((integrante) => ({
+                                                value: integrante.id,
+                                                label: integrante.name,
+                                              })),
+                                          ]}
+                                        />
+                                      </Col>
+                                      <Col sm='2'>
+                                        <button className='btn btn-success'>
+                                          <i className='fa-solid fa-floppy-disk'></i>
+                                        </button>
+                                      </Col>
+                                    </Row>
+                                  </CardBody>
+                                </Collapse>
+                              </Card>
+                            ))}
                         </CardBody>
                       </Collapse>
                     </Card>
@@ -180,6 +201,5 @@ const Asistencia = () => {
     </>
   )
 }
-
 
 export default Asistencia

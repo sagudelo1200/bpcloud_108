@@ -1,16 +1,11 @@
 // reactstrap components
-import {
-  Container,
-} from 'reactstrap'
-
+import { Container } from 'reactstrap'
 
 const Docs = () => {
-
   return (
     <>
       <div className='content'>
-        <Container>
-        </Container>
+        <Container></Container>
       </div>
     </>
   )

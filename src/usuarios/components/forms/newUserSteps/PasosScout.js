@@ -16,7 +16,7 @@ const PasosScout = React.forwardRef((props, ref) => {
   const [form, setForm] = React.useState({
     unidad: '',
     ingreso: '',
-    inscripcion: ''
+    inscripcion: '',
   })
   const [esJefe, setEsJefe] = React.useState(false)
 
@@ -26,7 +26,7 @@ const PasosScout = React.forwardRef((props, ref) => {
   const [focoUnidad, setFocoUnidad] = React.useState(false)
   const [estadoIngreso, setEstadoIngreso] = React.useState(false)
   const [focoIngreso, setFocoIngreso] = React.useState(false)
-  
+
   const funcionesEstado = {
     setEstadoingreso: setEstadoIngreso,
     setingreso: (v) => setForm({ ...form, ingreso: v }),
@@ -36,8 +36,6 @@ const PasosScout = React.forwardRef((props, ref) => {
     setjefeDe: (v) => setForm({ ...form, jefeDe: v }),
     setEstadojefeDe: setEstadoJefeDe,
   }
-
-
 
   const handleChangeUnidad = (e) => {
     if (e.value === '') {
@@ -65,7 +63,7 @@ const PasosScout = React.forwardRef((props, ref) => {
     funcionesEstado[`set${name}`](value)
   }
 
-  const handleCheck = e => {
+  const handleCheck = (e) => {
     const { name, checked } = e.target
     setForm({ ...form, [name]: checked })
   }
@@ -88,7 +86,7 @@ const PasosScout = React.forwardRef((props, ref) => {
 
   React.useImperativeHandle(ref, () => ({
     isValidated: () => isValidated(),
-    state: form
+    state: form,
   }))
 
   React.useEffect(() => {
@@ -97,9 +95,7 @@ const PasosScout = React.forwardRef((props, ref) => {
 
   return (
     <>
-      <h4 className='info-text'>
-        Ingrese los datos Scout del integrante
-      </h4>
+      <h4 className='info-text'>Ingrese los datos Scout del integrante</h4>
       <Row className='justify-content-center'>
         <Col sm={6} md={4} lg={3}>
           <label>Unidad Scout</label>
@@ -129,13 +125,14 @@ const PasosScout = React.forwardRef((props, ref) => {
               placeholder='Unidad...'
             />
             {estadoUnidad === 'has-danger' && (
-              <label className='error'>
-                Campo obligatorio
-              </label>
+              <label className='error'>Campo obligatorio</label>
             )}
           </InputGroup>
         </Col>
-        <Col sm={6} md={4} lg={3}
+        <Col
+          sm={6}
+          md={4}
+          lg={3}
           className={classnames({
             'd-none': !esJefe,
           })}
@@ -165,16 +162,12 @@ const PasosScout = React.forwardRef((props, ref) => {
               placeholder='Jefe de...'
             />
             {estadoUnidad === 'has-danger' && (
-              <label className='error'>
-                Campo obligatorio
-              </label>
+              <label className='error'>Campo obligatorio</label>
             )}
           </InputGroup>
         </Col>
         <Col sm={6} md={4} lg={3}>
-          <label>
-            Fecha de ingreso
-          </label>
+          <label>Fecha de ingreso</label>
           <InputGroup
             className={classnames(estadoIngreso, {
               'input-group-focus': focoIngreso,
@@ -194,9 +187,7 @@ const PasosScout = React.forwardRef((props, ref) => {
               value={form.ingreso}
             />
             {estadoIngreso === 'has-danger' && (
-              <label className='date-error m-0 p-0'>
-                Formato no valido
-              </label>
+              <label className='date-error m-0 p-0'>Formato no valido</label>
             )}
           </InputGroup>
         </Col>
@@ -206,7 +197,9 @@ const PasosScout = React.forwardRef((props, ref) => {
             type='switch'
             id='inscripcion'
             name='inscripcion'
-            label={`Inscripción ${new Date().getFullYear()} ${form.inscripcion ? '✔' : '✘'}`}
+            label={`Inscripción ${new Date().getFullYear()} ${
+              form.inscripcion ? '✔' : '✘'
+            }`}
             className={'mt-2'}
             onChange={handleCheck}
           />
@@ -215,6 +208,5 @@ const PasosScout = React.forwardRef((props, ref) => {
     </>
   )
 })
-
 
 export default PasosScout

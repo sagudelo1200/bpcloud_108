@@ -45,7 +45,12 @@ export default function NotifyContextProvider({ children }) {
       </ReactBSAlert>
     )
   }
-  const warningWithConfirmAlert = ({ onConfirm, title, confirmBtnText, message }) => {
+  const warningWithConfirmAlert = ({
+    onConfirm,
+    title,
+    confirmBtnText,
+    message,
+  }) => {
     setAlert(
       <ReactBSAlert
         warning
@@ -81,9 +86,11 @@ export default function NotifyContextProvider({ children }) {
     }
   })
 
-  return <NotifyContext.Provider value={value}>
-    <ToastContainer position='bottom-right' />
-    {alert}
-    {children}
-  </NotifyContext.Provider>
+  return (
+    <NotifyContext.Provider value={value}>
+      <ToastContainer position='bottom-right' />
+      {alert}
+      {children}
+    </NotifyContext.Provider>
+  )
 }

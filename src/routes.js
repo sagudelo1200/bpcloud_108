@@ -1,8 +1,4 @@
-import {
-  useLocation,
-  Redirect,
-  Route,
-} from 'react-router-dom'
+import { useLocation, Redirect, Route } from 'react-router-dom'
 import { useAuth } from 'contexts/authContext'
 
 import Login from 'views/Login'
@@ -17,7 +13,6 @@ import Asistencia from 'actividades/views/Asistencia'
 // DOCS
 import IndexDocs from 'documentacion/views/Index'
 
-
 const routes = [
   {
     path: '',
@@ -25,7 +20,7 @@ const routes = [
     icon: 'fas fa-file-code',
     component: IndexDocs,
     layout: '/docs',
-    hideFromMenu: true
+    hideFromMenu: true,
   },
   {
     path: '/ingresar',
@@ -33,7 +28,7 @@ const routes = [
     icon: 'fas fa-sign-in-alt',
     component: Login,
     layout: '/auth',
-    hideFromMenu: true
+    hideFromMenu: true,
   },
   {
     path: '/bloqueo',
@@ -41,7 +36,7 @@ const routes = [
     icon: 'fas fa-lock',
     component: Lock,
     layout: '/auth',
-    hideFromMenu: true
+    hideFromMenu: true,
   },
   {
     path: '/dashboard',
@@ -49,7 +44,7 @@ const routes = [
     rtlName: 'لوحة القيادة',
     icon: 'fas fa-chart-pie',
     component: Dashboard,
-    layout: '/admin'
+    layout: '/admin',
   },
   {
     collapse: true,
@@ -114,7 +109,7 @@ const routes = [
         component: NewUser,
         layout: '/admin',
       },
-    ]
+    ],
   },
   {
     collapse: true,
@@ -136,9 +131,9 @@ const routes = [
         icon: 'fas fa-user-check',
         component: Asistencia,
         layout: '/admin',
-        hideFromMenu: true
-      }
-    ]
+        hideFromMenu: true,
+      },
+    ],
   },
 ]
 
@@ -166,19 +161,18 @@ const PrivateRoute = (props) => {
     <Redirect
       to={{
         pathname: '/auth/bloqueo',
-        state: { from: location.pathname }
+        state: { from: location.pathname },
       }}
     />
   ) : (
     <Redirect
       to={{
         pathname: '/auth/ingresar',
-        state: { from: location.pathname }
+        state: { from: location.pathname },
       }}
     />
   )
 }
-
 
 export default routes
 export { PrivateRoute }

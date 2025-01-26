@@ -67,10 +67,11 @@ const AuthLayout = (props) => {
         <div className={'full-page ' + getFullPageName(routes)}>
           <Switch>
             {getRoutes(routes)}
-            {localStorage.getItem('user')
-              ? <Redirect from='*' to='/auth/bloqueo' />
-              : <Redirect from='*' to='/auth/ingresar' />
-            }
+            {localStorage.getItem('user') ? (
+              <Redirect from='*' to='/auth/bloqueo' />
+            ) : (
+              <Redirect from='*' to='/auth/ingresar' />
+            )}
           </Switch>
           <Footer fluid />
         </div>

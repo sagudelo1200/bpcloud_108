@@ -6,7 +6,7 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupText,
-  Alert
+  Alert,
 } from 'reactstrap'
 
 import classnames from 'classnames'
@@ -32,22 +32,22 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
       telefono: '',
       celular: '',
       email: '',
-      ocupacion: ''
+      ocupacion: '',
     },
     madre: {
       nombre: '',
       telefono: '',
       celular: '',
       email: '',
-      ocupacion: ''
+      ocupacion: '',
     },
     acudiente: {
       nombre: '',
       telefono: '',
       celular: '',
       email: '',
-      ocupacion: ''
-    }
+      ocupacion: '',
+    },
   })
 
   const [estadoDocumento, setEstadoDocumento] = React.useState(false)
@@ -58,9 +58,11 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
   const [focoApellidos, setFocoApellidos] = React.useState(false)
   const [estadoEmail, setEstadoEmail] = React.useState(false)
   const [focoEmail, setFocoEmail] = React.useState(false)
-  const [estadoFechaNacimiento, setEstadoFechaNacimiento] = React.useState(false)
+  const [estadoFechaNacimiento, setEstadoFechaNacimiento] =
+    React.useState(false)
   const [focoFechaNacimiento, setFocoFechaNacimiento] = React.useState(false)
-  const [estadoCiudadNacimiento, setEstadoCiudadNacimiento] = React.useState(false)
+  const [estadoCiudadNacimiento, setEstadoCiudadNacimiento] =
+    React.useState(false)
   const [focoCiudadNacimiento, setFocoCiudadNacimiento] = React.useState(false)
   const [estadoTelefono, setEstadoTelefono] = React.useState(false)
   const [focoTelefono, setFocoTelefono] = React.useState(false)
@@ -97,42 +99,75 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
   const [estadoOcupacionMadre, setEstadoOcupacionMadre] = React.useState(false)
   const [focoOcupacionMadre, setFocoOcupacionMadre] = React.useState(false)
 
-  const [estadoNombreAcudiente, setEstadoNombreAcudiente] = React.useState(false)
+  const [estadoNombreAcudiente, setEstadoNombreAcudiente] =
+    React.useState(false)
   const [focoNombreAcudiente, setFocoNombreAcudiente] = React.useState(false)
-  const [estadoCelularAcudiente, setEstadoCelularAcudiente] = React.useState(false)
+  const [estadoCelularAcudiente, setEstadoCelularAcudiente] =
+    React.useState(false)
   const [focoCelularAcudiente, setFocoCelularAcudiente] = React.useState(false)
-  const [estadoTelefonoAcudiente, setEstadoTelefonoAcudiente] = React.useState(false)
-  const [focoTelefonoAcudiente, setFocoTelefonoAcudiente] = React.useState(false)
+  const [estadoTelefonoAcudiente, setEstadoTelefonoAcudiente] =
+    React.useState(false)
+  const [focoTelefonoAcudiente, setFocoTelefonoAcudiente] =
+    React.useState(false)
   const [estadoEmailAcudiente, setEstadoEmailAcudiente] = React.useState(false)
   const [focoEmailAcudiente, setFocoEmailAcudiente] = React.useState(false)
-  const [estadoOcupacionAcudiente, setEstadoOcupacionAcudiente] = React.useState(false)
-  const [focoOcupacionAcudiente, setFocoOcupacionAcudiente] = React.useState(false)
+  const [estadoOcupacionAcudiente, setEstadoOcupacionAcudiente] =
+    React.useState(false)
+  const [focoOcupacionAcudiente, setFocoOcupacionAcudiente] =
+    React.useState(false)
 
   const funcionesEstado = {
     setEstadodocumento: setEstadoDocumento,
-    setdocumento: (documento) => { setForm(prev => ({ ...prev, documento })) },
+    setdocumento: (documento) => {
+      setForm((prev) => ({ ...prev, documento }))
+    },
     setEstadonombre: setEstadoNombre,
-    setnombre: (nombres) => { setForm(prev => ({ ...prev, nombres })) },
+    setnombre: (nombres) => {
+      setForm((prev) => ({ ...prev, nombres }))
+    },
     setEstadoapellidos: setEstadoApellidos,
-    setapellidos: (apellidos) => { setForm(prev => ({ ...prev, apellidos })) },
+    setapellidos: (apellidos) => {
+      setForm((prev) => ({ ...prev, apellidos }))
+    },
     setEstadoemail: setEstadoEmail,
-    setemail: (email) => { setForm(prev => ({ ...prev, email })) },
+    setemail: (email) => {
+      setForm((prev) => ({ ...prev, email }))
+    },
     setEstadofechaNacimiento: setEstadoFechaNacimiento,
-    setfechaNacimiento: (fechaNacimiento) => { setForm(prev => ({ ...prev, fechaNacimiento })) },
+    setfechaNacimiento: (fechaNacimiento) => {
+      setForm((prev) => ({ ...prev, fechaNacimiento }))
+    },
     setEstadociudadNacimiento: setEstadoCiudadNacimiento,
-    setciudadNacimiento: (ciudadNacimiento) => { setForm(prev => ({ ...prev, ciudadNacimiento })) },
+    setciudadNacimiento: (ciudadNacimiento) => {
+      setForm((prev) => ({ ...prev, ciudadNacimiento }))
+    },
     setEstadotelefono: setEstadoTelefono,
-    settelefono: (telefono) => { setForm(prev => ({ ...prev, telefono })) },
+    settelefono: (telefono) => {
+      setForm((prev) => ({ ...prev, telefono }))
+    },
     setEstadocelular: setEstadoCelular,
-    setcelular: (celular) => { setForm(prev => ({ ...prev, celular })) },
+    setcelular: (celular) => {
+      setForm((prev) => ({ ...prev, celular }))
+    },
     setEstadofoto: setEstadoFoto,
-    setfoto: (foto) => { setForm(prev => ({ ...prev, foto })) },
+    setfoto: (foto) => {
+      setForm((prev) => ({ ...prev, foto }))
+    },
     setEstadodireccion: setEstadoDireccion,
-    setdireccion: (direccion) => { setForm(prev => ({ ...prev, direccion: { ...prev.direccion, direccion } })) },
+    setdireccion: (direccion) => {
+      setForm((prev) => ({
+        ...prev,
+        direccion: { ...prev.direccion, direccion },
+      }))
+    },
     setEstadobarrio: setEstadoBarrio,
-    setbarrio: (barrio) => { setForm(prev => ({ ...prev, direccion: { ...prev.direccion, barrio } })) },
+    setbarrio: (barrio) => {
+      setForm((prev) => ({ ...prev, direccion: { ...prev.direccion, barrio } }))
+    },
     setEstadociudad: setEstadoCiudad,
-    setciudad: (ciudad) => { setForm(prev => ({ ...prev, direccion: { ...prev.direccion, ciudad } })) },
+    setciudad: (ciudad) => {
+      setForm((prev) => ({ ...prev, direccion: { ...prev.direccion, ciudad } }))
+    },
     setEstadonombrePadre: setEstadoNombrePadre,
     setnombrePadre: (value) => {
       setForm({ ...form, padre: { ...form.padre, nombre: value } })
@@ -192,7 +227,7 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
     setEstadoocupacionAcudiente: setEstadoOcupacionAcudiente,
     setocupacionAcudiente: (value) => {
       setForm({ ...form, acudiente: { ...form.acudiente, ocupacion: value } })
-    }
+    },
   }
 
   // function that returns true if value is email, false otherwise
@@ -274,7 +309,8 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
       estadoDocumento === 'has-success' &&
       estadoNombre === 'has-success' &&
       estadoEmail === 'has-success' &&
-      (estadoFechaNacimiento === 'has-success' || form.fechaNacimiento === '') &&
+      (estadoFechaNacimiento === 'has-success' ||
+        form.fechaNacimiento === '') &&
       (estadoTelefono === 'has-success' || form.telefono === '') &&
       (estadoCelular === 'has-success' || form.celular === '') &&
       (estadoFoto === 'has-success' || form.foto === '')
@@ -290,7 +326,10 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
       if (estadoEmail !== 'has-success') {
         setEstadoEmail('has-danger')
       }
-      if (estadoFechaNacimiento !== 'has-success' && form.fechaNacimiento !== '') {
+      if (
+        estadoFechaNacimiento !== 'has-success' &&
+        form.fechaNacimiento !== ''
+      ) {
         setEstadoFechaNacimiento('has-danger')
       }
       if (estadoEmail !== 'has-success') {
@@ -314,14 +353,12 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
 
   React.useImperativeHandle(ref, () => ({
     isValidated: () => isValidated(),
-    state: form
+    state: form,
   }))
 
   return (
     <>
-      <h4 className='info-text'>
-        Comencemos con los datos personales
-      </h4>
+      <h4 className='info-text'>Comencemos con los datos personales</h4>
       <Alert
         color='info'
         isOpen={emailInfo}
@@ -329,8 +366,8 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
       >
         <span>
           <i className='fas fa-info-circle mr-1' />
-          El correo debe ser único para cada integrante,
-          ya que funciona como usuario de acceso al sistema.
+          El correo debe ser único para cada integrante, ya que funciona como
+          usuario de acceso al sistema.
         </span>
       </Alert>
       <Row className='justify-content-center'>
@@ -350,7 +387,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               type='email'
               name='email'
               placeholder='Correo...'
-              onChange={(e) => { handleChange(e, 'email') }}
+              onChange={(e) => {
+                handleChange(e, 'email')
+              }}
               value={form.email}
               onFocus={() => {
                 setFocoEmail(true)
@@ -359,9 +398,7 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               onBlur={() => setFocoEmail(false)}
             />
             {estadoEmail === 'has-danger' && (
-              <label className='error'>
-                Ingrese un correo valido
-              </label>
+              <label className='error'>Ingrese un correo valido</label>
             )}
           </InputGroup>
         </Col>
@@ -382,15 +419,15 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               min='0'
               name='documento'
               placeholder='Documento...'
-              onChange={(e) => { handleChange(e, 'number') }}
+              onChange={(e) => {
+                handleChange(e, 'number')
+              }}
               onFocus={() => setFocoDocumento(true)}
               onBlur={() => setFocoDocumento(false)}
               value={form.documento}
             />
             {estadoDocumento === 'has-danger' && (
-              <label className='error'>
-                Campo obligatorio
-              </label>
+              <label className='error'>Campo obligatorio</label>
             )}
           </InputGroup>
         </Col>
@@ -410,15 +447,15 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               type='text'
               name='nombre'
               placeholder='Nombres...'
-              onChange={(e) => { handleChange(e, 'required') }}
+              onChange={(e) => {
+                handleChange(e, 'required')
+              }}
               onFocus={() => setFocoNombre(true)}
               onBlur={() => setFocoNombre(false)}
               value={form.nombres}
             />
             {estadoNombre === 'has-danger' && (
-              <label className='error'>
-                Campo obligatorio
-              </label>
+              <label className='error'>Campo obligatorio</label>
             )}
           </InputGroup>
         </Col>
@@ -437,7 +474,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               type='text'
               name='apellidos'
               placeholder='Apellidos...'
-              onChange={(e) => { handleChange(e) }}
+              onChange={(e) => {
+                handleChange(e)
+              }}
               onFocus={() => setFocoApellidos(true)}
               onBlur={() => setFocoApellidos(false)}
               value={form.apellidos}
@@ -459,15 +498,15 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
             <Input
               type='date'
               name='fechaNacimiento'
-              onChange={(e) => { handleChange(e) }}
+              onChange={(e) => {
+                handleChange(e)
+              }}
               onFocus={() => setFocoFechaNacimiento(true)}
               onBlur={() => setFocoFechaNacimiento(false)}
               value={form.fechaNacimiento}
             />
             {estadoFechaNacimiento === 'has-danger' && (
-              <label className='date-error m-0 p-0'>
-                Formato no valido
-              </label>
+              <label className='date-error m-0 p-0'>Formato no valido</label>
             )}
           </InputGroup>
         </Col>
@@ -486,7 +525,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               type='text'
               name='ciudadNacimiento'
               placeholder='Ciudad de nacimiento...'
-              onChange={(e) => { handleChange(e) }}
+              onChange={(e) => {
+                handleChange(e)
+              }}
               value={form.ciudadNacimiento}
               onFocus={() => setFocoCiudadNacimiento(true)}
               onBlur={() => setFocoCiudadNacimiento(false)}
@@ -509,15 +550,15 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               min={0}
               name='telefono'
               placeholder='Teléfono...'
-              onChange={(e) => { handleChange(e, 'number', true) }}
+              onChange={(e) => {
+                handleChange(e, 'number', true)
+              }}
               value={form.telefono}
               onFocus={() => setFocoTelefono(true)}
               onBlur={() => setFocoTelefono(false)}
             />
             {estadoTelefono === 'has-danger' && (
-              <label className='error'>
-                Número no valido
-              </label>
+              <label className='error'>Número no valido</label>
             )}
           </InputGroup>
         </Col>
@@ -537,15 +578,15 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               min={0}
               name='celular'
               placeholder='Celular...'
-              onChange={(e) => { handleChange(e, 'number', true) }}
+              onChange={(e) => {
+                handleChange(e, 'number', true)
+              }}
               value={form.celular}
               onFocus={() => setFocoCelular(true)}
               onBlur={() => setFocoCelular(false)}
             />
             {estadoCelular === 'has-danger' && (
-              <label className='error'>
-                Número no valido
-              </label>
+              <label className='error'>Número no valido</label>
             )}
           </InputGroup>
         </Col>
@@ -564,7 +605,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               type='text'
               name='direccion'
               placeholder='Direccion...'
-              onChange={(e) => { handleChange(e) }}
+              onChange={(e) => {
+                handleChange(e)
+              }}
               value={form.direccion?.direccion || ''}
               onFocus={() => setFocoDireccion(true)}
               onBlur={() => setFocoDireccion(false)}
@@ -586,7 +629,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               type='text'
               name='barrio'
               placeholder='Barrio...'
-              onChange={(e) => { handleChange(e) }}
+              onChange={(e) => {
+                handleChange(e)
+              }}
               value={form.direccion?.barrio}
               onFocus={() => setFocoBarrio(true)}
               onBlur={() => setFocoBarrio(false)}
@@ -608,7 +653,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               type='text'
               name='ciudad'
               placeholder='Ciudad...'
-              onChange={(e) => { handleChange(e) }}
+              onChange={(e) => {
+                handleChange(e)
+              }}
               value={form.direccion?.ciudad}
               onFocus={() => setFocoCiudad(true)}
               onBlur={() => setFocoCiudad(false)}
@@ -630,23 +677,21 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               type='text'
               name='foto'
               placeholder='Foto URL...'
-              onChange={(e) => { handleChange(e, 'url', true) }}
+              onChange={(e) => {
+                handleChange(e, 'url', true)
+              }}
               value={form.foto}
               onFocus={() => setFocoFoto(true)}
               onBlur={() => setFocoFoto(false)}
             />
             {estadoFoto === 'has-danger' && (
-              <label className='error'>
-                URL no valida
-              </label>
+              <label className='error'>URL no valida</label>
             )}
           </InputGroup>
         </Col>
       </Row>
       <hr />
-      <h4 className='info-text'>
-        Datos del padre
-      </h4>
+      <h4 className='info-text'>Datos del padre</h4>
       <Row className='justify-content-center'>
         <Col sm={6} md={4} lg={3}>
           <InputGroup
@@ -663,7 +708,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               type='text'
               name='nombrePadre'
               placeholder='Nombre completo...'
-              onChange={(e) => { handleChange(e) }}
+              onChange={(e) => {
+                handleChange(e)
+              }}
               value={form.padre.nombre}
               onFocus={() => setFocoNombrePadre(true)}
               onBlur={() => setFocoNombrePadre(false)}
@@ -686,7 +733,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               min={0}
               name='celularPadre'
               placeholder='Celular...'
-              onChange={(e) => { handleChange(e, 'number', true) }}
+              onChange={(e) => {
+                handleChange(e, 'number', true)
+              }}
               value={form.padre.celular}
               onFocus={() => setFocoCelularPadre(true)}
               onBlur={() => setFocoCelularPadre(false)}
@@ -709,7 +758,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               min={0}
               name='telefonoPadre'
               placeholder='Teléfono...'
-              onChange={(e) => { handleChange(e, 'number', true) }}
+              onChange={(e) => {
+                handleChange(e, 'number', true)
+              }}
               value={form.padre.telefono}
               onFocus={() => setFocoTelefonoPadre(true)}
               onBlur={() => setFocoTelefonoPadre(false)}
@@ -731,7 +782,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               type='email'
               name='emailPadre'
               placeholder='Email...'
-              onChange={(e) => { handleChange(e, 'email') }}
+              onChange={(e) => {
+                handleChange(e, 'email')
+              }}
               value={form.padre.email}
               onFocus={() => setFocoEmailPadre(true)}
               onBlur={() => setFocoEmailPadre(false)}
@@ -753,7 +806,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               type='text'
               name='ocupacionPadre'
               placeholder='Ocupación...'
-              onChange={(e) => { handleChange(e) }}
+              onChange={(e) => {
+                handleChange(e)
+              }}
               value={form.padre.ocupacion}
               onFocus={() => setFocoOcupacionPadre(true)}
               onBlur={() => setFocoOcupacionPadre(false)}
@@ -762,9 +817,7 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
         </Col>
       </Row>
       <hr />
-      <h4 className='info-text'>
-        Datos de la madre
-      </h4>
+      <h4 className='info-text'>Datos de la madre</h4>
       <Row className='justify-content-center'>
         <Col sm={6} md={4} lg={3}>
           <InputGroup
@@ -781,7 +834,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               type='text'
               name='nombreMadre'
               placeholder='Nombre completo...'
-              onChange={(e) => { handleChange(e) }}
+              onChange={(e) => {
+                handleChange(e)
+              }}
               value={form.madre.nombre}
               onFocus={() => setFocoNombreMadre(true)}
               onBlur={() => setFocoNombreMadre(false)}
@@ -804,7 +859,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               min={0}
               name='celularMadre'
               placeholder='Celular...'
-              onChange={(e) => { handleChange(e, 'number', true) }}
+              onChange={(e) => {
+                handleChange(e, 'number', true)
+              }}
               value={form.madre.celular}
               onFocus={() => setFocoCelularMadre(true)}
               onBlur={() => setFocoCelularMadre(false)}
@@ -827,7 +884,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               min={0}
               name='telefonoMadre'
               placeholder='Teléfono...'
-              onChange={(e) => { handleChange(e, 'number', true) }}
+              onChange={(e) => {
+                handleChange(e, 'number', true)
+              }}
               value={form.madre.telefono}
               onFocus={() => setFocoTelefonoMadre(true)}
               onBlur={() => setFocoTelefonoMadre(false)}
@@ -849,7 +908,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               type='email'
               name='emailMadre'
               placeholder='Email...'
-              onChange={(e) => { handleChange(e, 'email') }}
+              onChange={(e) => {
+                handleChange(e, 'email')
+              }}
               value={form.madre.email}
               onFocus={() => setFocoEmailMadre(true)}
               onBlur={() => setFocoEmailMadre(false)}
@@ -871,7 +932,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               type='text'
               name='ocupacionMadre'
               placeholder='Ocupación...'
-              onChange={(e) => { handleChange(e) }}
+              onChange={(e) => {
+                handleChange(e)
+              }}
               value={form.madre.ocupacion}
               onFocus={() => setFocoOcupacionMadre(true)}
               onBlur={() => setFocoOcupacionMadre(false)}
@@ -880,9 +943,7 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
         </Col>
       </Row>
       <hr />
-      <h4 className='info-text'>
-        Datos del Acudiente
-      </h4>
+      <h4 className='info-text'>Datos del Acudiente</h4>
       <Row className='justify-content-center'>
         <Col sm={6} md={4} lg={3}>
           <InputGroup
@@ -899,7 +960,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               type='text'
               name='nombreAcudiente'
               placeholder='Nombre completo...'
-              onChange={(e) => { handleChange(e) }}
+              onChange={(e) => {
+                handleChange(e)
+              }}
               value={form.acudiente.nombre}
               onFocus={() => setFocoNombreAcudiente(true)}
               onBlur={() => setFocoNombreAcudiente(false)}
@@ -922,7 +985,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               min={0}
               name='celularAcudiente'
               placeholder='Celular...'
-              onChange={(e) => { handleChange(e, 'number', true) }}
+              onChange={(e) => {
+                handleChange(e, 'number', true)
+              }}
               value={form.acudiente.celular}
               onFocus={() => setFocoCelularAcudiente(true)}
               onBlur={() => setFocoCelularAcudiente(false)}
@@ -945,7 +1010,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               min={0}
               name='telefonoAcudiente'
               placeholder='Teléfono...'
-              onChange={(e) => { handleChange(e, 'number', true) }}
+              onChange={(e) => {
+                handleChange(e, 'number', true)
+              }}
               value={form.acudiente.telefono}
               onFocus={() => setFocoTelefonoAcudiente(true)}
               onBlur={() => setFocoTelefonoAcudiente(false)}
@@ -967,7 +1034,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               type='email'
               name='emailAcudiente'
               placeholder='Email...'
-              onChange={(e) => { handleChange(e, 'email') }}
+              onChange={(e) => {
+                handleChange(e, 'email')
+              }}
               value={form.acudiente.email}
               onFocus={() => setFocoEmailAcudiente(true)}
               onBlur={() => setFocoEmailAcudiente(false)}
@@ -989,7 +1058,9 @@ const PasosIntegrante = React.forwardRef((props, ref) => {
               type='text'
               name='ocupacionAcudiente'
               placeholder='Ocupación...'
-              onChange={(e) => { handleChange(e) }}
+              onChange={(e) => {
+                handleChange(e)
+              }}
               value={form.acudiente.ocupacion}
               onFocus={() => setFocoOcupacionAcudiente(true)}
               onBlur={() => setFocoOcupacionAcudiente(false)}

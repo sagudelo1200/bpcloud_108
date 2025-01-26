@@ -5,7 +5,6 @@ import { doc, setDoc, getDoc } from 'firebase/firestore'
 import { db } from 'firebaseApp'
 import { toast } from 'react-toastify'
 
-
 import { useAuth } from 'contexts/authContext'
 import { updateProfile } from 'firebase/auth'
 
@@ -14,9 +13,17 @@ import PasosScout from './forms/newUserSteps/PasosScout'
 import PasosSalud from './forms/newUserSteps/PasosSalud'
 
 var steps = [
-  { stepName: 'integrante', stepIcon: 'fas fa-user', component: PasosIntegrante },
+  {
+    stepName: 'integrante',
+    stepIcon: 'fas fa-user',
+    component: PasosIntegrante,
+  },
   { stepName: 'scout', stepIcon: 'fas fa-hiking', component: PasosScout },
-  { stepName: 'salud', stepIcon: 'fas fa-notes-medical', component: PasosSalud },
+  {
+    stepName: 'salud',
+    stepIcon: 'fas fa-notes-medical',
+    component: PasosSalud,
+  },
 ]
 
 const { REACT_APP_TITLE } = process.env
@@ -31,8 +38,15 @@ function NewUser() {
 
     const { email, documento, nombres, foto, unidad, jefeDe } = userData
     let id
-    const unidades = ['familia', 'manada', 'tropa', 'sociedad', 'clan', 'jefatura', 'consejo']
-
+    const unidades = [
+      'familia',
+      'manada',
+      'tropa',
+      'sociedad',
+      'clan',
+      'jefatura',
+      'consejo',
+    ]
 
     for (let i = 0; i < unidades.length; i++) {
       const _unidad = unidades[i]
@@ -44,13 +58,11 @@ function NewUser() {
       if (docSnap.exists()) {
         toast.error(`El documento ya existe en la base de datos de ${_unidad}`)
         localStorage.removeItem('registering')
-        throw new Error(`El documento ya existe en la base de datos de ${_unidad}`)
+        throw new Error(
+          `El documento ya existe en la base de datos de ${_unidad}`
+        )
       }
     }
-
-
-
-
 
     // Validar que el email no exista en la base de datos y crear cuenta
     try {
@@ -81,7 +93,9 @@ function NewUser() {
         ref: docRef,
         unidad,
         role: unidad === 'jefatura' || unidad === 'consejo' ? 'admin' : 'user',
-        roles: [unidad === 'jefatura' || unidad === 'consejo' ? 'admin' : 'user']
+        roles: [
+          unidad === 'jefatura' || unidad === 'consejo' ? 'admin' : 'user',
+        ],
       }
       if (unidad === 'jefatura') {
         userAppData['jefeDe'] = jefeDe
@@ -106,13 +120,11 @@ function NewUser() {
 
   const finishButtonClick = async (data) => {
     const userData = { ...data.integrante, ...data.scout, ...data.salud }
-    toast.promise(
-      createUser(userData),
-      {
-        pending: 'Creando usuario...',
-        success: 'Usuario creado correctamente',
-        error: 'Error al crear el usuario',
-      })
+    toast.promise(createUser(userData), {
+      pending: 'Creando usuario...',
+      success: 'Usuario creado correctamente',
+      error: 'Error al crear el usuario',
+    })
   }
 
   return (
@@ -141,6 +153,5 @@ function NewUser() {
     </div>
   )
 }
-
 
 export default NewUser

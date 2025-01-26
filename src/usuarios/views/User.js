@@ -12,7 +12,6 @@ import {
   Col,
 } from 'reactstrap'
 
-import { useAuth } from 'contexts/authContext'
 import { useParams, Redirect } from 'react-router-dom'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from 'firebaseApp'
@@ -26,7 +25,6 @@ const User = () => {
   const [user, setUser] = useState({})
   const [loading, setLoading] = useState(true)
   const [redirect, setRedirect] = useState(false)
-  const { userData } = useAuth()
   const docRef = doc(db, `unidades/${unidad}/integrantes/${id}`)
   document.title = `${user.nombres || ''} ${
     user.apellidos || ''
@@ -80,7 +78,6 @@ const User = () => {
   useEffect(() => {
     /* getUser in a clean function */
     getUser()
-    console.log('userData', userData)
     function clean() {
       setUser({})
       setLoading(false)

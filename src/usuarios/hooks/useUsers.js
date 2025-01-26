@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from 'firebaseApp'
 
-
 // Carga los usuarios de la base de datos e indica si se está cargando o no
 export const useUsers = (unidad) => {
   const [usuarios, setUsuarios] = useState([])

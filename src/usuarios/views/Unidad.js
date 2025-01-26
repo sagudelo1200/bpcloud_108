@@ -7,7 +7,7 @@ import {
   CardTitle,
   Row,
   Col,
-  Button
+  Button,
 } from 'reactstrap'
 import routes from 'routes.js'
 import { Switch, Link, useRouteMatch } from 'react-router-dom'
@@ -43,7 +43,15 @@ const Unidad = () => {
 
     const { email, documento, nombres, jefeDe } = userData
     let id
-    const unidades = ['familia', 'manada', 'tropa', 'sociedad', 'clan', 'jefatura', 'consejo']
+    const unidades = [
+      'familia',
+      'manada',
+      'tropa',
+      'sociedad',
+      'clan',
+      'jefatura',
+      'consejo',
+    ]
 
     for (let i = 0; i < unidades.length; i++) {
       const _unidad = unidades[i]
@@ -55,7 +63,9 @@ const Unidad = () => {
       if (docSnap.exists()) {
         toast.error(`El documento ya existe en la base de datos de ${_unidad}`)
         localStorage.removeItem('registering')
-        throw new Error(`El documento ya existe en la base de datos de ${_unidad}`)
+        throw new Error(
+          `El documento ya existe en la base de datos de ${_unidad}`
+        )
       }
     }
 
@@ -76,7 +86,6 @@ const Unidad = () => {
       throw error
     }
 
-
     try {
       // crea el documento de usuario de la app en la base de datos
       const docRef = doc(db, `unidades/${unidad}/integrantes/${documento}`)
@@ -87,7 +96,9 @@ const Unidad = () => {
         ref: docRef,
         unidad,
         role: unidad === 'jefatura' || unidad === 'consejo' ? 'admin' : 'user',
-        roles: [unidad === 'jefatura' || unidad === 'consejo' ? 'admin' : 'user']
+        roles: [
+          unidad === 'jefatura' || unidad === 'consejo' ? 'admin' : 'user',
+        ],
       }
       if (unidad === 'jefatura') {
         userAppData['jefeDe'] = jefeDe
@@ -99,7 +110,7 @@ const Unidad = () => {
       await setDoc(docRef, {
         ...userData,
         userID: id,
-        estado: 'activo'
+        estado: 'activo',
       })
 
       localStorage.removeItem('registering')
@@ -109,9 +120,7 @@ const Unidad = () => {
       console.error(error)
       throw error
     }
-
   }
-
 
   const getActiveRoute = (routes) => {
     let activeRoute = 'Default Brand Text'
@@ -159,7 +168,7 @@ const Unidad = () => {
               </Button>{' '}
               {/* use this button to remove the data row */}
               <Button
-                onClick={() => (alert('No disponible'))}
+                onClick={() => alert('No disponible')}
                 size='sm'
                 color='danger'
                 className={classNames('btn-icon btn-link like', {
@@ -170,7 +179,7 @@ const Unidad = () => {
               </Button>{' '}
             </div>
           ),
-        };
+        }
       })
     )
 
@@ -243,14 +252,11 @@ const Unidad = () => {
               isOpen={isOpen}
               toggle={toggleNewUserModal}
               createUser={(userData) => {
-                toast.promise(
-                  createUser(userData),
-                  {
-                    pending: 'Creando usuario...',
-                    success: 'Usuario creado correctamente',
-                    error: 'Error al crear el usuario',
-                  }
-                )
+                toast.promise(createUser(userData), {
+                  pending: 'Creando usuario...',
+                  success: 'Usuario creado correctamente',
+                  error: 'Error al crear el usuario',
+                })
               }}
               unidad={unidad}
             />
@@ -306,14 +312,14 @@ const Unidad = () => {
           <PrivateRoute exact path={path}>
             {component()}
           </PrivateRoute>
-          <PrivateRoute exact path={`/admin/:unidad/:id`} >
+          <PrivateRoute exact path={`/admin/:unidad/:id`}>
             <User />
           </PrivateRoute>
           <Redirect to={`/admin/${unidad}`} />
         </Switch>
       </div>
     </>
-  );
-};
+  )
+}
 
 export default Unidad

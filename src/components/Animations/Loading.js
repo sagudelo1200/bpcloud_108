@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import { Spinner } from 'reactstrap';
+import { Spinner } from 'reactstrap'
 
 export const DefaultLoading = (props) => {
   return (
@@ -20,5 +20,5 @@ export const DefaultLoading = (props) => {
         />
       </div>
     </>
-  );
-};
+  )
+}

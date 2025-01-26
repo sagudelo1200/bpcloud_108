@@ -20,7 +20,14 @@ import { collection, getDocs, doc, updateDoc } from 'firebase/firestore'
 
 import { db } from 'firebaseApp'
 
-const AddAdvancementModal = ({ isOpen, toggle, addAdvancementToList, addItem, unidad, user }) => {
+const AddAdvancementModal = ({
+  isOpen,
+  toggle,
+  addAdvancementToList,
+  addItem,
+  unidad,
+  user,
+}) => {
   const defaultForm = {
     detalles: '',
     fecha: '',
@@ -44,7 +51,6 @@ const AddAdvancementModal = ({ isOpen, toggle, addAdvancementToList, addItem, un
     return newData
   }
 
-
   const validate = (altForm = null) => {
     const formData = altForm || form
     const values = trimData(formData)
@@ -62,20 +68,17 @@ const AddAdvancementModal = ({ isOpen, toggle, addAdvancementToList, addItem, un
     return newErrors
   }
 
-
   const handleChange = (e) => {
     const newForm = { ...form, [e.target.name]: e.target.value }
     validate(newForm)
     setForm(newForm)
   }
 
-
   const handleAdvancementChange = (e) => {
     const newForm = { ...form, ref: e.value, nombre: e.label }
     validate(newForm)
     setForm(newForm)
   }
-
 
   const getAdvancements = async () => {
     const colRef = await collection(db, 'unidades', unidad, 'ascensos')
@@ -102,7 +105,6 @@ const AddAdvancementModal = ({ isOpen, toggle, addAdvancementToList, addItem, un
     addAdvancementToList(form)
   }
 
-
   const addAdvancement = async () => {
     setIsSubmitting(true)
     const userAdvances = user.ascensos ?? []
@@ -116,20 +118,16 @@ const AddAdvancementModal = ({ isOpen, toggle, addAdvancementToList, addItem, un
 
     userAdvances.push(form)
 
-    toast.promise(
-      updateAscensos(userAdvances),
-      {
-        pending: 'Agregando ascenso...',
-        success: 'Agregado correctamente',
-        error: 'Error al agregar',
-      }
-    )
+    toast.promise(updateAscensos(userAdvances), {
+      pending: 'Agregando ascenso...',
+      success: 'Agregado correctamente',
+      error: 'Error al agregar',
+    })
 
     toggle()
     setForm(defaultForm)
     setIsSubmitting(false)
   }
-
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -148,7 +146,6 @@ const AddAdvancementModal = ({ isOpen, toggle, addAdvancementToList, addItem, un
     }
     setIsSubmitting(false)
   }
-
 
   useEffect(() => {
     getAdvancements()
@@ -186,7 +183,11 @@ const AddAdvancementModal = ({ isOpen, toggle, addAdvancementToList, addItem, un
                   classNamePrefix='react-select'
                   name='ref'
                   onChange={handleAdvancementChange}
-                  options={advancements.map((x) => ({ name: 'ref', value: x.ref, label: x.nombre }))}
+                  options={advancements.map((x) => ({
+                    name: 'ref',
+                    value: x.ref,
+                    label: x.nombre,
+                  }))}
                   placeholder='Selecciona un ascenso'
                 />
                 <small className='text-warning'>{errors.ref}</small>

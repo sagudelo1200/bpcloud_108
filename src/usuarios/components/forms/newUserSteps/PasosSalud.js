@@ -8,7 +8,7 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupText,
-  CustomInput
+  CustomInput,
 } from 'reactstrap'
 import Select from 'react-select'
 
@@ -33,21 +33,20 @@ const PasosSalud = React.forwardRef((props, ref) => {
     restriccionesActividades: '',
   })
 
-  const handleSelect = e => {
+  const handleSelect = (e) => {
     const { name, value } = e
     setForm({ ...form, [name]: value })
   }
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target
     setForm({ ...form, [name]: value })
   }
 
-  const handleCheck = e => {
+  const handleCheck = (e) => {
     const { name, checked } = e.target
     setForm({ ...form, [name]: checked })
   }
-
 
   const handleList = (e) => {
     const { name, value } = e.target
@@ -62,14 +61,13 @@ const PasosSalud = React.forwardRef((props, ref) => {
     setForm({ ...form, [name]: newList })
   }
 
-
   const isValidated = () => {
     return true
   }
 
   React.useImperativeHandle(ref, () => ({
     isValidated: () => isValidated(),
-    state: form
+    state: form,
   }))
 
   React.useEffect(() => {
@@ -79,9 +77,7 @@ const PasosSalud = React.forwardRef((props, ref) => {
 
   return (
     <>
-      <h4 className='info-text'>
-        Registre la ficha médica
-      </h4>
+      <h4 className='info-text'>Registre la ficha médica</h4>
       <Row>
         <Col sm={4}>
           <InputGroup>
@@ -104,7 +100,7 @@ const PasosSalud = React.forwardRef((props, ref) => {
                 { name: 'rh', value: 'AB+', label: 'AB+' },
                 { name: 'rh', value: 'AB-', label: 'AB-' },
                 { name: 'rh', value: 'O+', label: 'O+' },
-                { name: 'rh', value: 'O-', label: 'O-' }
+                { name: 'rh', value: 'O-', label: 'O-' },
               ]}
               placeholder='Tipo de sangre...'
             />
@@ -141,10 +137,9 @@ const PasosSalud = React.forwardRef((props, ref) => {
         {/* Vacunas */}
         <Label tag='h4' sm='6' className='text-center'>
           <i className='fas fa-syringe mr-1' />
-          Vacunas recibidas<br />
-          <small className='text-muted'>
-            Separados por una coma (,)
-          </small>
+          Vacunas recibidas
+          <br />
+          <small className='text-muted'>Separados por una coma (,)</small>
         </Label>
         <Col sm={6}>
           <FormGroup>
@@ -160,10 +155,9 @@ const PasosSalud = React.forwardRef((props, ref) => {
         {/* Enfermedades que padece */}
         <Label tag='h4' sm='6' className='text-center'>
           <i className='fa-solid fa-bed-pulse mr-1' />
-          Enfermedades que padece<br />
-          <small className='text-muted'>
-            Separados por una coma (,)
-          </small>
+          Enfermedades que padece
+          <br />
+          <small className='text-muted'>Separados por una coma (,)</small>
         </Label>
         <Col sm={6}>
           <FormGroup>
@@ -179,10 +173,9 @@ const PasosSalud = React.forwardRef((props, ref) => {
         {/* Enfermedades que ha padecido */}
         <Label tag='h4' sm='6' className='text-center'>
           <i className='fas fa-heartbeat mr-1' />
-          Enfermedades que ha padecido<br />
-          <small className='text-muted'>
-            Separados por una coma (,)
-          </small>
+          Enfermedades que ha padecido
+          <br />
+          <small className='text-muted'>Separados por una coma (,)</small>
         </Label>
         <Col sm={6}>
           <FormGroup>
@@ -198,10 +191,9 @@ const PasosSalud = React.forwardRef((props, ref) => {
         {/* Intervenciones */}
         <Label tag='h4' sm='6' className='text-center'>
           <i className='fa fa-diagnoses mr-1' />
-          Intervenciones quirúrgicas<br />
-          <small className='text-muted'>
-            Separados por una coma (,)
-          </small>
+          Intervenciones quirúrgicas
+          <br />
+          <small className='text-muted'>Separados por una coma (,)</small>
         </Label>
         <Col sm={6}>
           <FormGroup>
@@ -217,10 +209,9 @@ const PasosSalud = React.forwardRef((props, ref) => {
         {/* Alergias */}
         <Label tag='h4' sm='6' className='text-center'>
           <i className='fas fa-allergies mr-1' />
-          Alergias (medicamentos, alimentos, etc...)<br />
-          <small className='text-muted'>
-            Separados por una coma (,)
-          </small>
+          Alergias (medicamentos, alimentos, etc...)
+          <br />
+          <small className='text-muted'>Separados por una coma (,)</small>
         </Label>
         <Col sm={6}>
           <FormGroup>
@@ -236,10 +227,9 @@ const PasosSalud = React.forwardRef((props, ref) => {
         {/* Antecedentes de Trauma */}
         <Label tag='h4' sm='6' className='text-center'>
           <i className='fas fa-skull-crossbones mr-1' />
-          Antecedentes de Trauma<br />
-          <small className='text-muted'>
-            Separados por una coma (,)
-          </small>
+          Antecedentes de Trauma
+          <br />
+          <small className='text-muted'>Separados por una coma (,)</small>
         </Label>
         <Col sm={6}>
           <FormGroup>
@@ -336,6 +326,5 @@ const PasosSalud = React.forwardRef((props, ref) => {
     </>
   )
 })
-
 
 export default PasosSalud

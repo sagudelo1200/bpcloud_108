@@ -1,19 +1,19 @@
 /*eslint-disable*/
-import React from 'react';
+import React from 'react'
 import {
   useTable,
   useFilters,
   useAsyncDebounce,
   useSortBy,
   usePagination,
-} from 'react-table';
-import classnames from 'classnames';
+} from 'react-table'
+import classnames from 'classnames'
 // A great library for fuzzy filtering/sorting items
-import { matchSorter } from 'match-sorter';
+import { matchSorter } from 'match-sorter'
 // react plugin used to create DropdownMenu for selecting items
-import Select from 'react-select';
+import Select from 'react-select'
 // reactstrap components
-import { FormGroup, Input } from 'reactstrap';
+import { FormGroup, Input } from 'reactstrap'
 
 import { DefaultLoading } from 'components/Animations/Loading'
 
@@ -21,7 +21,7 @@ import { DefaultLoading } from 'components/Animations/Loading'
 function DefaultColumnFilter({
   column: { filterValue, preFilteredRows, setFilter },
 }) {
-  const count = preFilteredRows.length;
+  const count = preFilteredRows.length
 
   return (
     <FormGroup>
@@ -29,25 +29,25 @@ function DefaultColumnFilter({
         type='text'
         value={filterValue || ''}
         onChange={(e) => {
-          setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
+          setFilter(e.target.value || undefined) // Set undefined to remove the filter entirely
         }}
         placeholder={`Buscar en ${count} resultados...`}
       />
     </FormGroup>
-  );
+  )
 }
 
 function fuzzyTextFilterFn(rows, id, filterValue) {
-  return matchSorter(rows, filterValue, { keys: [(row) => row.values[id]] });
+  return matchSorter(rows, filterValue, { keys: [(row) => row.values[id]] })
 }
 
 // Let the table remove the filter if the string is empty
-fuzzyTextFilterFn.autoRemove = (val) => !val;
+fuzzyTextFilterFn.autoRemove = (val) => !val
 
 // Our table component
 function IntegrantesTable({ columns, data, loading }) {
-  const [numberOfRows, setNumberOfRows] = React.useState(10);
-  const [pageSelect, handlePageSelect] = React.useState(0);
+  const [numberOfRows, setNumberOfRows] = React.useState(10)
+  const [pageSelect, handlePageSelect] = React.useState(0)
   const filterTypes = React.useMemo(
     () => ({
       // Add a new fuzzyTextFilterFn filter type.
@@ -56,17 +56,17 @@ function IntegrantesTable({ columns, data, loading }) {
       // 'startWith'
       text: (rows, id, filterValue) => {
         return rows.filter((row) => {
-          const rowValue = row.values[id];
+          const rowValue = row.values[id]
           return rowValue !== undefined
             ? String(rowValue)
-              .toLowerCase()
-              .startsWith(String(filterValue).toLowerCase())
-            : true;
-        });
+                .toLowerCase()
+                .startsWith(String(filterValue).toLowerCase())
+            : true
+        })
       },
     }),
     []
-  );
+  )
 
   const defaultColumn = React.useMemo(
     () => ({
@@ -74,7 +74,7 @@ function IntegrantesTable({ columns, data, loading }) {
       Filter: DefaultColumnFilter,
     }),
     []
-  );
+  )
 
   const {
     getTableProps,
@@ -100,16 +100,15 @@ function IntegrantesTable({ columns, data, loading }) {
     useFilters, // useFilters!
     useSortBy,
     usePagination
-  );
+  )
 
   // We don't want to render all of the rows for this example, so cap
   // it for this use case
   // const firstPageRows = rows.slice(0, 10);
-  let pageSelectData = Array.apply(
-    null,
-    Array(pageOptions.length)
-  ).map(function () { });
-  let numberOfRowsData = [5, 10, 20, 25, 50, 100];
+  let pageSelectData = Array.apply(null, Array(pageOptions.length)).map(
+    function () {}
+  )
+  let numberOfRowsData = [5, 10, 20, 25, 50, 100]
 
   // conditional rendering
   return loading ? (
@@ -140,14 +139,14 @@ function IntegrantesTable({ columns, data, loading }) {
                 name='singleSelect'
                 value={pageSelect}
                 onChange={(value) => {
-                  gotoPage(value.value);
-                  handlePageSelect(value);
+                  gotoPage(value.value)
+                  handlePageSelect(value)
                 }}
                 options={pageSelectData.map((prop, key) => {
                   return {
                     value: key,
                     label: 'Pág ' + (key + 1),
-                  };
+                  }
                 })}
                 placeholder='Página'
               />
@@ -157,15 +156,15 @@ function IntegrantesTable({ columns, data, loading }) {
                 name='singleSelect'
                 value={numberOfRows}
                 onChange={(value) => {
-                  console.log(value);
-                  setPageSize(value.value);
-                  setNumberOfRows(value);
+                  console.log(value)
+                  setPageSize(value.value)
+                  setNumberOfRows(value)
                 }}
                 options={numberOfRowsData.map((prop) => {
                   return {
                     value: prop,
                     label: prop + ' filas',
-                  };
+                  }
                 })}
                 placeholder='# Filas'
               />
@@ -200,9 +199,7 @@ function IntegrantesTable({ columns, data, loading }) {
                       {column.render('Header')}
                     </div>
                     {/* Render the columns filter UI */}
-                    <div>
-                      {column.filterable && column.render('Filter')}
-                    </div>
+                    <div>{column.filterable && column.render('Filter')}</div>
                   </th>
                 ))}
               </tr>
@@ -210,7 +207,7 @@ function IntegrantesTable({ columns, data, loading }) {
           </thead>
           <tbody {...getTableBodyProps()} className='rt-tbody'>
             {page.map((row, i) => {
-              prepareRow(row);
+              prepareRow(row)
               return (
                 <tr
                   {...row.getRowProps()}
@@ -225,27 +222,31 @@ function IntegrantesTable({ columns, data, loading }) {
                       return (
                         <td
                           {...cell.getCellProps()}
-                          className='rt-td d-flex align-items-center'>
-                          <div className="photo mr-1">
+                          className='rt-td d-flex align-items-center'
+                        >
+                          <div className='photo mr-1'>
                             <img
-                              alt="foto"
-                              width="42px"
+                              alt='foto'
+                              width='42px'
                               className='rounded-circle img-fluid'
-                              src={cell.row.original.foto || require('assets/img/female_avatar.svg').default}
+                              src={
+                                cell.row.original.foto ||
+                                require('assets/img/female_avatar.svg').default
+                              }
                             />
                           </div>
                           {cell.value}
                         </td>
-                      );
+                      )
                     }
                     return (
                       <td {...cell.getCellProps()} className='rt-td'>
                         {cell.render('Cell')}
                       </td>
-                    );
+                    )
                   })}
                 </tr>
-              );
+              )
             })}
           </tbody>
         </table>
@@ -258,15 +259,15 @@ function IntegrantesTable({ columns, data, loading }) {
 // Define a custom filter filter function!
 function filterGreaterThan(rows, id, filterValue) {
   return rows.filter((row) => {
-    const rowValue = row.values[id];
-    return rowValue >= filterValue;
-  });
+    const rowValue = row.values[id]
+    return rowValue >= filterValue
+  })
 }
 
 // This is an autoRemove method on the filter function that
 // when given the new filter value and returns true, the filter
 // will be automatically removed. Normally this is just an undefined
 // check, but here, we want to remove the filter if it's not a number
-filterGreaterThan.autoRemove = (val) => typeof val !== 'number';
+filterGreaterThan.autoRemove = (val) => typeof val !== 'number'
 
-export default IntegrantesTable;
+export default IntegrantesTable

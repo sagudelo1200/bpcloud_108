@@ -146,9 +146,14 @@ const AdminNavbar = (props) => {
                   <span className='d-lg-none d-md-block'>Buscar</span>
                 </Button>
               </InputGroup>
-              <Link className='text-light mt-2' to={props.layout === '/admin' ? '/docs' : '/admin'}>
+              <Link
+                className='text-light mt-2'
+                to={props.layout === '/admin' ? '/docs' : '/admin'}
+              >
                 <small>
-                  {props.layout === '/admin' ? 'Ir a la documentación' : 'Ir a la aplicación'}
+                  {props.layout === '/admin'
+                    ? 'Ir a la documentación'
+                    : 'Ir a la aplicación'}
                 </small>
               </Link>
               <UncontrolledDropdown nav>
@@ -179,22 +184,33 @@ const AdminNavbar = (props) => {
                   onClick={(e) => e.preventDefault()}
                 >
                   <div className='photo'>
-                    <img alt='perfil' src={currentUser.photoURL || 'https://picsum.photos/421'} />
+                    <img
+                      alt='perfil'
+                      src={currentUser.photoURL || 'https://picsum.photos/421'}
+                    />
                   </div>
                   <b className='caret d-none d-lg-block d-xl-block' />
-                  <p className='d-lg-none'>{currentUser.displayName || 'Usuario'}</p>
+                  <p className='d-lg-none'>
+                    {currentUser.displayName || 'Usuario'}
+                  </p>
                 </DropdownToggle>
                 <DropdownMenu className='dropdown-navbar' right tag='ul'>
                   <NavLink tag='li'>
                     <DropdownItem className='nav-item'>
-                      <Link to={`/admin/${userData.unidad}/${userData.documento}`} className='nav-link text-dark'>
+                      <Link
+                        to={`/admin/${userData.unidad}/${userData.documento}`}
+                        className='nav-link text-dark'
+                      >
                         Perfil
                       </Link>
                     </DropdownItem>
                   </NavLink>
                   <DropdownItem divider tag='li' />
                   <NavLink tag='li'>
-                    <DropdownItem className='nav-item' onClick={logoutAndRememberUser}>
+                    <DropdownItem
+                      className='nav-item'
+                      onClick={logoutAndRememberUser}
+                    >
                       <span className='fas fa-lock mr-1' />
                       Bloquear
                     </DropdownItem>
