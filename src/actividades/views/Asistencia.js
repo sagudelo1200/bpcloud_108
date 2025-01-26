@@ -17,7 +17,7 @@ import { db } from 'firebaseApp'
 
 
 const Asistencia = () => {
-  document.title = 'Asistencia | 03 Quimbayas'
+  document.title = 'Asistencia | Sattwa 108'
   const [loading, setLoading] = React.useState(true)
   const [openedCollapses, setOpenedCollapses] = React.useState({})
   const [actividades, setActividades] = React.useState([])

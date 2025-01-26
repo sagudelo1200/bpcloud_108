@@ -28,7 +28,9 @@ const User = () => {
   const [redirect, setRedirect] = useState(false)
   const { userData } = useAuth()
   const docRef = doc(db, `unidades/${unidad}/integrantes/${id}`)
-  document.title = `${user.nombres || ''} ${user.apellidos || ''} | ${REACT_APP_TITLE}`
+  document.title = `${user.nombres || ''} ${
+    user.apellidos || ''
+  } | ${REACT_APP_TITLE}`
 
   const getUser = async () => {
     setLoading(true)
@@ -54,7 +56,6 @@ const User = () => {
     }
     return age
   }
-
 
   // Handle AddAscenso
   const [isOpenAscenso, setIsOpenAscenso] = React.useState(false)
@@ -93,7 +94,9 @@ const User = () => {
   return (
     <>
       <div className='content'>
-        {loading ? <DefaultLoading /> : (
+        {loading ? (
+          <DefaultLoading />
+        ) : (
           <Row className='justify-content-center'>
             <Col sm='8' md='7'>
               {/* USER */}
@@ -105,13 +108,18 @@ const User = () => {
                       <div className='block block-two' />
                       <div className='block block-three' />
                       <div className='block block-four' />
-                      <a href='#03Quimbayas' onClick={() => alert(JSON.stringify(user))}>
+                      <a
+                        href='#Sattwa108'
+                        onClick={() => alert(JSON.stringify(user))}
+                      >
                         <img
                           alt='...'
                           className='avatar'
                           src={user.foto || 'https://picsum.photos/420'}
                         />
-                        <h4 className='title'>{`${user.nombres || ''} ${user.apellidos || ''}`}</h4>
+                        <h4 className='title'>{`${user.nombres || ''} ${
+                          user.apellidos || ''
+                        }`}</h4>
                       </a>
                       <small>{user.email}</small>
                       <p className='description'>{unidad}</p>
@@ -121,36 +129,31 @@ const User = () => {
                         <i className='fa-solid fa-cake-candles' /> Edad
                       </Col>
                       <Col md='6'>
-                        {user.fechaNacimiento ? calcAge(user.fechaNacimiento) + ' Años' : '??'}
+                        {user.fechaNacimiento
+                          ? calcAge(user.fechaNacimiento) + ' Años'
+                          : '??'}
                       </Col>
 
                       <Col md='6'>
-                        <i className='fa-solid fa-calendar-alt' /> Fecha de nacimiento
+                        <i className='fa-solid fa-calendar-alt' /> Fecha de
+                        nacimiento
                       </Col>
-                      <Col md='6'>
-                        {user.fechaNacimiento}
-                      </Col>
+                      <Col md='6'>{user.fechaNacimiento}</Col>
 
                       <Col md='6'>
                         <i className='far fa-id-badge' /> Documento
                       </Col>
-                      <Col md='6'>
-                        {user.documento}
-                      </Col>
+                      <Col md='6'>{user.documento}</Col>
 
                       <Col md='6'>
                         <i className='fas fa-phone-flip' /> Teléfono
                       </Col>
-                      <Col md='6'>
-                        {user.telefono}
-                      </Col>
+                      <Col md='6'>{user.telefono}</Col>
 
                       <Col md='6'>
                         <i className='fas fa-mobile-screen' /> Celular
                       </Col>
-                      <Col md='6'>
-                        {user.celular}
-                      </Col>
+                      <Col md='6'>{user.celular}</Col>
                     </Row>
                   </CardBody>
                   <CardFooter>
@@ -174,16 +177,10 @@ const User = () => {
                 {user.madre?.nombre || user.padre?.nombre ? (
                   <>
                     <Col md='4'>
-                      <Card
-                      >
+                      <Card>
                         <CardBody>
-                          <CardTitle tag='h4'>
-                            {user.madre?.nombre}
-                          </CardTitle>
-                          <CardSubtitle
-                            className='mb-2 text-muted'
-                            tag='h5'
-                          >
+                          <CardTitle tag='h4'>{user.madre?.nombre}</CardTitle>
+                          <CardSubtitle className='mb-2 text-muted' tag='h5'>
                             Madre
                           </CardSubtitle>
                           <CardText>
@@ -195,7 +192,11 @@ const User = () => {
                                 target='_blank'
                                 className='mr-1'
                               >
-                                <Button className='btn-icon btn-round' color='success' type='button'>
+                                <Button
+                                  className='btn-icon btn-round'
+                                  color='success'
+                                  type='button'
+                                >
                                   <i className='fab fa-whatsapp' />
                                 </Button>
                               </a>
@@ -207,7 +208,10 @@ const User = () => {
                                 target='_blank'
                                 className='mr-1'
                               >
-                                <Button className='btn-icon btn-round' type='button'>
+                                <Button
+                                  className='btn-icon btn-round'
+                                  type='button'
+                                >
                                   <i className='fas fa-envelope' />
                                 </Button>
                               </a>
@@ -218,7 +222,11 @@ const User = () => {
                                 rel='noreferrer'
                                 target='_blank'
                               >
-                                <Button className='btn-icon btn-round' color='primary' type='button'>
+                                <Button
+                                  className='btn-icon btn-round'
+                                  color='primary'
+                                  type='button'
+                                >
                                   <i className='fas fa-phone-alt' />
                                 </Button>
                               </a>
@@ -228,16 +236,10 @@ const User = () => {
                       </Card>
                     </Col>
                     <Col md='4'>
-                      <Card
-                      >
+                      <Card>
                         <CardBody>
-                          <CardTitle tag='h4'>
-                            {user.padre?.nombre}
-                          </CardTitle>
-                          <CardSubtitle
-                            className='mb-2 text-muted'
-                            tag='h5'
-                          >
+                          <CardTitle tag='h4'>{user.padre?.nombre}</CardTitle>
+                          <CardSubtitle className='mb-2 text-muted' tag='h5'>
                             Padre
                           </CardSubtitle>
                           <CardText>
@@ -249,7 +251,11 @@ const User = () => {
                                 target='_blank'
                                 className='mr-1'
                               >
-                                <Button className='btn-icon btn-round' color='success' type='button'>
+                                <Button
+                                  className='btn-icon btn-round'
+                                  color='success'
+                                  type='button'
+                                >
                                   <i className='fab fa-whatsapp' />
                                 </Button>
                               </a>
@@ -261,7 +267,10 @@ const User = () => {
                                 target='_blank'
                                 className='mr-1'
                               >
-                                <Button className='btn-icon btn-round' type='button'>
+                                <Button
+                                  className='btn-icon btn-round'
+                                  type='button'
+                                >
                                   <i className='fas fa-envelope' />
                                 </Button>
                               </a>
@@ -272,7 +281,11 @@ const User = () => {
                                 rel='noreferrer'
                                 target='_blank'
                               >
-                                <Button className='btn-icon btn-round' color='primary' type='button'>
+                                <Button
+                                  className='btn-icon btn-round'
+                                  color='primary'
+                                  type='button'
+                                >
                                   <i className='fas fa-phone-alt' />
                                 </Button>
                               </a>
@@ -285,16 +298,10 @@ const User = () => {
                 ) : null}
                 {user.acudiente?.nombre ? (
                   <Col md='4'>
-                    <Card
-                    >
+                    <Card>
                       <CardBody>
-                        <CardTitle tag='h4'>
-                          {user.acudiente?.nombre}
-                        </CardTitle>
-                        <CardSubtitle
-                          className='mb-2 text-muted'
-                          tag='h5'
-                        >
+                        <CardTitle tag='h4'>{user.acudiente?.nombre}</CardTitle>
+                        <CardSubtitle className='mb-2 text-muted' tag='h5'>
                           Acudiente
                         </CardSubtitle>
                         <CardText>
@@ -306,7 +313,11 @@ const User = () => {
                               target='_blank'
                               className='mr-1'
                             >
-                              <Button className='btn-icon btn-round' color='success' type='button'>
+                              <Button
+                                className='btn-icon btn-round'
+                                color='success'
+                                type='button'
+                              >
                                 <i className='fab fa-whatsapp' />
                               </Button>
                             </a>
@@ -318,7 +329,10 @@ const User = () => {
                               target='_blank'
                               className='mr-1'
                             >
-                              <Button className='btn-icon btn-round' type='button'>
+                              <Button
+                                className='btn-icon btn-round'
+                                type='button'
+                              >
                                 <i className='fas fa-envelope' />
                               </Button>
                             </a>
@@ -329,7 +343,11 @@ const User = () => {
                               rel='noreferrer'
                               target='_blank'
                             >
-                              <Button className='btn-icon btn-round' color='primary' type='button'>
+                              <Button
+                                className='btn-icon btn-round'
+                                color='primary'
+                                type='button'
+                              >
                                 <i className='fas fa-phone-alt' />
                               </Button>
                             </a>
@@ -353,7 +371,9 @@ const User = () => {
                     </Col>
                     <Col xs='10'>
                       <div className='numbers'>
-                        <CardTitle tag='h3' className='mb-0'>INFORMACIÓN MÉDICA</CardTitle>
+                        <CardTitle tag='h3' className='mb-0'>
+                          INFORMACIÓN MÉDICA
+                        </CardTitle>
                         <Button
                           className='btn-link p-0'
                           color='primary'
@@ -379,24 +399,24 @@ const User = () => {
                     <div className='author'>
                       <div className='block block-one'>
                         <h4>FORMACIÓN SCOUT</h4>
-
                       </div>
                     </div>
                     <div className='row'>
-                      {user.ascensos && user.ascensos.map((ascenso) => (
-                        <div className='col-4 my-3' key={ascenso.nombre}>
-                          <img
-                            alt={ascenso.nombre}
-                            className='img-raised rounded img-fluid'
-                            src={ascenso.img || 'https://via.placeholder.com/100'}
-                            title={ascenso.nombre}
-                          />
-                        </div>
-                      ))}
+                      {user.ascensos &&
+                        user.ascensos.map((ascenso) => (
+                          <div className='col-4 my-3' key={ascenso.nombre}>
+                            <img
+                              alt={ascenso.nombre}
+                              className='img-raised rounded img-fluid'
+                              src={
+                                ascenso.img || 'https://via.placeholder.com/100'
+                              }
+                              title={ascenso.nombre}
+                            />
+                          </div>
+                        ))}
                       <div className='col-4 my-3 d-flex align-items-center justify-content-center'>
-                        <button
-                          onClick={createAscenso}
-                        >
+                        <button onClick={createAscenso}>
                           <i className='fas fa-plus fa-2x' />
                         </button>
                         <AddAdvancementModal
@@ -432,6 +452,5 @@ const User = () => {
     </>
   )
 }
-
 
 export default User

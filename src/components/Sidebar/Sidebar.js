@@ -90,7 +90,10 @@ const Sidebar = (props) => {
         st[prop['state']] = !state[prop.state]
         return (
           <li
-            className={(getCollapseInitialState(prop.views) ? 'active' : '') + ' nav-coll'}
+            className={
+              (getCollapseInitialState(prop.views) ? 'active' : '') +
+              ' nav-coll'
+            }
             key={key}
           >
             <a
@@ -123,13 +126,11 @@ const Sidebar = (props) => {
               )}
             </a>
             <Collapse isOpen={state[prop.state]}>
-
               <ul className='nav'>{createLinks(prop.views)}</ul>
             </Collapse>
           </li>
         )
       }
-
 
       return (
         <li className={activeRoute(prop.layout + prop.path)} key={key}>
@@ -175,9 +176,9 @@ const Sidebar = (props) => {
           onClick={props.closeSidebar}
         >
           <div className='logo-img'>
-            <img src={logo.imgSrc} alt='03quimbayas-logo' />
+            <img src={logo.imgSrc} alt='Sattwa108-logo' />
           </div>
-        </NavLink >
+        </NavLink>
       )
       logoText = (
         <NavLink
@@ -196,7 +197,7 @@ const Sidebar = (props) => {
           onClick={props.closeSidebar}
         >
           <div className='logo-img'>
-            <img src={logo.imgSrc} alt='03quimbayas-logo' />
+            <img src={logo.imgSrc} alt='Sattwa108-logo' />
           </div>
         </NavLink>
       )

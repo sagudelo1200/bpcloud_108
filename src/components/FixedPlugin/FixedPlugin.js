@@ -21,7 +21,11 @@ import { CustomInput } from 'reactstrap'
 const FixedPlugin = (props) => {
   const [classes, setClasses] = React.useState('dropdown')
   const [darkMode, setDarkMode] = React.useState(
-    localStorage.getItem('darkMode') === 'dark' ? true : localStorage.getItem('darkMode') === 'light' ? false : true
+    localStorage.getItem('darkMode') === 'dark'
+      ? true
+      : localStorage.getItem('darkMode') === 'light'
+      ? false
+      : true
   )
 
   const handleClick = () => {
@@ -39,7 +43,10 @@ const FixedPlugin = (props) => {
 
   React.useEffect(() => {
     const mode = localStorage.getItem('darkMode')
-    if (mode === 'light' && !document.body.classList.contains('white-content')) {
+    if (
+      mode === 'light' &&
+      !document.body.classList.contains('white-content')
+    ) {
       setDarkMode(false)
       document.body.classList.add('white-content')
     }
@@ -49,7 +56,7 @@ const FixedPlugin = (props) => {
     <div className='fixed-plugin'>
       <div className={classes}>
         <a
-          href='#03Quimbayas'
+          href='#Sattwa108'
           onClick={(e) => {
             e.preventDefault()
             handleClick()

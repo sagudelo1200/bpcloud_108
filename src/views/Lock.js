@@ -52,17 +52,16 @@ const Lock = () => {
       handleSignIn(e)
     }
   }
-  
+
   React.useEffect(() => {
     if (!user.email) history.replace('/auth/ingresar')
-    
+
     document.title = `Desbloquear | ${REACT_APP_TITLE}`
     document.body.classList.toggle('lock-page')
     return function cleanup() {
       document.body.classList.toggle('lock-page')
     }
   })
-
 
   return (
     <>
@@ -71,7 +70,10 @@ const Lock = () => {
           <Col className='ml-auto mr-auto' lg='4' md='6'>
             <Card className='card-lock card-white text-center'>
               <CardHeader>
-                <img alt='Integrante' src={user.photoURL || 'https://picsum.photos/420'} />
+                <img
+                  alt='Integrante'
+                  src={user.photoURL || 'https://picsum.photos/420'}
+                />
               </CardHeader>
               <CardBody>
                 <CardTitle tag='h4'>{user.displayName || user.email}</CardTitle>
@@ -89,7 +91,9 @@ const Lock = () => {
                     required
                     placeholder='Contraseña...'
                     type='password'
-                    onChange={(e) => setState({ ...state, pass: e.target.value })}
+                    onChange={(e) =>
+                      setState({ ...state, pass: e.target.value })
+                    }
                     onFocus={(e) => setState({ ...state, passFocus: true })}
                     onBlur={(e) => setState({ ...state, passFocus: false })}
                     onKeyPress={handleKeyPress}
@@ -100,7 +104,7 @@ const Lock = () => {
                 <Button
                   className='btn-round'
                   color='primary'
-                  href='#03Quimbayas'
+                  href='#Sattwa108'
                   size='lg'
                   onClick={handleSignIn}
                 >

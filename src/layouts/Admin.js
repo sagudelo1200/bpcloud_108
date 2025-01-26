@@ -42,12 +42,16 @@ const Admin = (props) => {
     manada: 'orange',
     tropa: 'green',
     sociedad: 'blue',
-    clan: 'red'
+    clan: 'red',
   }
 
   const [activeColor, setActiveColor] = React.useState('red')
   const [sidebarMini, setSidebarMini] = React.useState(
-    localStorage.getItem('sidebarMini') === 'true' ? true : localStorage.getItem('sidebarMini') === 'false' ? false : true
+    localStorage.getItem('sidebarMini') === 'true'
+      ? true
+      : localStorage.getItem('sidebarMini') === 'false'
+      ? false
+      : true
   )
   const [opacity, setOpacity] = React.useState(0)
   const [sidebarOpened, setSidebarOpened] = React.useState(false)
@@ -62,7 +66,12 @@ const Admin = (props) => {
     }
   }, [location, currentUserData])
   React.useEffect(() => {
-    setActiveColor(localStorage.getItem('activeColor') || colors[currentUserData.jefeDe] || colors[currentUserData.unidad] || 'red')
+    setActiveColor(
+      localStorage.getItem('activeColor') ||
+        colors[currentUserData.jefeDe] ||
+        colors[currentUserData.unidad] ||
+        'red'
+    )
     // eslint-disable-next-line
   }, [currentUserData])
   React.useEffect(() => {
@@ -171,7 +180,10 @@ const Admin = (props) => {
     document.documentElement.classList.remove('nav-open')
   }
   React.useEffect(() => {
-    if (localStorage.getItem('sidebarMini') === 'false' && document.body.classList.contains('sidebar-mini')) {
+    if (
+      localStorage.getItem('sidebarMini') === 'false' &&
+      document.body.classList.contains('sidebar-mini')
+    ) {
       setSidebarMini(false)
       document.body.classList.toggle('sidebar-mini')
     }
@@ -194,7 +206,7 @@ const Admin = (props) => {
         activeColor={activeColor}
         logo={{
           outterLink: '/',
-          text: 'QuimbayApp',
+          text: 'Sattwa APP',
           imgSrc: logo,
         }}
         closeSidebar={closeSidebar}

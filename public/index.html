@@ -10,7 +10,7 @@
   <link rel='manifest' href='%PUBLIC_URL%/manifest.json' />
   <!--     Fonts and icons     -->
   <link href='https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800' rel='stylesheet' />
-  <title>QUIMBAYAPP</title>
+  <title>SATTWA APP</title>
   <!-- <script src='https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE'></script> -->
   <script src="https://kit.fontawesome.com/d15cff8b51.js" crossorigin="anonymous"></script>
   <!-- Start Single Page Apps for GitHub Pages -->
@@ -29,10 +29,10 @@
       if (l.search[1] === '/') {
         var decoded = l.search.slice(1).split('&').map(function (s) {
           return s.replace(/~and~/g, '&')
-        }).join('?');
+        }).join('?')
         window.history.replaceState(null, null,
           l.pathname.slice(0, -1) + decoded + l.hash
-        );
+        )
       }
     }(window.location))
   </script>

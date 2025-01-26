@@ -71,10 +71,14 @@ const Login = () => {
       }
     } catch (error) {
       const { code } = error
-      if (email.length === 0 || password.length === 0) toast.warning('Todos los campos son obligatorios')
-      else if (code === 'auth/user-not-found') toast.warning('Usuario no encontrado')
-      else if (code === 'auth/wrong-password') toast.warning('Contraseña incorrecta')
-      else if (code === 'auth/too-many-requests') toast.error('Demasiados intentos fallidos')
+      if (email.length === 0 || password.length === 0)
+        toast.warning('Todos los campos son obligatorios')
+      else if (code === 'auth/user-not-found')
+        toast.warning('Usuario no encontrado')
+      else if (code === 'auth/wrong-password')
+        toast.warning('Contraseña incorrecta')
+      else if (code === 'auth/too-many-requests')
+        toast.error('Demasiados intentos fallidos')
       else toast.error(code)
     }
   }
@@ -87,7 +91,8 @@ const Login = () => {
 
   // Verifica si el valor ingresado es un email válido
   const verifyEmail = (value) => {
-    var emailRex = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var emailRex =
+      /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     if (emailRex.test(value)) {
       return true
     }
@@ -181,7 +186,7 @@ const Login = () => {
                     block
                     className='mb-3'
                     color='primary'
-                    href='#03Quimbayas'
+                    href='#Sattwa108'
                     onClick={handleSignIn}
                     size='lg'
                   >
@@ -191,8 +196,12 @@ const Login = () => {
                     <h6>
                       <a
                         className='link footer-link'
-                        href='#03Quimbayas'
-                        onClick={(e) => alert('Por el momento no esta disponible, contacte al administrador del sistema')}
+                        href='#Sattwa108'
+                        onClick={(e) =>
+                          alert(
+                            'Por el momento no esta disponible, contacte al administrador del sistema'
+                          )
+                        }
                       >
                         Necesitas ayuda?
                       </a>

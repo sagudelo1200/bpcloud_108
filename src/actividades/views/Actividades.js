@@ -1,12 +1,5 @@
 import React, { useEffect } from 'react'
-import {
-  Row,
-  Col,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardBody,
-} from 'reactstrap'
+import { Row, Col, Card, CardHeader, CardTitle, CardBody } from 'reactstrap'
 import {
   query,
   where,
@@ -26,7 +19,7 @@ import { useNotify } from 'contexts/notifyContext'
 import ActivityCard from 'actividades/components/ActivityCard'
 
 const Actividades = () => {
-  document.title = 'Actividades | 03 Quimbayas'
+  document.title = 'Actividades | Sattwa 108'
   const { successAlert } = useNotify()
   const [edit, setEdit] = React.useState(null)
   const [data, setData] = React.useState([])
@@ -40,15 +33,19 @@ const Actividades = () => {
 
   const updateItem = (newData) => {
     if (newData.estado === 'programado') {
-      setData(data.map((item) => {
-        if (item.id === newData.id) return newData
-        return item
-      }))
+      setData(
+        data.map((item) => {
+          if (item.id === newData.id) return newData
+          return item
+        })
+      )
     } else {
-      setPublicado(publicado.map((item) => {
-        if (item.id === newData.id) return newData
-        return item
-      }))
+      setPublicado(
+        publicado.map((item) => {
+          if (item.id === newData.id) return newData
+          return item
+        })
+      )
     }
   }
 
@@ -98,11 +95,11 @@ const Actividades = () => {
   }
 
   const deleteActivity = async (activity) => {
-    let newData = data.filter(item => item.id !== activity.id)
+    let newData = data.filter((item) => item.id !== activity.id)
     await deleteDoc(doc(db, 'actividades', activity.id))
 
     if (activity.estado === 'publicado') {
-      newData = publicado.filter(item => item.id !== activity.id)
+      newData = publicado.filter((item) => item.id !== activity.id)
       setPublicado(newData)
     } else {
       setData(newData)
@@ -114,14 +111,17 @@ const Actividades = () => {
           {activity.nombre}
         </strong>
       ),
-      message: 'Se ha eliminado la actividad correctamente.'
+      message: 'Se ha eliminado la actividad correctamente.',
     })
   }
 
   const fetchPublicado = async () => {
     setLoadingPublicado(true)
     const newList = []
-    const q = query(collection(db, 'actividades'), where('estado', '==', 'publicado'))
+    const q = query(
+      collection(db, 'actividades'),
+      where('estado', '==', 'publicado')
+    )
     const querySnap = await getDocs(q)
     querySnap.forEach((doc) => {
       newList.push({ ...doc.data(), id: doc.id })
@@ -133,7 +133,10 @@ const Actividades = () => {
   const fetchData = async () => {
     setLoading(true)
     const newList = []
-    const q = query(collection(db, 'actividades'), where('estado', '==', 'programado'))
+    const q = query(
+      collection(db, 'actividades'),
+      where('estado', '==', 'programado')
+    )
 
     const querySnap = await getDocs(q)
     querySnap.forEach((doc) => {
@@ -155,7 +158,7 @@ const Actividades = () => {
           <Col sm={2} className='text-center'>
             <StickyBox offsetTop={20} offsetBottom={20}>
               <a
-                href='#03Quimbayas'
+                href='#Sattwa108'
                 className='btn btn-success btn-round mb-3'
                 onClick={(e) => {
                   e.preventDefault()
@@ -182,11 +185,11 @@ const Actividades = () => {
                     <CardTitle tag='h3'>Actividades programadas</CardTitle>
                   </CardHeader>
                   <CardBody>
-                    {loading ? <DefaultLoading /> : data.length === 0 ? (
+                    {loading ? (
+                      <DefaultLoading />
+                    ) : data.length === 0 ? (
                       <>
-                        <p className='text-center'>
-                          No hay resultados
-                        </p>
+                        <p className='text-center'>No hay resultados</p>
                       </>
                     ) : (
                       <>
@@ -211,11 +214,11 @@ const Actividades = () => {
                     <CardTitle tag='h3'>Actividades publicadas</CardTitle>
                   </CardHeader>
                   <CardBody>
-                    {loadingPublicado ? <DefaultLoading /> : publicado.length === 0 ? (
+                    {loadingPublicado ? (
+                      <DefaultLoading />
+                    ) : publicado.length === 0 ? (
                       <>
-                        <p className='text-center'>
-                          No hay resultados
-                        </p>
+                        <p className='text-center'>No hay resultados</p>
                       </>
                     ) : (
                       <>
@@ -241,6 +244,5 @@ const Actividades = () => {
     </>
   )
 }
-
 
 export default Actividades

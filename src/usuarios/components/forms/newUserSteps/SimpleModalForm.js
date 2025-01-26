@@ -109,7 +109,7 @@ const SimpleModalForm = ({ isOpen, toggle, createUser, unidad }) => {
             <Col sm='12'>
               <FormGroup>
                 <label>Correo (usuario de acceso al sistema)</label><br />
-                <small>si N/A use: quimbayapp+<b>nombre.apellido</b>@gmail.com<br />Ej. quimbayapp+jhon.doe@gmail.com</small>
+                <small>si N/A use: 108+<b>nombre.apellido</b>@gmail.com<br />Ej. 108+jhon.doe@gmail.com</small>
                 <Input
                   className='text-dark'
                   type='email'

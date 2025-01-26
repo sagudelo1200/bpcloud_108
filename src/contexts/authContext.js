@@ -38,72 +38,75 @@ export default function AuthContextProvider({ children }) {
 
   // Valida si el usuario autenticado tiene permisos para acceder a la aplicación
   const checkRole = async (user) => {
-    const userRef = doc(db, `users/${user.uid}`)
-    const userDoc = await getDoc(userRef)
+    try {
+      const userRef = doc(db, `users/${user.uid}`)
+      const userDoc = await getDoc(userRef)
 
-    if (!userDoc.exists()) {
-      console.error(`User ${user.uid} not found`)
-      logout()
-      throw new Error(`User ${user.uid} not found`)
-    }
-
-    const data = userDoc.data()
-    if (data.role === 'superadmin') {
-      toast.success('ADMINISTRADOR', {
-        theme: "colored",
-        icon: false,
-        hideProgressBar: true,
-        autoClose: 4420,
-      })
-      setCurrentUser(user)
-      setCurrentUserData(data)
-      setUserData({})
-      console.log('SUPER')
-    } else if (data.role === 'admin') {
-      setCurrentUser(user)
-      setCurrentUserData(data)
-      try {
-        if (!data.ref) {
-          console.log('User is not registered')
-          logout()
-          throw new Error('User is not registered')
-        }
-        const userInf = await getDoc(data.ref)
-        if (userInf.exists()) {
-          setUserData(userInf.data())
-        } else {
-          console.error(`User data ${user.uid} not found`)
-          logout()
-          throw new Error(`User data ${user.uid} not found`)
-        }
-      } catch (error) {
-        console.error(error)
+      if (!userDoc.exists()) {
+        console.error(`User ${user.uid} not found`)
         logout()
-        toast.error('Error al obtener los datos del usuario')
-        throw new Error(error)
+        throw new Error(`User ${user.uid} not found`)
       }
-    } else {
-      setCurrentUser({})
-      setCurrentUserData({})
-      setUserData({})
-      console.error(`User ${user.uid} is not admin`)
-      logout()
-      throw new Error('El acceso se encuentra restringido')
+
+      const data = userDoc.data()
+      if (data.role === 'superadmin') {
+        toast.success('ADMINISTRADOR', {
+          theme: 'colored',
+          icon: false,
+          hideProgressBar: true,
+          autoClose: 4420,
+        })
+        setCurrentUser(user)
+        setCurrentUserData(data)
+        setUserData({})
+        console.log('SUPER')
+      } else if (data.role === 'admin') {
+        setCurrentUser(user)
+        setCurrentUserData(data)
+        try {
+          if (!data.ref) {
+            console.log('User is not registered')
+            logout()
+            throw new Error('User is not registered')
+          }
+          const userInf = await getDoc(data.ref)
+          if (userInf.exists()) {
+            setUserData(userInf.data())
+          } else {
+            console.error(`User data ${user.uid} not found`)
+            logout()
+            throw new Error(`User data ${user.uid} not found`)
+          }
+        } catch (error) {
+          console.error(error)
+          logout()
+          toast.error('Error al obtener los datos del usuario')
+          throw new Error(error)
+        }
+      } else {
+        setCurrentUser({})
+        setCurrentUserData({})
+        setUserData({})
+        console.error(`User ${user.uid} is not admin`)
+        logout()
+        throw new Error('El acceso se encuentra restringido')
+      }
+    } catch (error) {
+      console.error(error)
+      throw new Error(error)
     }
   }
 
   const loginToast = (user) => {
-    return toast.promise(
-      checkRole(user),
-      {
-        pending: 'Iniciando sesión...',
-        success: 'Acceso autorizado',
-        error: 'Acceso denegado',
-      })
+    return toast.promise(checkRole(user), {
+      pending: 'Iniciando sesión...',
+      success: 'Acceso autorizado',
+      error: 'Acceso denegado',
+    })
   }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user && !localStorage.getItem('registering')) {
         loginToast(user)
       } else {
@@ -122,14 +125,16 @@ export default function AuthContextProvider({ children }) {
 
   function rememberLogin(user) {
     const { email, displayName, photoURL } = user
-    localStorage.setItem('user', JSON.stringify({ email, displayName, photoURL }))
+    localStorage.setItem(
+      'user',
+      JSON.stringify({ email, displayName, photoURL })
+    )
   }
 
   function logoutAndRememberUser() {
     rememberLogin(currentUser)
     return signOut(auth)
   }
-
 
   function register(email, password) {
     return createUserWithEmailAndPassword(auth, email, password)
@@ -176,7 +181,7 @@ export default function AuthContextProvider({ children }) {
     isAuthenticated,
     getUserData,
     userData,
-    currentUserData
+    currentUserData,
   }
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
