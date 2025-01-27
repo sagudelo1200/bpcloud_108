@@ -25,7 +25,7 @@ const User = () => {
   const [user, setUser] = useState({})
   const [loading, setLoading] = useState(true)
   const [redirect, setRedirect] = useState(false)
-  const docRef = doc(db, `unidades/${unidad}/integrantes/${id}`)
+  const docRef = doc(db, `integrantes/${id}`)
   document.title = `${user.nombres || ''} ${
     user.apellidos || ''
   } | ${REACT_APP_TITLE}`

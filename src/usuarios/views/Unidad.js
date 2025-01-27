@@ -55,7 +55,7 @@ const Unidad = () => {
     for (let i = 0; i < unidades.length; i++) {
       const _unidad = unidades[i]
 
-      const path = `unidades/${_unidad}/integrantes/${documento}`
+      const path = `integrantes/${documento}`
       const _docRef = doc(db, path)
       // valida que el documento no exista en la base de datos
       const docSnap = await getDoc(_docRef)
@@ -106,7 +106,7 @@ const Unidad = () => {
       // Guardar los datos del integrante en la base de datos
       await setDoc(docRef, {
         ...userData,
-        userID: id,
+        id_usuario: id,
         estado: 'activo',
       })
 
@@ -159,7 +159,7 @@ const Unidad = () => {
                   'btn-neutral': false,
                 })}
               >
-                <Link to={`${path}/${prop.documento}`}>
+                <Link to={`/admin/${unidad}/${prop.documento}`}>
                   <i className='fas fa-eye' />
                 </Link>
               </Button>{' '}
@@ -185,7 +185,7 @@ const Unidad = () => {
     }
 
     return clean
-  }, [usuarios, path])
+  }, [usuarios, path, unidad])
 
   switch (unidad) {
     case 'familia':

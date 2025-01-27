@@ -50,7 +50,7 @@ function NewUser() {
     for (let i = 0; i < unidades.length; i++) {
       const _unidad = unidades[i]
 
-      const path = `unidades/${_unidad}/integrantes/${documento}`
+      const path = `integrantes/${documento}`
       const _docRef = doc(db, path)
       // valida que el documento no exista en la base de datos
       const docSnap = await getDoc(_docRef)
@@ -103,7 +103,7 @@ function NewUser() {
       // Guardar los datos del integrante en la base de datos
       await setDoc(docRef, {
         ...userData,
-        userID: id,
+        id_usuario: id,
       })
 
       localStorage.removeItem('registering')

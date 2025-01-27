@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from 'firebaseApp'
 
 // Carga los usuarios de la base de datos e indica si se está cargando o no
@@ -10,8 +10,11 @@ export const useUsers = (unidad) => {
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true)
-      const colRef = await collection(db, 'unidades', unidad, 'integrantes')
-      const querySnapshot = await getDocs(colRef)
+      /* Filtar integrantes por unidad */
+      const colRef = await collection(db, 'integrantes')
+      const q = unidad ? query(colRef, where('unidad', '==', unidad)) : colRef
+
+      const querySnapshot = await getDocs(q)
       let data = []
       querySnapshot.forEach((doc) => {
         const x = doc.data()
