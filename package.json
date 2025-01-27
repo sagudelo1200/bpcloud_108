@@ -1,8 +1,8 @@
 {
-  "name": "sattwaapp",
+  "name": "bpcloud_108",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://sagudelo1200.github.io/sattwaapp",
+  "homepage": "https://sagudelo1200.github.io/bpcloud_108",
   "dependencies": {
     "bootstrap": "4.5.3",
     "chart.js": "2.9.4",
@@ -43,7 +43,7 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "echo sagudelo1200.github.io/sattwaapp >> build/CNAME && gh-pages -d build",
+    "deploy": "echo sagudelo1200.github.io/bpcloud_108 >> build/CNAME && gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build && gulp licenses",
     "test": "react-scripts test",
