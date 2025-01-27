@@ -27,7 +27,7 @@ const Footer = (props) => {
       <Container fluid={props.fluid ? true : false}>
         {/* <ul className="nav">
           <li className="nav-item">
-            <a className="nav-link" href="/admin/integrantes/jefatura/1040759538">
+            <a className="nav-link" href="https://github.com/sagudelo1200">
               Santiago Agudelo
             </a>
           </li>{" "}
@@ -47,7 +47,7 @@ const Footer = (props) => {
         </ul> */}
         <div className='copyright'>
           © {new Date().getFullYear()} hecho con ❤️ por{' '}
-          <Link to='/admin/jefatura/1040759538'>Santiago Agudelo</Link>
+          <Link to='https://github.com/sagudelo1200'>Santiago Agudelo</Link>
         </div>
       </Container>
     </footer>

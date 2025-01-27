@@ -152,7 +152,7 @@ const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
     /* check all options */
     if (name === 'todos') {
       if (checked) {
-        newForm.unidades = ['familia', 'manada', 'tropa', 'sociedad', 'clan']
+        newForm.unidades = ['familia', 'manada', 'scouts', 'sociedad', 'clan']
       } else {
         newForm.unidades = []
       }
@@ -235,12 +235,12 @@ const NewActivityModal = ({ isOpen, toggle, edit, updateItem, addItem }) => {
                     <Label check>
                       <Input
                         type='checkbox'
-                        name='tropa'
-                        checked={form.unidades.includes('tropa')}
+                        name='scouts'
+                        checked={form.unidades.includes('scouts')}
                         onChange={handleCheck}
                       />
                       <span className='form-check-sign' />
-                      Tropa
+                      Scouts
                     </Label>
                   </FormGroup>
                   <FormGroup check inline>

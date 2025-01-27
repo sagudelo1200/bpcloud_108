@@ -36,16 +36,15 @@ function NewUser() {
     // Acción para ocultar el alert de inicio de sesión cuando se registra un usuario
     localStorage.setItem('registering', true)
 
-    const { email, documento, nombres, foto, unidad, jefeDe } = userData
+    const { email, documento, nombres, foto, unidad, dirigenteDe } = userData
     let id
     const unidades = [
       'familia',
       'manada',
-      'tropa',
+      'scouts',
       'sociedad',
       'clan',
-      'jefatura',
-      'consejo',
+      'adultos',
     ]
 
     for (let i = 0; i < unidades.length; i++) {
@@ -92,13 +91,11 @@ function NewUser() {
         nombres: `${nombres}`,
         ref: docRef,
         unidad,
-        role: unidad === 'jefatura' || unidad === 'consejo' ? 'admin' : 'user',
-        roles: [
-          unidad === 'jefatura' || unidad === 'consejo' ? 'admin' : 'user',
-        ],
+        role: unidad === 'adultos' ? 'admin' : 'user',
+        roles: [unidad === 'adultos' ? 'admin' : 'user'],
       }
-      if (unidad === 'jefatura') {
-        userAppData['jefeDe'] = jefeDe
+      if (unidad === 'adultos') {
+        userAppData['dirigenteDe'] = dirigenteDe
       }
 
       await setDoc(userRef, userAppData)

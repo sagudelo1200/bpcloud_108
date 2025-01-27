@@ -22,7 +22,7 @@ const SimpleModalForm = ({ isOpen, toggle, createUser, unidad }) => {
     unidad,
   }
 
-  unidad === 'jefatura' && (defaultFormState.jefeDe = '')
+  unidad === 'adultos' && (defaultFormState.dirigenteDe = '')
   const [form, setForm] = React.useState(defaultFormState)
   const [errors, setErrors] = React.useState({})
 
@@ -39,12 +39,12 @@ const SimpleModalForm = ({ isOpen, toggle, createUser, unidad }) => {
     if (!verifyEmail(form.email)) errors.email = 'El email no es válido'
     if (!form.email) errors.email = 'El email es requerido'
     if (form.documento.length < 6) errors.documento = 'Mínimo 6 caracteres'
-    if (unidad === 'jefatura' && !form.jefeDe)
-      errors.jefeDe = 'Revise este campo'
+    if (unidad === 'adultos' && !form.dirigenteDe)
+      errors.dirigenteDe = 'Revise este campo'
     return errors
   }
 
-  const unidades = ['familia', 'manada', 'tropa', 'sociedad', 'clan']
+  const unidades = ['familia', 'manada', 'scouts', 'sociedad', 'clan']
 
   return (
     <Modal isOpen={isOpen} toggle={toggle} className='modal-sm'>
@@ -134,18 +134,18 @@ const SimpleModalForm = ({ isOpen, toggle, createUser, unidad }) => {
                 {errors.email && <p className='text-danger'>{errors.email}</p>}
               </FormGroup>
             </Col>
-            {unidad === 'jefatura' && (
+            {unidad === 'adultos' && (
               <Col sm='12'>
                 <FormGroup>
                   <label>Unidad</label>
                   <Input
                     className='text-dark'
                     type='select'
-                    name='jefeDe'
-                    id='jefeDe'
-                    value={form.jefeDe}
+                    name='dirigenteDe'
+                    id='dirigenteDe'
+                    value={form.dirigenteDe}
                     onChange={(e) =>
-                      setForm({ ...form, jefeDe: e.target.value })
+                      setForm({ ...form, dirigenteDe: e.target.value })
                     }
                   >
                     <option value='' disabled selected>
@@ -157,8 +157,8 @@ const SimpleModalForm = ({ isOpen, toggle, createUser, unidad }) => {
                       </option>
                     ))}
                   </Input>
-                  {errors.jefeDe && (
-                    <p className='text-danger'>{errors.jefeDe}</p>
+                  {errors.dirigenteDe && (
+                    <p className='text-danger'>{errors.dirigenteDe}</p>
                   )}
                 </FormGroup>
               </Col>

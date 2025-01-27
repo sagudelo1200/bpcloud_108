@@ -48,10 +48,10 @@ const routes = [
   },
   {
     collapse: true,
-    name: 'Unidades',
+    name: 'Integrantes',
     layout: '/admin',
     icon: 'fas fa-users',
-    state: 'unidadesCollapse',
+    state: 'integrantesCollapse',
     views: [
       {
         path: '/familia',
@@ -68,9 +68,9 @@ const routes = [
         layout: '/admin',
       },
       {
-        path: '/tropa',
-        name: 'Tropa',
-        mini: 'T',
+        path: '/scouts',
+        name: 'Scouts',
+        mini: 'S',
         component: Unidad,
         layout: '/admin',
       },
@@ -89,16 +89,9 @@ const routes = [
         layout: '/admin',
       },
       {
-        path: '/jefatura',
-        name: 'Jefatura',
-        mini: 'J',
-        component: Unidad,
-        layout: '/admin',
-      },
-      {
-        path: '/consejo',
-        name: 'Consejo',
-        mini: 'C',
+        path: '/adultos',
+        name: 'Adultos',
+        mini: 'A',
         component: Unidad,
         layout: '/admin',
       },

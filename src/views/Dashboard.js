@@ -58,11 +58,10 @@ const Dashboard = () => {
     const unidades = [
       'familia',
       'manada',
-      'tropa',
+      'scouts',
       'sociedad',
       'clan',
-      'jefatura',
-      'consejo',
+      'adultos',
     ]
 
     unidades.forEach(async (unidad) => {
@@ -157,7 +156,7 @@ const Dashboard = () => {
             </Card>
           </Col>
 
-          {/* TROPA */}
+          {/* SCOUTS */}
           <Col className='px-1' xs='6' sm='4' md='3' xl='2'>
             <Card className='card-stats'>
               <CardBody>
@@ -169,12 +168,12 @@ const Dashboard = () => {
                   </Col>
                   <Col xs='8'>
                     <div className='numbers'>
-                      <p className='card-category'>TROPA</p>
+                      <p className='card-category'>SCOUTS</p>
                       <CardTitle tag='h3'>
                         {loading ? (
                           <i className='fas fa-circle-notch fa-spin' />
                         ) : (
-                          nIntegrantes.tropa
+                          nIntegrantes.scouts
                         )}
                       </CardTitle>
                     </div>
@@ -263,12 +262,14 @@ const Dashboard = () => {
                 <Row>
                   <Col>
                     <div className='numbers'>
-                      <small className='card-category'>ADULTO VOLUNTARIO</small>
+                      <small className='card-category'>
+                        ADULTOS VOLUNTARIOS
+                      </small>
                       <CardTitle tag='h3'>
                         {loading ? (
                           <i className='fas fa-circle-notch fa-spin' />
                         ) : (
-                          nIntegrantes.jefatura + nIntegrantes.consejo || 0
+                          nIntegrantes.adultos || 0
                         )}
                       </CardTitle>
                     </div>

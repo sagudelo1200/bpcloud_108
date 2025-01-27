@@ -24,7 +24,7 @@ const Docs = (props) => {
   const colors = {
     familia: 'primary',
     manada: 'orange',
-    tropa: 'green',
+    scouts: 'green',
     sociedad: 'blue',
     clan: 'red',
   }
@@ -52,7 +52,7 @@ const Docs = (props) => {
   React.useEffect(() => {
     setActiveColor(
       localStorage.getItem('activeColor') ||
-        colors[currentUserData.jefeDe] ||
+        colors[currentUserData.dirigenteDe] ||
         colors[currentUserData.unidad] ||
         'red'
     )

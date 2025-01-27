@@ -40,7 +40,7 @@ const Admin = (props) => {
   const colors = {
     familia: 'primary',
     manada: 'orange',
-    tropa: 'green',
+    scouts: 'green',
     sociedad: 'blue',
     clan: 'red',
   }
@@ -68,7 +68,7 @@ const Admin = (props) => {
   React.useEffect(() => {
     setActiveColor(
       localStorage.getItem('activeColor') ||
-        colors[currentUserData.jefeDe] ||
+        colors[currentUserData.dirigenteDe] ||
         colors[currentUserData.unidad] ||
         'red'
     )
@@ -206,7 +206,7 @@ const Admin = (props) => {
         activeColor={activeColor}
         logo={{
           outterLink: '/',
-          text: 'Sattwa APP',
+          text: 'Sattwa 108',
           imgSrc: logo,
         }}
         closeSidebar={closeSidebar}

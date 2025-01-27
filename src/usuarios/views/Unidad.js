@@ -41,16 +41,15 @@ const Unidad = () => {
     // Acción para ocultar el alert de inicio de sesión
     localStorage.setItem('registering', true)
 
-    const { email, documento, nombres, jefeDe } = userData
+    const { email, documento, nombres, dirigenteDe } = userData
     let id
     const unidades = [
       'familia',
       'manada',
-      'tropa',
+      'scouts',
       'sociedad',
       'clan',
-      'jefatura',
-      'consejo',
+      'adultos',
     ]
 
     for (let i = 0; i < unidades.length; i++) {
@@ -95,13 +94,11 @@ const Unidad = () => {
         nombres: `${nombres}`,
         ref: docRef,
         unidad,
-        role: unidad === 'jefatura' || unidad === 'consejo' ? 'admin' : 'user',
-        roles: [
-          unidad === 'jefatura' || unidad === 'consejo' ? 'admin' : 'user',
-        ],
+        role: unidad === 'adultos' ? 'admin' : 'user',
+        roles: [unidad === 'adultos' ? 'admin' : 'user'],
       }
-      if (unidad === 'jefatura') {
-        userAppData['jefeDe'] = jefeDe
+      if (unidad === 'adultos') {
+        userAppData['dirigenteDe'] = dirigenteDe
       }
 
       await setDoc(userRef, userAppData)
@@ -193,37 +190,37 @@ const Unidad = () => {
   switch (unidad) {
     case 'familia':
       datosUnidad = {
-        nombre: 'Familia Mohwa',
+        nombre: 'Familia Múládhára',
       }
       break
     case 'manada':
       datosUnidad = {
-        nombre: 'Manada Seoonee',
+        nombre: 'Manada Swádhisthána',
       }
       break
-    case 'tropa':
+    case 'aldea':
       datosUnidad = {
-        nombre: 'Tropa Arawak',
+        nombre: 'Aldea Manipura',
+      }
+      break
+    case 'scouts':
+      datosUnidad = {
+        nombre: 'Tropa Anahata',
       }
       break
     case 'sociedad':
       datosUnidad = {
-        nombre: 'Sociedad Sion',
+        nombre: 'Sociedad Vishuddha',
       }
       break
     case 'clan':
       datosUnidad = {
-        nombre: 'Clan Taironas',
+        nombre: 'Clan Ajña',
       }
       break
-    case 'jefatura':
+    case 'adultos':
       datosUnidad = {
-        nombre: 'Jefatura Katios',
-      }
-      break
-    case 'consejo':
-      datosUnidad = {
-        nombre: 'Consejo de Grupo',
+        nombre: 'Adultos Voluntarios',
       }
       break
     default:

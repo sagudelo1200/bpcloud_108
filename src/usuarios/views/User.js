@@ -390,7 +390,7 @@ const User = () => {
                 </CardFooter>
               </Card>
               {/* ASCENSOS */}
-              {unidad !== 'jefatura' && unidad !== 'consejo' && (
+              {unidad !== 'adultos' && (
                 <Card className='text-center'>
                   <CardBody>
                     <div className='author'>

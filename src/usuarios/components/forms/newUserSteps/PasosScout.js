@@ -18,11 +18,11 @@ const PasosScout = React.forwardRef((props, ref) => {
     ingreso: '',
     inscripcion: '',
   })
-  const [esJefe, setEsJefe] = React.useState(false)
+  const [esDirigente, setEsDirigenteDe] = React.useState(false)
 
   const [estadoUnidad, setEstadoUnidad] = React.useState(false)
-  const [estadoJefeDe, setEstadoJefeDe] = React.useState(false)
-  const [focoJefeDe, setFocoJefeDe] = React.useState(false)
+  const [estadoDirigenteDe, setEstadoDirigenteDe] = React.useState(false)
+  const [focoDirigenteDe, setFocoDirigenteDe] = React.useState(false)
   const [focoUnidad, setFocoUnidad] = React.useState(false)
   const [estadoIngreso, setEstadoIngreso] = React.useState(false)
   const [focoIngreso, setFocoIngreso] = React.useState(false)
@@ -33,8 +33,8 @@ const PasosScout = React.forwardRef((props, ref) => {
     setinscripcion: (v) => setForm({ ...form, inscripcion: v }),
     setEstadounidad: setEstadoUnidad,
     setunidad: (v) => setForm({ ...form, unidad: v }),
-    setjefeDe: (v) => setForm({ ...form, jefeDe: v }),
-    setEstadojefeDe: setEstadoJefeDe,
+    setdirigenteDe: (v) => setForm({ ...form, dirigenteDe: v }),
+    setEstadodirigenteDe: setEstadoDirigenteDe,
   }
 
   const handleChangeUnidad = (e) => {
@@ -46,15 +46,15 @@ const PasosScout = React.forwardRef((props, ref) => {
       funcionesEstado['setunidad'](e.value)
     }
 
-    setEsJefe(e.value === 'jefatura')
+    setEsDirigenteDe(e.value === 'adultos')
   }
 
-  const handleChangeJefeDe = (e) => {
-    funcionesEstado['setjefeDe'](e.value)
+  const handleChangeDirigenteDe = (e) => {
+    funcionesEstado['setdirigenteDe'](e.value)
     if (e.value === '') {
-      funcionesEstado['setEstadojefeDe']('has-danger')
+      funcionesEstado['setEstadodirigenteDe']('has-danger')
     } else {
-      funcionesEstado['setEstadojefeDe']('has-success')
+      funcionesEstado['setEstadodirigenteDe']('has-success')
     }
   }
 
@@ -69,13 +69,13 @@ const PasosScout = React.forwardRef((props, ref) => {
   }
 
   const isValidated = () => {
-    /* si la unidad es jefatura, estadoJefeDe debe ser has-success */
-    if (form.unidad === 'jefatura') {
-      if (form.jefeDe === '') {
-        setEstadoJefeDe('has-danger')
+    /* si la unidad es adultos, estadoDirigenteDe debe ser has-success */
+    if (form.unidad === 'adultos') {
+      if (form.dirigenteDe === '') {
+        setEstadoDirigenteDe('has-danger')
         return false
       } else {
-        funcionesEstado['setEstadojefeDe']('has-success')
+        funcionesEstado['setEstadodirigenteDe']('has-success')
       }
     }
     if (estadoUnidad === 'has-success') return true
@@ -114,13 +114,12 @@ const PasosScout = React.forwardRef((props, ref) => {
               onBlur={() => setFocoUnidad(false)}
               options={[
                 { label: 'Seleccione la unidad', isDisabled: true },
+                { name: 'unidad', value: 'adultos', label: 'Adultos' },
                 { name: 'unidad', value: 'familia', label: 'Familia' },
                 { name: 'unidad', value: 'manada', label: 'Manada' },
-                { name: 'unidad', value: 'tropa', label: 'Tropa' },
+                { name: 'unidad', value: 'scouts', label: 'Scouts' },
                 { name: 'unidad', value: 'sociedad', label: 'Sociedad' },
                 { name: 'unidad', value: 'clan', label: 'Clan' },
-                { name: 'unidad', value: 'jefatura', label: 'Jefatura' },
-                { name: 'unidad', value: 'consejo', label: 'Consejo' },
               ]}
               placeholder='Unidad...'
             />
@@ -134,32 +133,33 @@ const PasosScout = React.forwardRef((props, ref) => {
           md={4}
           lg={3}
           className={classnames({
-            'd-none': !esJefe,
+            'd-none': !esDirigente,
           })}
         >
-          <label>Jefatura de</label>
+          <label>Unidad de voluntariado</label>
           <InputGroup
-            className={classnames(estadoJefeDe, {
-              'input-group-focus': focoJefeDe,
+            className={classnames(estadoDirigenteDe, {
+              'input-group-focus': focoDirigenteDe,
             })}
           >
             <Select
               required
               className='react-select'
               classNamePrefix='react-select'
-              name='jefeDe'
-              onChange={handleChangeJefeDe}
-              onFocus={() => setFocoJefeDe(true)}
-              onBlur={() => setFocoJefeDe(false)}
+              name='dirigenteDe'
+              onChange={handleChangeDirigenteDe}
+              onFocus={() => setFocoDirigenteDe(true)}
+              onBlur={() => setFocoDirigenteDe(false)}
               options={[
                 { label: 'Seleccione la unidad', isDisabled: true },
-                { name: 'jefeDe', value: 'familia', label: 'Familia' },
-                { name: 'jefeDe', value: 'manada', label: 'Manada' },
-                { name: 'jefeDe', value: 'tropa', label: 'Tropa' },
-                { name: 'jefeDe', value: 'sociedad', label: 'Sociedad' },
-                { name: 'jefeDe', value: 'clan', label: 'Clan' },
+                { name: 'dirigenteDe', value: 'adultos', label: 'Consejo' },
+                { name: 'dirigenteDe', value: 'familia', label: 'Familia' },
+                { name: 'dirigenteDe', value: 'manada', label: 'Manada' },
+                { name: 'dirigenteDe', value: 'scouts', label: 'Scouts' },
+                { name: 'dirigenteDe', value: 'sociedad', label: 'Sociedad' },
+                { name: 'dirigenteDe', value: 'clan', label: 'Clan' },
               ]}
-              placeholder='Jefe de...'
+              placeholder='Unidad de voluntariado...'
             />
             {estadoUnidad === 'has-danger' && (
               <label className='error'>Campo obligatorio</label>
