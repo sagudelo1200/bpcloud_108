@@ -21,7 +21,7 @@ import classNames from 'classnames'
 import { Line } from 'react-chartjs-2'
 // database interaction
 import { db } from 'firebaseApp'
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, getDocs, query, where } from 'firebase/firestore'
 
 // reactstrap components
 import {
@@ -65,9 +65,12 @@ const Dashboard = () => {
     ]
 
     unidades.forEach(async (unidad) => {
-      const querySnapshot = await getDocs(
-        collection(db, `unidades/${unidad}/integrantes`)
+      const q = query(
+        collection(db, `integrantes`),
+        where('unidad', '==', unidad)
       )
+      const querySnapshot = await getDocs(q)
+
       setIntegrantesN((prevState) => ({
         ...prevState,
         [unidad]: querySnapshot.size,
