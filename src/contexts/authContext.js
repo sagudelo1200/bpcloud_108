@@ -39,7 +39,7 @@ export default function AuthContextProvider({ children }) {
   // Valida si el usuario autenticado tiene permisos para acceder a la aplicación
   const checkRole = async (user) => {
     try {
-      const userRef = doc(db, `users/${user.uid}`)
+      const userRef = doc(db, `usuarios/${user.uid}`)
       const userDoc = await getDoc(userRef)
 
       if (!userDoc.exists()) {
@@ -126,7 +126,7 @@ export default function AuthContextProvider({ children }) {
   function rememberLogin(user) {
     const { email, displayName, photoURL } = user
     localStorage.setItem(
-      'user',
+      'usuario',
       JSON.stringify({ email, displayName, photoURL })
     )
   }
@@ -151,7 +151,7 @@ export default function AuthContextProvider({ children }) {
   }
 
   function logout() {
-    localStorage.removeItem('user')
+    localStorage.removeItem('usuario')
     return signOut(auth)
   }
 

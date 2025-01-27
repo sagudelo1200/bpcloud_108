@@ -29,7 +29,7 @@ ReactDOM.render(
           <Route path='/admin' render={(props) => <AdminLayout {...props} />} />
           <Route path='/docs' render={(props) => <DocsLayout {...props} />} />
           <Route path='/auth' render={(props) => <AuthLayout {...props} />} />
-          {localStorage.getItem('user') ? (
+          {localStorage.getItem('usuario') ? (
             <Redirect from='*' to='/auth/bloqueo' />
           ) : (
             <Redirect from='*' to='/auth/ingresar' />

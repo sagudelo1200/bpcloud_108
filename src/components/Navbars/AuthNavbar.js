@@ -53,7 +53,8 @@ const AuthNavbar = (props) => {
         </button>
         <Collapse isOpen={collapseOpen} navbar>
           <Nav navbar className='ml-auto'>
-            {localStorage.getItem('user') && props.brandText !== 'Bloqueo' ? (
+            {localStorage.getItem('usuario') &&
+            props.brandText !== 'Bloqueo' ? (
               <NavItem>
                 <NavLink to='/auth/bloqueo' className='nav-link'>
                   <i className='fas fa-unlock-alt mr-1' /> Desbloquear

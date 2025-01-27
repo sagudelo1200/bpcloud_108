@@ -87,15 +87,15 @@ const Unidad = () => {
 
     try {
       // crea el documento de usuario de la app en la base de datos
-      const docRef = doc(db, `unidades/${unidad}/integrantes/${documento}`)
-      const userRef = doc(db, `users/${id}`)
+      const docRef = doc(db, `integrantes/${documento}`)
+      const userRef = doc(db, `usuarios/${id}`)
       let userAppData = {
         estado: 'activo',
         nombres: `${nombres}`,
         ref: docRef,
         unidad,
-        role: unidad === 'adultos' ? 'admin' : 'user',
-        roles: [unidad === 'adultos' ? 'admin' : 'user'],
+        role: unidad === 'adultos' ? 'admin' : 'usuario',
+        roles: [unidad === 'adultos' ? 'admin' : 'usuario'],
       }
       if (unidad === 'adultos') {
         userAppData['dirigenteDe'] = dirigenteDe

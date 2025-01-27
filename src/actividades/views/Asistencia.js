@@ -47,7 +47,10 @@ const Asistencia = () => {
       setActividades((prevState) => [...prevState, data])
     })
 
-    const q2 = query(collection(db, 'users'), where('role', '!=', 'superadmin'))
+    const q2 = query(
+      collection(db, 'usuarios'),
+      where('role', '!=', 'superadmin')
+    )
     const qSnap2 = await getDocs(q2)
     qSnap2.forEach((doc) => {
       setIntegrantes((prevState) => [

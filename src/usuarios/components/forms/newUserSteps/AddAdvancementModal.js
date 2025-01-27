@@ -94,7 +94,7 @@ const AddAdvancementModal = ({
   }
 
   const updateAscensos = async (ascensos) => {
-    const docRef = doc(db, `unidades/${unidad}/integrantes/${user.id}`)
+    const docRef = doc(db, `integrantes/${user.id}`)
     const newUser = { ...user, ascensos }
     try {
       await updateDoc(docRef, newUser)

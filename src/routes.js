@@ -150,7 +150,7 @@ const PrivateRoute = (props) => {
   }
   return isAuthenticated() ? (
     <Route {...props} />
-  ) : localStorage.getItem('user') ? (
+  ) : localStorage.getItem('usuario') ? (
     <Redirect
       to={{
         pathname: '/auth/bloqueo',

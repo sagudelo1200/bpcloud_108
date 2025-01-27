@@ -27,7 +27,7 @@ const Lock = () => {
   const location = useLocation()
   const [state, setState] = React.useState({})
   const { login } = useAuth()
-  const user = JSON.parse(localStorage.getItem('user') || '{}')
+  const user = JSON.parse(localStorage.getItem('usuario') || '{}')
 
   const handleRedirectOrBack = () => {
     history.replace(location.state?.from ?? '/')
