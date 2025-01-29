@@ -16,7 +16,7 @@ import { useParams, Redirect } from 'react-router-dom'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from 'firebaseApp'
 import { DefaultLoading } from 'components/Animations/Loading'
-import AddAdvancementModal from 'usuarios/components/forms/newUserSteps/AddAdvancementModal'
+// import AddAdvancementModal from 'usuarios/components/forms/newUserSteps/AddAdvancementModal'
 
 const { REACT_APP_TITLE } = process.env
 
@@ -62,7 +62,7 @@ const User = () => {
     toggleNewAscensoModal()
   }
 
-  const addAdvancementToList = (advancement) => {
+  /* const addAdvancementToList = (advancement) => {
     // validar si usuario ya tiene ese ascenso
     if (user.ascensos) {
       if (user.ascensos.find((ascenso) => ascenso.ref === advancement.ref)) {
@@ -73,7 +73,7 @@ const User = () => {
     const newAdvancements = [...currentAdvancements, advancement]
     const newUser = { ...user, ascensos: newAdvancements }
     setUser(newUser)
-  }
+  } */
 
   useEffect(() => {
     /* getUser in a clean function */
@@ -416,14 +416,15 @@ const User = () => {
                         <button onClick={createAscenso}>
                           <i className='fas fa-plus fa-2x' />
                         </button>
-                        <AddAdvancementModal
+                        {/* BUG 🐞 */}
+                        {/* <AddAdvancementModal
                           isOpen={isOpenAscenso}
                           toggle={toggleNewAscensoModal}
                           createAscenso={createAscenso}
                           unidad={unidad}
                           user={user}
                           addAdvancementToList={addAdvancementToList}
-                        />
+                        /> */}
                       </div>
                     </div>
                   </CardBody>

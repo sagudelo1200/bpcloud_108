@@ -47,7 +47,13 @@ const Footer = (props) => {
         </ul> */}
         <div className='copyright'>
           © {new Date().getFullYear()} hecho con ❤️ por{' '}
-          <Link to='https://github.com/sagudelo1200'>Santiago Agudelo</Link>
+          <a
+            href='https://github.com/sagudelo1200'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            Santiago Agudelo
+          </a>
         </div>
       </Container>
     </footer>

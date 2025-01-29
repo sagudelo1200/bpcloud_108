@@ -159,7 +159,7 @@ const Unidad = () => {
                   'btn-neutral': false,
                 })}
               >
-                <Link to={`/admin/${unidad}/${prop.documento}`}>
+                <Link to={`/admin/integrantes/${prop.documento}`}>
                   <i className='fas fa-eye' />
                 </Link>
               </Button>{' '}
@@ -309,7 +309,7 @@ const Unidad = () => {
           <PrivateRoute exact path={path}>
             {component()}
           </PrivateRoute>
-          <PrivateRoute exact path={`/admin/:unidad/:id`}>
+          <PrivateRoute exact path={`/admin/integrantes/:id`}>
             <User />
           </PrivateRoute>
           <Redirect to={`/admin/${unidad}`} />

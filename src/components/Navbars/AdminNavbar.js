@@ -164,7 +164,7 @@ const AdminNavbar = (props) => {
                   nav
                 >
                   <div className='notification d-none d-lg-block d-xl-block' />
-                  <i className='tim-icons icon-sound-wave' />
+                  <i className='fa-regular fa-bell'></i>
                   <p className='d-lg-none'>Notificaciones</p>
                 </DropdownToggle>
                 <DropdownMenu className='dropdown-navbar' right tag='ul'>
@@ -198,7 +198,7 @@ const AdminNavbar = (props) => {
                   <NavLink tag='li'>
                     <DropdownItem className='nav-item'>
                       <Link
-                        to={`/admin/${userData.unidad}/${userData.documento}`}
+                        to={`/admin/integrantes/${userData.documento}`}
                         className='nav-link text-dark'
                       >
                         Perfil
