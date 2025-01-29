@@ -6,8 +6,10 @@ import Lock from 'views/Lock'
 
 import Dashboard from 'views/Dashboard.js'
 import Unidad from 'usuarios/views/Unidad.js'
+import User from 'usuarios/views/User.js'
 import NewUser from 'usuarios/components/NewUser'
 import Actividades from 'actividades/views/Actividades'
+import Cronograma from 'actividades/views/Cronograma'
 import Asistencia from 'actividades/views/Asistencia'
 
 // DOCS
@@ -45,6 +47,12 @@ const routes = [
     icon: 'fas fa-chart-pie',
     component: Dashboard,
     layout: '/admin',
+  },
+  {
+    path: '/integrantes/:id',
+    layout: '/admin',
+    hideFromMenu: true,
+    component: User,
   },
   {
     collapse: true,
@@ -104,19 +112,36 @@ const routes = [
       },
     ],
   },
+  /* ACTIVIDADES */
   {
     collapse: true,
     layout: '/admin',
     name: 'Actividades',
-    icon: 'fas fa-calendar-alt',
+    icon: 'far fa-rectangle-list',
     state: 'actividadesCollapse',
     views: [
+      {
+        path: '/actividades/fichas',
+        name: 'Fichas de Actividad',
+        icon: 'fas fa-file-alt',
+        component: Actividades,
+        layout: '/admin',
+      },
+      {
+        path: '/actividades/cronograma',
+        name: 'Cronograma',
+        title: 'Cronograma de Actividades',
+        icon: 'fas fa-calendar-alt',
+        component: Cronograma,
+        layout: '/admin',
+      },
       {
         path: '/actividades',
         name: 'Control Actividades',
         icon: 'fa-brands fa-buromobelexperte',
         component: Actividades,
         layout: '/admin',
+        hideFromMenu: true,
       },
       {
         path: '/asistencia',

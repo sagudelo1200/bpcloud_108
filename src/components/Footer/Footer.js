@@ -23,7 +23,9 @@ import { Link } from 'react-router-dom'
 
 const Footer = (props) => {
   return (
-    <footer className={'footer' + (props.default ? ' footer-default' : '')}>
+    <footer
+      className={'footer pt-1' + (props.default ? ' footer-default' : '')}
+    >
       <Container fluid={props.fluid ? true : false}>
         {/* <ul className="nav">
           <li className="nav-item">
