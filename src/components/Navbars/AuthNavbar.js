@@ -35,7 +35,7 @@ const AuthNavbar = (props) => {
       <Container fluid>
         <div className='navbar-wrapper'>
           <NavbarBrand href='#Sattwa108' onClick={(e) => e.preventDefault()}>
-            {props.brandText} | '{process.env.REACT_APP_NAME}'
+            {props.brandText} | '{process.env.REACT_APP_TITLE}'
           </NavbarBrand>
         </div>
         <button

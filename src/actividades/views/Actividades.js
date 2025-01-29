@@ -19,6 +19,8 @@ import { useNotify } from 'contexts/notifyContext'
 import ActivityCard from 'actividades/components/ActivityCard'
 import { Helmet } from 'react-helmet'
 
+const { REACT_APP_TITLE } = process.env
+
 const Actividades = () => {
   const { successAlert } = useNotify()
   const [edit, setEdit] = React.useState(null)
@@ -27,6 +29,7 @@ const Actividades = () => {
   const [publicado, setPublicado] = React.useState([])
   const [loadingPublicado, setLoadingPublicado] = React.useState(true)
   const [isOpen, setIsOpen] = React.useState(false)
+
   const toggleModal = () => {
     setIsOpen(!isOpen)
   }
@@ -154,7 +157,7 @@ const Actividades = () => {
   return (
     <>
       <Helmet>
-        <title>Actividades | {process.env.REACT_APP_NAME}</title>
+        <title>Actividades | {REACT_APP_TITLE}</title>
       </Helmet>
       <div className='content'>
         <Row className='d-flex justify-content-center'>
