@@ -20,6 +20,7 @@ import {
 import { toast } from 'react-toastify'
 
 import { useAuth } from 'contexts/authContext'
+import { Helmet } from 'react-helmet'
 
 const { REACT_APP_TITLE } = process.env
 
@@ -112,7 +113,6 @@ const Login = () => {
   }
 
   useEffect(() => {
-    document.title = `Ingresar | ${REACT_APP_TITLE}`
     document.body.classList.toggle('login-page')
     return function cleanup() {
       document.body.classList.toggle('login-page')
@@ -120,6 +120,9 @@ const Login = () => {
   })
   return (
     <>
+      <Helmet>
+        <title>Ingresar | {REACT_APP_TITLE}</title>
+      </Helmet>
       <div className='content'>
         <Container>
           <Col className='ml-auto mr-auto' lg='4' md='6'>

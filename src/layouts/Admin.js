@@ -34,6 +34,8 @@ import logo from 'assets/img/favicon.png'
 
 var ps
 
+const { REACT_APP_TITLE } = process.env
+
 const Admin = (props) => {
   const { currentUserData } = useAuth()
 
@@ -138,7 +140,7 @@ const Admin = (props) => {
     })
   }
   const getActiveRoute = (routes) => {
-    let activeRoute = 'Sattwa 108'
+    let activeRoute = REACT_APP_TITLE
     for (let i = 0; i < routes.length; i++) {
       if (routes[i].collapse) {
         let collapseActiveRoute = getActiveRoute(routes[i].views)
@@ -206,7 +208,7 @@ const Admin = (props) => {
         activeColor={activeColor}
         logo={{
           outterLink: '/',
-          text: 'Sattwa 108',
+          text: REACT_APP_TITLE,
           imgSrc: logo,
         }}
         closeSidebar={closeSidebar}

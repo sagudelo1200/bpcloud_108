@@ -17,9 +17,9 @@ import { DefaultLoading } from 'components/Animations/Loading'
 import NewActivityModal from 'actividades/components/NewActivityModal'
 import { useNotify } from 'contexts/notifyContext'
 import ActivityCard from 'actividades/components/ActivityCard'
+import { Helmet } from 'react-helmet'
 
 const Actividades = () => {
-  document.title = 'Actividades | Sattwa 108'
   const { successAlert } = useNotify()
   const [edit, setEdit] = React.useState(null)
   const [data, setData] = React.useState([])
@@ -153,6 +153,9 @@ const Actividades = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Actividades | {process.env.REACT_APP_NAME}</title>
+      </Helmet>
       <div className='content'>
         <Row className='d-flex justify-content-center'>
           <Col sm={2} className='text-center'>

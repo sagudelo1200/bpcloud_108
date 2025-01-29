@@ -19,6 +19,7 @@ import {
 
 import { useAuth } from 'contexts/authContext'
 import { toast } from 'react-toastify'
+import { Helmet } from 'react-helmet'
 
 const { REACT_APP_TITLE } = process.env
 
@@ -56,7 +57,6 @@ const Lock = () => {
   React.useEffect(() => {
     if (!user.email) history.replace('/auth/ingresar')
 
-    document.title = `Desbloquear | ${REACT_APP_TITLE}`
     document.body.classList.toggle('lock-page')
     return function cleanup() {
       document.body.classList.toggle('lock-page')
@@ -65,6 +65,9 @@ const Lock = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Desbloquear | {REACT_APP_TITLE}</title>
+      </Helmet>
       <div className='content'>
         <Container>
           <Col className='ml-auto mr-auto' lg='4' md='6'>

@@ -25,6 +25,7 @@ import { useUsers } from 'usuarios/hooks/useUsers'
 import SimpleModalForm from 'usuarios/components/forms/newUserSteps/SimpleModalForm'
 
 import User from './User'
+import { Helmet } from 'react-helmet'
 
 const { REACT_APP_TITLE } = process.env
 
@@ -227,11 +228,14 @@ const Unidad = () => {
       return <Redirect to='/admin/dashboard' />
   }
 
-  document.title = `${datosUnidad.nombre} | ${REACT_APP_TITLE}`
-
   const component = () => {
     return (
       <>
+        <Helmet>
+          <title>
+            {datosUnidad.nombre} | {REACT_APP_TITLE}
+          </title>
+        </Helmet>
         <Col md={8} className='ml-auto mr-auto'>
           <h2 className='text-center'>{datosUnidad.nombre}</h2>
         </Col>

@@ -38,12 +38,11 @@ import {
 
 // core components
 import { chartExample1 } from 'variables/charts.js'
+import { Helmet } from 'react-helmet'
 
 const { REACT_APP_TITLE } = process.env
 
 const Dashboard = () => {
-  document.title = `${REACT_APP_TITLE}`
-
   const [bigChartData, setbigChartData] = React.useState('data1')
   const [nIntegrantes, setIntegrantesN] = React.useState({})
   const [loading, setLoading] = React.useState(true)
@@ -91,6 +90,9 @@ const Dashboard = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{REACT_APP_TITLE}</title>
+      </Helmet>
       <div className='content'>
         <Row className='justify-content-center'>
           {/* FAMILIA */}

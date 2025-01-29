@@ -13,9 +13,11 @@ import { DefaultLoading } from 'components/Animations/Loading'
 
 import { collection, query, where, getDocs } from 'firebase/firestore'
 import { db } from 'firebaseApp'
+import { Helmet } from 'react-helmet'
+
+const { REACT_APP_TITLE } = process.env
 
 const Asistencia = () => {
-  document.title = 'Asistencia | Sattwa 108'
   const [loading, setLoading] = React.useState(true)
   const [openedCollapses, setOpenedCollapses] = React.useState({})
   const [actividades, setActividades] = React.useState([])
@@ -75,6 +77,9 @@ const Asistencia = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Asistencia | {REACT_APP_TITLE}</title>
+      </Helmet>
       <div className='content'>
         <Row>
           <Col md='12'>

@@ -16,6 +16,7 @@ import { useParams, Redirect } from 'react-router-dom'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from 'firebaseApp'
 import { DefaultLoading } from 'components/Animations/Loading'
+import { Helmet } from 'react-helmet'
 // import AddAdvancementModal from 'usuarios/components/forms/newUserSteps/AddAdvancementModal'
 
 const { REACT_APP_TITLE } = process.env
@@ -26,7 +27,6 @@ const User = () => {
   const [loading, setLoading] = useState(true)
   const [redirect, setRedirect] = useState(false)
   const docRef = doc(db, `integrantes/${id}`)
-  document.title = `Integrantes ${user.unidad} | ${REACT_APP_TITLE}`
 
   const getUser = async () => {
     setLoading(true)
@@ -88,6 +88,9 @@ const User = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{`Integrantes ${user.unidad} | ${REACT_APP_TITLE}`}</title>
+      </Helmet>
       <div className='content'>
         {loading ? (
           <DefaultLoading />

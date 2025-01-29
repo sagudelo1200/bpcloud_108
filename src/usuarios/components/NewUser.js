@@ -11,6 +11,7 @@ import { updateProfile } from 'firebase/auth'
 import PasosIntegrante from './forms/newUserSteps/PasosIntegrante'
 import PasosScout from './forms/newUserSteps/PasosScout'
 import PasosSalud from './forms/newUserSteps/PasosSalud'
+import { Helmet } from 'react-helmet'
 
 var steps = [
   {
@@ -29,7 +30,6 @@ var steps = [
 const { REACT_APP_TITLE } = process.env
 
 function NewUser() {
-  document.title = `Nuevo integrante | ${REACT_APP_TITLE}`
   const { register, logout } = useAuth()
 
   const createUser = async (userData) => {
@@ -125,29 +125,34 @@ function NewUser() {
   }
 
   return (
-    <div className='content'>
-      <Col className='mx-auto' md={11}>
-        <div>
-          <ReactWizard
-            steps={steps}
-            navSteps
-            validate
-            title='Nuevo integrante'
-            description='Por favor, registre la hoja de vida del integrante'
-            headerTextCenter
-            finishButtonClasses='btn-wd btn-info'
-            finishButtonText='Guardar'
-            nextButtonClasses='btn-wd btn-info'
-            nextButtonText='Siguiente'
-            previousButtonClasses='btn-wd'
-            previousButtonText='Regresar'
-            progressbar
-            color='blue'
-            finishButtonClick={finishButtonClick}
-          />
-        </div>
-      </Col>
-    </div>
+    <>
+      <Helmet>
+        <title>Nuevo integrante | {REACT_APP_TITLE}</title>
+      </Helmet>
+      <div className='content'>
+        <Col className='mx-auto' md={11}>
+          <div>
+            <ReactWizard
+              steps={steps}
+              navSteps
+              validate
+              title='Nuevo integrante'
+              description='Por favor, registre la hoja de vida del integrante'
+              headerTextCenter
+              finishButtonClasses='btn-wd btn-info'
+              finishButtonText='Guardar'
+              nextButtonClasses='btn-wd btn-info'
+              nextButtonText='Siguiente'
+              previousButtonClasses='btn-wd'
+              previousButtonText='Regresar'
+              progressbar
+              color='blue'
+              finishButtonClick={finishButtonClick}
+            />
+          </div>
+        </Col>
+      </div>
+    </>
   )
 }
 

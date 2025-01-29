@@ -4,6 +4,9 @@ import { Calendar as BigCalendar, momentLocalizer } from 'react-big-calendar'
 // dependency plugin for react-big-calendar
 import moment from 'moment'
 
+// title
+import Helmet from 'react-helmet'
+
 // react component used to create alerts
 import SweetAlert from 'react-bootstrap-sweetalert'
 
@@ -14,9 +17,9 @@ import { events } from 'variables/general.js'
 
 const localizer = momentLocalizer(moment)
 
-const Cronograma = () => {
-  document.title = 'Cronograma | Sattwa 108'
+const { REACT_APP_TITLE } = process.env
 
+const Cronograma = () => {
   const [event, setEvents] = React.useState(events)
   const [alert, setAlert] = React.useState(null)
   const selectedEvent = (event) => {
@@ -60,6 +63,9 @@ const Cronograma = () => {
   }
   return (
     <>
+      <Helmet>
+        <title>Cronograma | {REACT_APP_TITLE}</title>
+      </Helmet>
       <div className='content'>
         {alert}
         <Row>
