@@ -111,7 +111,7 @@ const AdminNavbar = (props) => {
                 onClick={props.toggleSidebar}
               >
                 <span className='navbar-toggler-bar bar1' />
-                <span className='navbar-toggler-bar bar3' />
+                <span className='navbar-toggler-bar bar2' />
                 <span className='navbar-toggler-bar bar3' />
               </button>
             </div>
