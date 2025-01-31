@@ -69,6 +69,9 @@ const Cronograma = () => {
       <div className='content'>
         {alert}
         <Row>
+          <Col md={8} className='ml-auto mr-auto'>
+            <h2 className='text-center'>Cronograma de Actividades</h2>
+          </Col>
           <Col className='ml-auto mr-auto' md='10'>
             <Card className='card-calendar'>
               <CardBody>
@@ -76,17 +79,17 @@ const Cronograma = () => {
                   selectable
                   messages={{
                     week: 'Semana',
-                    work_week: 'Semana de trabajo',
+                    work_week: 'Semana Laboral',
                     day: 'Día',
                     month: 'Mes',
-                    previous: 'Atrás',
-                    next: 'Después',
+                    previous: 'Anterior',
+                    next: 'Siguiente',
                     agenda: 'Agenda',
                     allDay: 'Todo el día',
                     date: 'Fecha',
                     event: 'Evento',
                     time: 'Hora',
-                    noEventsInRange: 'No hay eventos en este rango de tiempo.',
+                    noEventsInRange: 'No hay eventos en este rango',
                     yesterday: 'Ayer',
                     today: 'Hoy',
                     tomorrow: 'Mañana',

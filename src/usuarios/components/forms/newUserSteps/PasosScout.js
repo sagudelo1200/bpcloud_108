@@ -136,7 +136,7 @@ const PasosScout = React.forwardRef((props, ref) => {
             'd-none': !esDirigente,
           })}
         >
-          <label>Unidad de voluntariado</label>
+          <label>Unidad donde es voluntario</label>
           <InputGroup
             className={classnames(estadoDirigenteDe, {
               'input-group-focus': focoDirigenteDe,

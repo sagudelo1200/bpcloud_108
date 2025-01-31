@@ -229,7 +229,9 @@ const Admin = (props) => {
         {
           // we don't want the Footer to be rendered on full screen maps page
           props.location.pathname.indexOf('full-screen-map') !== -1 ? null : (
-            <Footer fluid />
+            <div className='d-xl-none'>
+              <Footer fluid />
+            </div>
           )
         }
       </div>

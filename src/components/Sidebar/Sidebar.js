@@ -223,6 +223,19 @@ const Sidebar = (props) => {
         ) : null}
         <Nav>{createLinks(props.routes)}</Nav>
       </div>
+      <div
+        className='copyright text-center mt-1'
+        style={{ color: 'white', fontSize: '0.6rem' }}
+      >
+        © {new Date().getFullYear()} Hecho con ❤️ por{' '}
+        <a
+          href='https://github.com/sagudelo1200'
+          target='_blank'
+          rel='noopener noreferrer'
+        >
+          Santiago Agudelo
+        </a>
+      </div>
     </div>
   )
 }
