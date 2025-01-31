@@ -138,10 +138,10 @@ function Table({ columns, data }) {
                 options={pageSelectData.map((prop, key) => {
                   return {
                     value: key,
-                    label: 'Page ' + (key + 1),
+                    label: 'Pág ' + (key + 1),
                   }
                 })}
-                placeholder='Página'
+                placeholder='# página'
               />
               <Select
                 className='react-select info mx-5 w-100'
@@ -156,7 +156,7 @@ function Table({ columns, data }) {
                 options={numberOfRowsData.map((prop) => {
                   return {
                     value: prop,
-                    label: prop + ' rows',
+                    label: prop + ' filas',
                   }
                 })}
                 placeholder='# filas'

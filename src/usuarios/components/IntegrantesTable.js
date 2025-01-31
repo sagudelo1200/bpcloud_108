@@ -148,7 +148,7 @@ function IntegrantesTable({ columns, data, loading }) {
                     label: 'Pág ' + (key + 1),
                   }
                 })}
-                placeholder='Página'
+                placeholder='# página'
               />
               <Select
                 className='react-select info mx-2 w-100'
@@ -166,7 +166,7 @@ function IntegrantesTable({ columns, data, loading }) {
                     label: prop + ' filas',
                   }
                 })}
-                placeholder='# Filas'
+                placeholder='# filas'
               />
             </div>
             <div className='-next'>
