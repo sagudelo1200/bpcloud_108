@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/bpcloud_108/static/css/main.ed4bcbf9.chunk.css",
-    "main.js": "/bpcloud_108/static/js/main.fb8e59cc.chunk.js",
-    "main.js.map": "/bpcloud_108/static/js/main.fb8e59cc.chunk.js.map",
+    "main.js": "/bpcloud_108/static/js/main.508a4969.chunk.js",
+    "main.js.map": "/bpcloud_108/static/js/main.508a4969.chunk.js.map",
     "runtime-main.js": "/bpcloud_108/static/js/runtime-main.1f25dec3.js",
     "runtime-main.js.map": "/bpcloud_108/static/js/runtime-main.1f25dec3.js.map",
     "static/css/2.7ba4354c.chunk.css": "/bpcloud_108/static/css/2.7ba4354c.chunk.css",
@@ -12,7 +12,7 @@
     "static/css/2.7ba4354c.chunk.css.map": "/bpcloud_108/static/css/2.7ba4354c.chunk.css.map",
     "static/css/main.ed4bcbf9.chunk.css.map": "/bpcloud_108/static/css/main.ed4bcbf9.chunk.css.map",
     "static/js/2.c53cdb43.chunk.js.LICENSE.txt": "/bpcloud_108/static/js/2.c53cdb43.chunk.js.LICENSE.txt",
-    "static/js/main.fb8e59cc.chunk.js.LICENSE.txt": "/bpcloud_108/static/js/main.fb8e59cc.chunk.js.LICENSE.txt",
+    "static/js/main.508a4969.chunk.js.LICENSE.txt": "/bpcloud_108/static/js/main.508a4969.chunk.js.LICENSE.txt",
     "static/media/card-success.png": "/bpcloud_108/static/media/card-success.b6634da7.png",
     "static/media/black-dashboard-pro-react.scss?v=1.2.0": "/bpcloud_108/static/media/night-sky.e6a30d27.png",
     "static/media/favicon.14de4c20.png": "/bpcloud_108/static/media/favicon.14de4c20.png",
@@ -24,6 +24,6 @@
     "static/css/2.7ba4354c.chunk.css",
     "static/js/2.c53cdb43.chunk.js",
     "static/css/main.ed4bcbf9.chunk.css",
-    "static/js/main.fb8e59cc.chunk.js"
+    "static/js/main.508a4969.chunk.js"
   ]
 }
