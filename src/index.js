@@ -24,7 +24,7 @@ import 'firebaseApp'
 ReactDOM.render(
   <NotifyContextProvider>
     <AuthContextProvider>
-      <Router>
+      <Router basename='/bpcloud_108'>
         <Switch>
           <Route path='/admin' render={(props) => <AdminLayout {...props} />} />
           <Route path='/docs' render={(props) => <DocsLayout {...props} />} />
