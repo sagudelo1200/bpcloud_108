@@ -1,28 +1,29 @@
 {
   "files": {
-    "main.css": "/static/css/main.7119ef6a.chunk.css",
-    "main.js": "/static/js/main.e8188d7c.chunk.js",
-    "main.js.map": "/static/js/main.e8188d7c.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.9530db3d.js",
-    "runtime-main.js.map": "/static/js/runtime-main.9530db3d.js.map",
-    "static/css/2.68fdb14c.chunk.css": "/static/css/2.68fdb14c.chunk.css",
-    "static/js/2.a0f21eff.chunk.js": "/static/js/2.a0f21eff.chunk.js",
-    "static/js/2.a0f21eff.chunk.js.map": "/static/js/2.a0f21eff.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/2.68fdb14c.chunk.css.map": "/static/css/2.68fdb14c.chunk.css.map",
-    "static/css/main.7119ef6a.chunk.css.map": "/static/css/main.7119ef6a.chunk.css.map",
-    "static/js/2.a0f21eff.chunk.js.LICENSE.txt": "/static/js/2.a0f21eff.chunk.js.LICENSE.txt",
-    "static/js/main.e8188d7c.chunk.js.LICENSE.txt": "/static/js/main.e8188d7c.chunk.js.LICENSE.txt",
-    "static/media/card-success.png": "/static/media/card-success.b6634da7.png",
-    "static/media/black-dashboard-pro-react.scss?v=1.2.0": "/static/media/night-sky.e6a30d27.png",
-    "static/media/female_avatar.svg": "/static/media/female_avatar.cb71b8c2.svg",
-    "static/media/nucleo-icons.css": "/static/media/nucleo.bd5cce8b.eot"
+    "main.css": "/bpcloud_108/static/css/main.ed4bcbf9.chunk.css",
+    "main.js": "/bpcloud_108/static/js/main.fb8e59cc.chunk.js",
+    "main.js.map": "/bpcloud_108/static/js/main.fb8e59cc.chunk.js.map",
+    "runtime-main.js": "/bpcloud_108/static/js/runtime-main.1f25dec3.js",
+    "runtime-main.js.map": "/bpcloud_108/static/js/runtime-main.1f25dec3.js.map",
+    "static/css/2.7ba4354c.chunk.css": "/bpcloud_108/static/css/2.7ba4354c.chunk.css",
+    "static/js/2.c53cdb43.chunk.js": "/bpcloud_108/static/js/2.c53cdb43.chunk.js",
+    "static/js/2.c53cdb43.chunk.js.map": "/bpcloud_108/static/js/2.c53cdb43.chunk.js.map",
+    "index.html": "/bpcloud_108/index.html",
+    "static/css/2.7ba4354c.chunk.css.map": "/bpcloud_108/static/css/2.7ba4354c.chunk.css.map",
+    "static/css/main.ed4bcbf9.chunk.css.map": "/bpcloud_108/static/css/main.ed4bcbf9.chunk.css.map",
+    "static/js/2.c53cdb43.chunk.js.LICENSE.txt": "/bpcloud_108/static/js/2.c53cdb43.chunk.js.LICENSE.txt",
+    "static/js/main.fb8e59cc.chunk.js.LICENSE.txt": "/bpcloud_108/static/js/main.fb8e59cc.chunk.js.LICENSE.txt",
+    "static/media/card-success.png": "/bpcloud_108/static/media/card-success.b6634da7.png",
+    "static/media/black-dashboard-pro-react.scss?v=1.2.0": "/bpcloud_108/static/media/night-sky.e6a30d27.png",
+    "static/media/favicon.14de4c20.png": "/bpcloud_108/static/media/favicon.14de4c20.png",
+    "static/media/female_avatar.svg": "/bpcloud_108/static/media/female_avatar.cb71b8c2.svg",
+    "static/media/nucleo-icons.css": "/bpcloud_108/static/media/nucleo.bd5cce8b.eot"
   },
   "entrypoints": [
-    "static/js/runtime-main.9530db3d.js",
-    "static/css/2.68fdb14c.chunk.css",
-    "static/js/2.a0f21eff.chunk.js",
-    "static/css/main.7119ef6a.chunk.css",
-    "static/js/main.e8188d7c.chunk.js"
+    "static/js/runtime-main.1f25dec3.js",
+    "static/css/2.7ba4354c.chunk.css",
+    "static/js/2.c53cdb43.chunk.js",
+    "static/css/main.ed4bcbf9.chunk.css",
+    "static/js/main.fb8e59cc.chunk.js"
   ]
 }
