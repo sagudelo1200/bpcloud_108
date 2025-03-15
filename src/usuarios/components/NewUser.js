@@ -137,7 +137,6 @@ function NewUser() {
               navSteps
               validate
               title='Nuevo integrante'
-              description='Por favor, registre la hoja de vida del integrante'
               headerTextCenter
               finishButtonClasses='btn-wd btn-info'
               finishButtonText='Guardar'

@@ -14,7 +14,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Switch, Redirect, useLocation } from 'react-router-dom'
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from 'perfect-scrollbar'
@@ -190,6 +190,17 @@ const Admin = (props) => {
       document.body.classList.toggle('sidebar-mini')
     }
   }, [])
+
+  useEffect(() => {
+    if (location.pathname === '/admin/nuevo-integrante') {
+      document.documentElement.classList.add('perfect-scrollbar-off')
+      document.documentElement.classList.remove('perfect-scrollbar-on')
+    } else {
+      document.documentElement.classList.add('perfect-scrollbar-on')
+      document.documentElement.classList.remove('perfect-scrollbar-off')
+    }
+  }, [location.pathname])
+
   return (
     <div className='wrapper'>
       <div className='navbar-minimize-fixed' style={{ opacity: opacity }}>
