@@ -1,14 +1,5 @@
 import React from 'react'
-import classNames from 'classnames'
-import {
-  Card,
-  CardBody,
-  CardHeader,
-  CardTitle,
-  Row,
-  Col,
-  Button,
-} from 'reactstrap'
+import { Card, CardBody, CardHeader, CardTitle, Row, Col } from 'reactstrap'
 
 import ReactTable from 'components/ReactTable/ReactTable.js'
 import { Helmet } from 'react-helmet'
@@ -74,67 +65,10 @@ const Actividades = () => {
           // we've added some custom button actions
           <div className='actions-right'>
             {/* use this button to add a like kind of action */}
-            <Button
-              onClick={() => {
-                let obj = data.find((o) => o.id === key)
-                alert(
-                  "You've clicked LIKE button on \n{ \nName: " +
-                    obj.name +
-                    ', \nposition: ' +
-                    obj.position +
-                    ', \noffice: ' +
-                    obj.office +
-                    ', \nage: ' +
-                    obj.age +
-                    '\n}.'
-                )
-              }}
-              color='info'
-              size='sm'
-              className={classNames('d-none btn-icon btn-link like', {
-                'btn-neutral': key < 1,
-              })}
-            >
-              <i className='tim-icons icon-heart-2' />
-            </Button>{' '}
-            {/* use this button to add a edit kind of action */}
-            <Button
-              onClick={() => {
-                let obj = data.find((o) => o.id === key)
-                alert("You've clicked EDIT button on " + obj.nombre)
-              }}
-              color='warning'
-              size='sm'
-              className={classNames('btn-icon btn-link like', {
-                'btn-neutral': key < 1,
-              })}
-            >
-              <i className='tim-icons icon-pencil' />
-            </Button>{' '}
+            <i className='tim-icons icon-heart-2 mx-2 text-success' />
+            <i className='tim-icons icon-pencil mx-2 text-warning' />
             {/* use this button to remove the data row */}
-            <Button
-              onClick={() => {
-                var newdata = data
-                newdata.find((o, i) => {
-                  if (o.id === key) {
-                    // here you should add some custom code so you can delete the data
-                    // from this component and from your server as well
-                    data.splice(i, 1)
-                    console.log(data)
-                    return true
-                  }
-                  return false
-                })
-                setData(newdata)
-              }}
-              color='danger'
-              size='sm'
-              className={classNames('btn-icon btn-link like', {
-                'btn-neutral': key < 1,
-              })}
-            >
-              <i className='far fa-trash-can' />
-            </Button>{' '}
+            <i className='far fa-trash-can mx-2 text-danger' />
           </div>
         ),
       }
@@ -151,7 +85,64 @@ const Actividades = () => {
           <Col md={8} className='ml-auto mr-auto'>
             <h2 className='text-center'>Fichas de Actividad de Programa</h2>
           </Col>
-          <Col xs={12} md={12}>
+
+          {/* Opcion para 'cards' en vistas pequeñas (móviles) */}
+          <Col xs={12} className='d-sm-block d-md-none'>
+            {/* input para filtro por id o nombre de actividad (input con pre-input icono lupa) */}
+            <input
+              type='text'
+              id='myInput'
+              onKeyUp={() => {
+                // Declare variables
+                let input, filter, cards, cardContainer, title, i
+                input = document.getElementById('myInput')
+                filter = input.value.toUpperCase()
+                cardContainer = document.getElementById('myUL')
+                cards = cardContainer.getElementsByClassName('card')
+                // Loop through all list items, and hide those who don't match the search query
+                for (i = 0; i < cards.length; i++) {
+                  title = cards[i].querySelector('.card-body p.card-text')
+                  if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+                    cards[i].style.display = ''
+                  } else {
+                    cards[i].style.display = 'none'
+                  }
+                }
+
+                // console.log('input', input)
+                // console.log('filter', filter)
+              }}
+              placeholder='Buscar por nombre o ID de actividad...'
+              title='Escribe un nombre o ID'
+              className='form-control mb-3'
+            />
+
+            {data.map((prop, key) => {
+              return (
+                <Card key={key} className='card'>
+                  <CardHeader>
+                    <CardTitle tag='h4'>{prop.nombre}</CardTitle>
+                  </CardHeader>
+                  <CardBody>
+                    <p className='card-text'>
+                      <strong>ID. Actividad:</strong> {prop.id_actividad}
+                    </p>
+                    <p className='card-text'>
+                      <strong>Nombre:</strong> {prop.nombre}
+                    </p>
+                    <p className='card-text float-right'>
+                        <i className='tim-icons icon-heart-2 mx-2 text-success' />
+                        <i className='tim-icons icon-pencil mx-2 text-warning' />
+                        <i className='far fa-trash-can mx-2 text-danger' />
+                    </p>
+                  </CardBody>
+                </Card>
+              )
+            })}
+          </Col>
+
+          {/* Opcion para 'table' en vistas medianas */}
+          <Col md={11} className='ml-auto mr-auto d-sm-none d-md-block'>
             <Card>
               <CardHeader>
                 <CardTitle tag='h4'>Banco de Actividades</CardTitle>
