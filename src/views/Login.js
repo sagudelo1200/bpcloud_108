@@ -133,7 +133,7 @@ const Login = () => {
                     alt='login-card'
                     src={require('assets/img/card-success.png').default}
                   />
-                  <CardTitle tag='h1'>Ingreso</CardTitle>
+                  <CardTitle tag='h1' className='pl-3'>Ingreso</CardTitle>
                 </CardHeader>
                 <CardBody className='pb-0'>
                   <InputGroup
@@ -184,9 +184,8 @@ const Login = () => {
                     />
                   </InputGroup>
                 </CardBody>
-                <CardFooter className='pt-0'>
+                <CardFooter className='pt-0 text-center'>
                   <Button
-                    block
                     className='mb-3'
                     color='primary'
                     href='#Sattwa108'
@@ -195,8 +194,9 @@ const Login = () => {
                   >
                     Ingresar
                   </Button>
-                  <div className='pull-right'>
+                  <div className='pull-right d-none'>
                     <h6>
+                      {/* href de bloqueo #! o !#  */}
                       <a
                         className='link footer-link'
                         href='#Sattwa108'
